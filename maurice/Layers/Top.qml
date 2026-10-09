@@ -1,3 +1,5 @@
+//create the top layer which will consist mainly of the bar
+
 //imports
 import QtQuick
 import QtQuick.Layouts
@@ -22,7 +24,7 @@ Scope {
             anchors.left: true
             anchors.right: true
             anchors.bottom: true
-            color: rgb(255,255,0)
+            color: D.Colors.withAlpha(D.Colors.md3.background, 1)
             exclusionMode: ExclusionMode.Auto
             focusable: false
             //bar height
