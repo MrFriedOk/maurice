@@ -1,0 +1,11 @@
+import QtQuick
+import QtQuick.Layouts
+import "../Widgets" as W
+
+Item {
+    RowLayout {
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.top
+    }
+}

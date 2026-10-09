@@ -1,0 +1,43 @@
+site_name: maurice
+site_description: My rice.
+site_author: MrFriedOk
+#site_url: https://gtihub.com/MrFriedOk/maurice
+
+repo_name: maurice
+repo_url: https://github.com/MrFriedOk/maurice
+
+theme:
+  name: material
+  font: false
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+# AUTO-NAV START
+nav:
+  - Home: index.md
+  - Time Log: timeLog.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/MrFriedOk
