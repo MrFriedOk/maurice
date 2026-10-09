@@ -1,4 +1,4 @@
-<h1 align=center> # maurice </h1>
+<h1 align=center>maurice</h1>
 <h6 align=center>Continuation of previous ricing attempt.</h6>
 <div align=center>
 
