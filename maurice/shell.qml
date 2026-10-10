@@ -1,11 +1,12 @@
 //imports
 import Quickshell
 import QtQuick
-import "./Layers" as L
+import "./layers" as E
 
 ShellRoot {
-    L.Background{}
+    // call background
+    E.Background{}
     // call top layer (the bar and other stuff maybe)
-    L.Top {}
+    E.Top {}
 
 }

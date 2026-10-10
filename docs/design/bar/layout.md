@@ -1,13 +1,17 @@
 # Layout
-How the files, directories and overall code is laid out.
-Thank you github user *Rexcrazy804* for the examples I used. 
+How do I want to break down the layout of the bar?
 
-## Bar
-The master dir for the bar (taskbar).
-### Generics
-These files include `.qml` files that will be referenced across the whole bar element.
-### Containers
-Below the `Layers`, these files hold widgets placed in different parts of the bar.
-#### What Files?
-Bars can be broken down into three different 'containers', left, middle and right. Widgets will be referenced here and creating containers allows versatility, widgets can be moved around with simple changes to the code.
-### Layers
+## Modularity
+I can make the bar 'modular' by keeping sections separated (right, left, middle). Inside these sections will be the widgets.
+
+## Layering
+The bar will be a top layer in Wayland using `Wlr`
+
+## Screens
+using `Variants` (with the `Quickshell.screens` model) under `Scope`, Quickshell applies all my bar configs to every screen. Basically a glorified for loop.
+
+## Pragma
+
+## Imports
+`QtQuick`
+`Quickshell`
