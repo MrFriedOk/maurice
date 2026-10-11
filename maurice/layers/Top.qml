@@ -1,12 +1,19 @@
+//pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
-import "bar" as Bar
+import "bar" as Bars
+//import "./bar/widgets" as Wi
 
 Scope {
+    //apply to every screen
     Variants {
+        //id: top
+        
+        model: Quickshell.screens
 
-	Bar.Bar {}
+        WlrLayershell.layer: WlrLayer.Background
+        Bars.Bar{}
     }
 }
