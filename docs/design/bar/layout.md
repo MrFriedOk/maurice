@@ -70,7 +70,7 @@ RowLayout{
 }
 ```
 ```Widget.qml, the generic widget component that all widgets will use
-import like eveeryting in Quickshell basically
+import like everyting in Quickshell basically
 
 Rectangle{
 	id item

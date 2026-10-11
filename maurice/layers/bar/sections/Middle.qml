@@ -6,10 +6,13 @@ import "../widgets" as W
 
 //iterate across widgets
 RowLayout{
-    // anchors.right: parent.right
-    // anchors.top: parent.top
-    // anchors.bottom: parent.bottom
-    layoutDirection: Qt.RightToLeft
+    anchors{
+        top: parent.top
+
+        topMargin: 20
+
+        centerIn: parent
+    }
 
     W.Viz{}
 }

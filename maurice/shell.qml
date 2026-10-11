@@ -5,8 +5,9 @@ import "./layers" as E
 
 ShellRoot {
     // call background
-    //E.Background{}
+    E.Background{}
     // call top layer (the bar and other stuff maybe)
     E.Top {}
 
+   // E.Background{}
 }

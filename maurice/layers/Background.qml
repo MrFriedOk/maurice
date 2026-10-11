@@ -2,9 +2,10 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
+import "./background" as Bak
 
-Scope {
-    Variants {
-	//
-    }
+Variants {
+    model: Quickshell.screens
+
+    Bak.Wallpaper{}
 }
