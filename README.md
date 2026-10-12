@@ -6,6 +6,9 @@
 
 </div>
 --- 
+## Demo
+I made a video covering the basic stuff, you can find that under `demo`, I used a song in it too so check out the licensing for that.
+For the actual demo, you can use this repo and just point Quickshell to the `maurice` directory, that's where the `shell.qml` is. Sorry, it's kinda unintuitive ( >///< ).
 ## MkDocs
 MkDocs is used to display this repo's docs, simply install MkDocs and serve from this directory!
 
