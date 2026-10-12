@@ -15,7 +15,7 @@ MkDocs is used to display this repo's docs, simply install MkDocs and serve from
 
 
 ## References
-RexCrazy804's Quickshell [`basic_bar` example](https://github.com/Rexcrazy804/quickshell-examples/)
-SelfMadeSystem's Quickshell [`shader_wallpaper` examaple](https://github.com/SelfMadeSystem/quickshell-examples/)
-[Quickshell docs](https://quickshell.org/docs/v0.3.0/types/)
-[QtQuick docs](https://doc.qt.io/qt-6/qtquick-index.html)
+- RexCrazy804's Quickshell [`basic_bar` example](https://github.com/Rexcrazy804/quickshell-examples/)
+- SelfMadeSystem's Quickshell [`shader_wallpaper` examaple](https://github.com/SelfMadeSystem/quickshell-examples/)
+- [Quickshell docs](https://quickshell.org/docs/v0.3.0/types/)
+- [QtQuick docs](https://doc.qt.io/qt-6/qtquick-index.html)
