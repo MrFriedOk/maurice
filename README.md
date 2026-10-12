@@ -5,6 +5,7 @@
 ![Git](https://img.shields.io/github/last-commit/MrFriedOk/maurice)
 
 </div>
+--- 
 ## MkDocs
 MkDocs is used to display this repo's docs, simply install MkDocs and serve from this directory!
 
