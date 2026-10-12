@@ -2,6 +2,8 @@ import QtQuick
 import Quickshell
 import "../universal" as Wi
 
-Wi.Widget{
-   
+Rectangle{
+   Wi.Widget{
+      text.text: "hi"
+   }
 }

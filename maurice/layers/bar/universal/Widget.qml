@@ -6,23 +6,35 @@ import Quickshell.Hyprland
 import Quickshell.Wayland
 import "../../../data" as D
 
-Item{
+RowLayout{
     id: item
-    anchors.fill: parent
 
-    property string icon: ""
-    property string text: ""
+    property alias icon: icon
+    property alias text: text
+    property string font: "SpaceMono Nerd Font"
 
-    Rectangle{
-        anchors.fill:parent
-        color: D.Colors.fg
-        RowLayout{
-            id: part
 
-            Text{
-                text: "hi"
-                color: D.Colors.fg
-            }
+    anchors{
+        centerIn: parent
+    }
+    
+    Item{
+        width: icon.width
+        Text { 
+            id: icon
+
+            color: D.Colors.surface
+            font: item.font 
         }
     }
-}
+
+    Item{
+        Text { 
+            id: text
+
+            color: D.Colors.surface
+            font: item.font 
+        }
+    }
+}   
+

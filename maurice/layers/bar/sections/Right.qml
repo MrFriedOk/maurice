@@ -6,19 +6,25 @@ import "../widgets" as W
 import "../../../data" as D
 
 
-//iterate across widgets
+//widgets
 RowLayout{
     anchors{
-    right: parent.right
-    top: parent.top
-    bottom: parent.bottom
+        //so it goes to the right.com
+        right: parent.right
+        //these broke stuff?
+        //top: parent.top
+        //bottom: parent.bottom
 
-    rightMargin: 100
-    
-    verticalCenter: parent.verticalCenter
+        //should look floaty
+        margins: 2
+        rightMargin: 70
+        
+        verticalCenter: parent.verticalCenter
     }
-    
+    spacing: 50
+
+    //components created go from right to left
     layoutDirection: Qt.RightToLeft
 
-    W.Viz{}
+    W.Bat{}
 }

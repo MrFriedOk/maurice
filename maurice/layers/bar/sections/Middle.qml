@@ -4,15 +4,16 @@ import Quickshell
 //import Quickshell.Widgets
 import "../widgets" as W
 
-//iterate across widgets
+//widgets row
 RowLayout{
     anchors{
         top: parent.top
 
-        topMargin: 20
-
         centerIn: parent
+
+        margins: 2
+
     }
 
-    W.Viz{}
+    W.Clock{}
 }

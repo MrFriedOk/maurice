@@ -11,7 +11,7 @@ PanelWindow {
 	required property var modelData
 	screen: modelData
 
-	color: D.Colors.bg
+	color: "transparent"
 	anchors{
 		//bottom: true
 		left: true
@@ -20,16 +20,20 @@ PanelWindow {
 	}
 	//pretty sure this is the default, but this should let the bar shove windows out of the way. Ignore to.. not do that
 	exclusionMode: ExclusionMode.Auto
-	implicitHeight: 20
+	implicitHeight: 25
 	//implicitWidth: 30
 		
 	//left, middle and right
 
 	Item{
-		anchors.fill: parent
+		anchors{
+			top: parent.top
+			left: parent.left
+			right: parent.right
+		}
 
 		S.Left{}
-		
+
 		S.Middle{}
 
 		S.Right{}
