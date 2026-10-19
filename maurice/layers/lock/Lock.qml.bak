@@ -1,0 +1,30 @@
+import "./" as L
+import QtQuick
+import Quickshell
+import Quickshell.Wayland
+
+Scope {
+    L.LockBack {
+        id: back
+
+        onUnlocked: {
+            lock.locked = false;
+            Qt.quit();
+        }
+    }
+
+    WlSessionLock {
+        id: lock
+
+        locked: true
+
+        WlSessionLockSurface {
+            L.LockWindow {
+                back: back
+            }
+
+        }
+
+    }
+
+}
