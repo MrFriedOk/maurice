@@ -1,40 +1,87 @@
+import "../../../data" as D
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
-import Quickshell.Io
 import Quickshell.Hyprland
+import Quickshell.Io
 import Quickshell.Wayland
-import "../../../data" as D
 
-RowLayout{
-    id: item
+Rectangle {
+    //implicitWidth: item.width
+    //implicitHeight: item.implicitHeight
+    //    Layout.fillHeight: true
+    //  Layout.fillWidth: true
 
+    id: root
+
+    property int wid: text.implicitWidth + icon.implicitWidth
+    property int h: text.implicitHeight + icon.implicitHeight
+    property bool hasIcon: icon.text.trim().length > 0
+    property int padding: 15
     property alias icon: icon
     property alias text: text
-    property string font: "SpaceMono Nerd Font"
+    property string font: "Atkinson Hyperlegible"
+    property bool hasBg: true
 
+    implicitWidth: 75 + padding
+    //Layout.fillHeight: true
+    color: hasBg ? D.Colors.widget : "transparent"
+    radius: D.General.radius
 
-    anchors{
-        centerIn: parent
+    anchors {
+        //fill: parent
+        //top: parent.top
+        //bottom: parent.bottom
+
+        fill: parent
+        margins: 5
     }
-    
-    Item{
-        width: icon.width
-        Text { 
+
+    RowLayout {
+        //implicitWidth: text.implicitWidth + icon.implicitWidth
+
+        id: item
+
+        spacing: text.anchors.leftMargin + root.padding
+
+        Text {
+            //anchors {
+            //    leftMargin: 5
+            //    left: parent.left
+            //}
+
             id: icon
 
-            color: D.Colors.surface
-            font: item.font 
-        }
-    }
+            visible: hasIcon
 
-    Item{
-        Text { 
+            font {
+                bold: D.General.bold
+                family: D.General.family
+                pointSize: D.General.size
+            }
+
+        }
+
+        Text {
+            //horizontalAlignment: Text.AlignHCenter
+
             id: text
 
-            color: D.Colors.surface
-            font: item.font 
-        }
-    }
-}   
+            anchors {
+                right: parent.right
+                //rightMargin: 5
+                leftMargin: 5
+                verticalCenter: parent.verticalCenter
+            }
 
+            font {
+                family: D.General.family
+                bold: D.General.bold
+                pointSize: D.General.size
+            }
+
+        }
+
+    }
+
+}
