@@ -1,0 +1,45 @@
+ ListView {
+            id: notifs
+
+            anchors.fill: parent
+            spacing: 8
+            model: root.notifications
+
+            delegate: Rectangle {
+                required property var modelData
+
+                implicitWidth: win.implicitWidth
+                implicitHeight: 50
+
+                Column {
+                    id: col
+
+                    anchors {
+                        //     centerIn: parent
+
+                    }
+
+                    Text {
+                        text: modelData.summary
+                    }
+
+                    Text {
+                        text: modelData.body
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: modelData.dismiss()
+                    }
+
+                    Timer {
+                        interval: 2000
+                        running: true
+                        onTriggered: modelData.expire()
+                    }
+
+                }
+
+            }
+
+        }
