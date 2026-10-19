@@ -1,11 +1,15 @@
-pragma Singleton
-import Quickshell
 import QtQuick
+import Quickshell
+pragma Singleton
 
 //the colors (temp)
 Singleton {
-    readonly property color bg: '#131313'
-    readonly property color surface: '#565656'
-    readonly property color fg: '#d1d1d0'
-    readonly property color accent: '#cececc'
+    property color bg: '#131313'
+    property color surface: '#565656'
+    property color widget: '#1a80cc'
+    property color fg: '#d1d1d0'
+    property color accent: '#cececc'
+    property color critical: '#881717'
+    property color warn: '#c66312'
+    property color med: '#cab32f'
 }
