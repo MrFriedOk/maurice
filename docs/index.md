@@ -1,4 +1,4 @@
-## Goal
+ ## Goal
 To make a cool Quickshell interface with QML using examples and configs I already have so my rice is cooler.
 
 ## What do I have?
@@ -11,9 +11,12 @@ To make a cool Quickshell interface with QML using examples and configs I alread
 I wanted to reflect on the relatively poor performance I delivered. I've never really used Quickshell... well, I've *used* it but never wrote with it so everything was pretty foreign to me. 
 First of all, I'm not at all good at coding but I sort of found out that Quickshell is really *really* easy.. doesn't mean I can make good stuff though.
 ### Annoying
-Honestly, Quickshell is pretty cool but QML is.. well it's odd. I don't have quite enough experience to make a valid opinion on it but its a little weird.
+Honestly, Quickshell is pretty cool but QML is.. well it's odd. I don't have quite enough experience to make a valid opinion on it but it's a little weird. QML is weirdly forgiving, you can basically violate syntax and it just goes ¯\\_(ツ)_/¯ and moves on. When this is paired with UI creation, it makes the stupidest things so difficult to debug. Also doesn't help that I'm not good at it.
 I probably can't express this with words very easily but QML (and Qt specifically) is something that you can get to *work* but bugs (not necessarily errors) are way easier to make and at some point, you make this disgusting web of UI components that make the code hard to read and hard to fix issues. Maybe this is just my problem idk (ᵕ—.—).
 Also, for some reason `SystemClock` just makes the bar vanish? Please debug this, me, but it doesn't kill Quickshell. The bar just vanishes.
+
+> [!NOTE] `SystemClock` thing
+> Quick update, the issue was resolved by setting the precision to minutes? No idea why it would kill the bar on seconds but idk.. (¬_¬)
 
 ## Next Steps
 As a sort of guide for me, what do I want to do next?
@@ -22,10 +25,10 @@ Well I need to fix the bugs of course, the bar is ridden with those. Other than 
 ### Features
 - That settings launcher
 	- Here's where QML kind of shines, it can parse data from JSON for example so I could just have a `pragma Singleton` type file with settings that takes info from the JSON. I'd create this data using the settings launcher thing, which uses `TextField` or similar to take input from users and give the JSON a default so QML doesn't read nothing.
+	- More widgets. Widgets are quite easy to make with the `Widget.qml` file I have. For me, all widgets just take in text or icons from where they are called. Issue with this is that traditional workspace `Repeater` thing you see can't rely on this, which is fine. For other widgets like an audio visualizer, I would also need a custom widget.
 ### Bugs 
 - (I think??) `SystemClock` seems to be breaking stuff? It just makes the bar disappear quietly and doesn't kill Quickshell, it just goes away and keeps the wallpaper
 - Rectangles not showing up??? Widgets function and stuff but they do not have rectangles as I planned, I just kept them 'invisible' for now.
-- More widgets. Not a bug but widgets are quite easy to make with the `Widget.qml` file I have. For me, all widgets just take in text or icons from where they are called. Issue with this is that traditional workspace `Repeater` thing you see can't rely on this, which is fine. For other widgets like an audio visualizer, I would also need a custom widget.
 
 ## References
 - RexCrazy804's Quickshell [`basic_bar` example](https://github.com/Rexcrazy804/quickshell-examples/)

@@ -373,22 +373,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#bar" class="md-nav__link">
+  <a href="#modularity" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Bar
+        Modularity
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Bar">
+    <nav class="md-nav" aria-label="Modularity">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#generics" class="md-nav__link">
+  <a href="#widgets" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Generics
+        Widgets
       
     </span>
   </a>
@@ -396,22 +396,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#containers" class="md-nav__link">
+  <a href="#layering" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Containers
+        Layering
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Containers">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
-  <a href="#what-files" class="md-nav__link">
+  <a href="#screens" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What Files?
+        Screens
       
     </span>
   </a>
@@ -422,20 +421,37 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#layers" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#pragma" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Layers
+        Pragma
       
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Imports
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behavior
+      
+    </span>
+  </a>
   
 </li>
       
@@ -460,17 +476,93 @@
 
 
 <h1 id="layout">Layout</h1>
-<p>How the files, directories and overall code is laid out.
-Thank you github user <em>Rexcrazy804</em> for the examples I used. </p>
-<h2 id="bar">Bar</h2>
-<p>The master dir for the bar (taskbar).</p>
-<h3 id="generics">Generics</h3>
-<p>These files include <code>.qml</code> files that will be referenced across the whole bar element.</p>
-<h3 id="containers">Containers</h3>
-<p>Below the <code>Layers</code>, these files hold widgets placed in different parts of the bar.</p>
-<h4 id="what-files">What Files?</h4>
-<p>Bars can be broken down into three different 'containers', left, middle and right. Widgets will be referenced here and creating containers allows versatility, widgets can be moved around with simple changes to the code.</p>
-<h3 id="layers">Layers</h3>
+<p>How do I want to break down the layout of the bar?</p>
+<h2 id="modularity">Modularity</h2>
+<p>I can make the bar 'modular' by keeping sections separated (right, left, middle). Inside these sections will be the widgets.</p>
+<h3 id="widgets">Widgets</h3>
+<p>Within sections I can hold widgets, I will create a generic item that can be used across widgets (because they will all look uniform). This item will hold variables which can be modified by the actual widget when it is called.</p>
+<h3 id="layering">Layering</h3>
+<p>The bar exist in the top layer of Wayland. Under <code>PanelWindow</code>, you can simply put <code>WlrLayershell.layer: WlrLayer.Top</code>. This is recommended by the Quickshell docs as well, it lets the <code>PanelWindow</code> exist with or without Wayland. Well, kind of, but for all of this config, I will assume Wayland is used.</p>
+<blockquote>
+<p>[!NOTE] Fact
+I should look into it but it seems that Wayland can tell if something is a 'bar', even if the layer is lesser than <code>Top</code>.  Maybe this is determined by the <code>anchors</code>?</p>
+</blockquote>
+<h3 id="screens">Screens</h3>
+<p>using <code>Variants</code> (with the <code>Quickshell.screens</code> model) under <code>Scope</code>, Quickshell applies all my bar configs to every screen. Basically a glorified for loop.</p>
+<h2 id="pragma">Pragma</h2>
+<h2 id="imports">Imports</h2>
+<ul>
+<li><code>QtQuick</code>, QtQuick elements (universal)</li>
+<li><code>Quickshell</code>, Quickshell elements (universal)</li>
+<li><code>QtQuick.Layouts</code>,  used for things like <code>RowLayouts</code>. Makes it easy to nest components. Also provides <code>Qt.LeftToRight</code> and <code>Qt.RightToLeft</code>, useful for the sections I will make in the bar.</li>
+<li><code>Quickshell.Wayland</code>, provides Wayland integration. Will be used mostly for layering as well as locking, backgrounds, idling maybe.</li>
+<li><code>Quickshell.Hyprland</code>, Hyprland integration. This gives Quickshell access to workspace IDs (for the workspace widget) and focusing.</li>
+</ul>
+<h2 id="behavior">Behavior</h2>
+<p>With imports in mind, I can narrow down code that would be used.</p>
+<pre><code class="language-Top.qml">for every screen
+Scope{
+    Variants{
+    model: Quickshell.screens, every screen, put modelData in Bar.qml file as requird property
+
+    Bar, call the bar component
+
+
+    }
+}
+</code></pre>
+<pre><code class="language-Bar.qml">create the bar,
+PanelWindow{
+    required property var modelData, for iteration across screens
+
+    anchors
+
+    implicitHeight
+
+    WlrLayershell.layer: WlrLayer.Top (not needed but here for clarification)
+
+    RowLayout{
+        call each section
+
+        Left
+
+        Right
+
+        Middle
+    }
+}
+</code></pre>
+<pre><code class="language-Left.qml">to hold widgets
+RowLayout{
+    anchor.left: parent.left, anchor to the left
+    layoutDirection: Qt.RightToLeft 
+
+    Widgets
+}
+</code></pre>
+<p>```Widget.qml, the generic widget component that all widgets will use
+import like everyting in Quickshell basically</p>
+<p>Rectangle{
+    id item</p>
+<pre><code>create variables to be used by widgets
+property string icon: "", icons, if used
+property string content: "", data
+
+signal clicked()
+
+RowLayout{
+
+    display icon
+    display text
+
+    MouseArea{
+
+        use clicked() function, send to item
+    }
+}
+</code></pre>
+<p>}</p>
+<p>```</p>
 
 
 

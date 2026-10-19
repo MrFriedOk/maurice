@@ -381,6 +381,73 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-was-difficult" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Was Difficult?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What Was Difficult?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#annoying" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Annoying
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Next Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bugs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bugs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -473,6 +540,73 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-was-difficult" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Was Difficult?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What Was Difficult?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#annoying" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Annoying
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Next Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bugs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bugs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -508,7 +642,47 @@
 <h2 id="goal">Goal</h2>
 <p>To make a cool Quickshell interface with QML using examples and configs I already have so my rice is cooler.</p>
 <h2 id="what-do-i-have">What do I have?</h2>
+<ul>
+<li>Arch Linux</li>
+<li>Code - OSS</li>
+<li>Obsidian</li>
+<li>The internet</li>
+<li>Water</li>
+</ul>
+<h2 id="what-was-difficult">What Was Difficult?</h2>
+<p>I wanted to reflect on the relatively poor performance I delivered. I've never really used Quickshell... well, I've <em>used</em> it but never wrote with it so everything was pretty foreign to me. 
+First of all, I'm not at all good at coding but I sort of found out that Quickshell is really <em>really</em> easy.. doesn't mean I can make good stuff though.</p>
+<h3 id="annoying">Annoying</h3>
+<p>Honestly, Quickshell is pretty cool but QML is.. well it's odd. I don't have quite enough experience to make a valid opinion on it but its a little weird. QML is weirdly forgiving, you can basically violate syntax and it just goes ¯\<em>(ツ)</em>/¯ and moves on. When this is paired with UI creation, it makes the stupidest things so difficult to debug. Also doesn't help that I'm not good at it.
+I probably can't express this with words very easily but QML (and Qt specifically) is something that you can get to <em>work</em> but bugs (not necessarily errors) are way easier to make and at some point, you make this disgusting web of UI components that make the code hard to read and hard to fix issues. Maybe this is just my problem idk (ᵕ—.—).
+Also, for some reason <code>SystemClock</code> just makes the bar vanish? Please debug this, me, but it doesn't kill Quickshell. The bar just vanishes.</p>
+<blockquote>
+<p>[!NOTE] <code>SystemClock</code> thing
+Quick update, the issue was resolved by setting the precision to minutes? No idea why it would kill the bar on seconds but idk.. (¬_¬)</p>
+</blockquote>
+<h2 id="next-steps">Next Steps</h2>
+<p>As a sort of guide for me, what do I want to do next?
+Well I need to fix the bugs of course, the bar is ridden with those. Other than bugs, I would like to implement a sort of settings menu that changes basic stuff like font size and font family, as well as make it possible to easily configure widgets. The bar layout already makes this quite easy but I still need to figure out how I would do this.</p>
+<h3 id="features">Features</h3>
+<ul>
+<li>That settings launcher<ul>
+<li>Here's where QML kind of shines, it can parse data from JSON for example so I could just have a <code>pragma Singleton</code> type file with settings that takes info from the JSON. I'd create this data using the settings launcher thing, which uses <code>TextField</code> or similar to take input from users and give the JSON a default so QML doesn't read nothing.</li>
+<li>More widgets. Widgets are quite easy to make with the <code>Widget.qml</code> file I have. For me, all widgets just take in text or icons from where they are called. Issue with this is that traditional workspace <code>Repeater</code> thing you see can't rely on this, which is fine. For other widgets like an audio visualizer, I would also need a custom widget.</li>
+</ul>
+</li>
+</ul>
+<h3 id="bugs">Bugs</h3>
+<ul>
+<li>(I think??) <code>SystemClock</code> seems to be breaking stuff? It just makes the bar disappear quietly and doesn't kill Quickshell, it just goes away and keeps the wallpaper</li>
+<li>Rectangles not showing up??? Widgets function and stuff but they do not have rectangles as I planned, I just kept them 'invisible' for now.</li>
+</ul>
 <h2 id="references">References</h2>
+<ul>
+<li>RexCrazy804's Quickshell <a href="https://github.com/Rexcrazy804/quickshell-examples/"><code>basic_bar</code> example</a></li>
+<li>SelfMadeSystem's Quickshell <a href="https://github.com/SelfMadeSystem/quickshell-examples/"><code>shader_wallpaper</code> examaple</a></li>
+<li><a href="https://quickshell.org/docs/v0.3.0/types/">Quickshell docs</a></li>
+<li><a href="https://doc.qt.io/qt-6/qtquick-index.html">QtQuick docs</a></li>
+</ul>
 
 
 
