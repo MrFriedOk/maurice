@@ -1,24 +1,34 @@
+import "../../../data" as D
+//import Quickshell.Widgets
+import "../widgets" as W
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
-//import Quickshell.Widgets
-import "../widgets" as W
 
 //iterate across widgets
-RowLayout{
-    anchors{
-        left: parent.left
-        // top: parent.top
-        // bottom: parent.bottom
-
-        margins: 2
-        leftMargin: 10
-        
-        verticalCenter: parent.verticalCenter
-    }
-    spacing: 50
-
+RowLayout {
+    spacing: D.General.spacing
+    //implicitWidth: 100
+    //    implicitHeight: text.height
     layoutDirection: Qt.LeftToRight
 
-    W.Workspace{}
+    anchors {
+        // top: parent.top
+        // bottom: parent.bottom
+        //horizontalCenter: parent.horizontalCenter
+        //verticalCenter: parent.verticalCenter
+
+        left: parent.left
+        margins: 1
+        //leftMargin: 10
+        top: parent.top
+        bottom: parent.bottom
+    }
+
+    W.Workspaces {
+    }
+
+    W.Workspace {
+    }
+
 }

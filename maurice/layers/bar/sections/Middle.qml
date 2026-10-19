@@ -1,19 +1,21 @@
+import "../../../data" as D
+//import Quickshell.Widgets
+import "../widgets" as W
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
-//import Quickshell.Widgets
-import "../widgets" as W
 
 //widgets row
-RowLayout{
-    anchors{
-        top: parent.top
+RowLayout {
+    spacing: D.General.spacing
 
-        centerIn: parent
-
-        margins: 2
-
+    anchors {
+        //        margins: 2
+        //top: parent.top
+        horizontalCenter: parent.horizontalCenter
     }
 
-    W.Clock{}
+    W.Clock {
+    }
+
 }
