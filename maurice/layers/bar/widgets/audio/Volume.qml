@@ -17,7 +17,6 @@ Item {
 
     implicitWidth: wid.implicitWidth + padding
     Layout.fillHeight: true
-    Layout.fillWidth: true
 
     PwObjectTracker {
         objects: [defNode]

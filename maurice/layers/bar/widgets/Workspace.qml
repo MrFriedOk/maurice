@@ -11,12 +11,13 @@ Item{
 
     readonly property string wkspc: activeWindow?.activated ? activeWindow?.appId : "desktop"
 		readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
-		property int padding: 5
+		property int padding: 0
 
 		implicitWidth: wid.implicitWidth + padding
 	//	Layout.fillWidth: true
 	Layout.fillHeight: true
 	Wi.Scramble{
+		id: wid
 		target: win.wkspc
 		color: D.Colors.fg
 	}

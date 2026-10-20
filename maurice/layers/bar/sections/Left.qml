@@ -31,4 +31,7 @@ RowLayout {
     W.Workspace {
     }
 
+    W.Bt {
+    }
+
 }

@@ -16,7 +16,8 @@ MkDocs is used to display this repo's docs, simply install MkDocs and serve from
 > [!NOTE]
 > Alternatively, you can use the `site` directory, it should contain stuff to serve. From there you can serve the directory any way you want (as long as I remember to keep it up-to-date //v//).
 
-
+## Licensing
+This repo is covered by an MIT license, see [license](./LICENSE). [`demo.mp4` ](./demo/demo.mp4) contains a track "Local Forecast" by Kevin MacLeod (incompetech.com) and is licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/. The MIT does not cover this track and remains under its own terms.
 ## References
 - RexCrazy804's Quickshell [`basic_bar` example](https://github.com/Rexcrazy804/quickshell-examples/)
 - SelfMadeSystem's Quickshell [`shader_wallpaper` examaple](https://github.com/SelfMadeSystem/quickshell-examples/)

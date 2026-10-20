@@ -1,6 +1,7 @@
 import "../../../data" as D
 //import Quickshell.Widgets
 import "../widgets" as W
+import "../widgets/audio" as Au
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
