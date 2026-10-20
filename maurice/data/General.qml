@@ -10,4 +10,5 @@ Singleton {
     property int spacing: 2
     property int radius: 2
     property int animDur: 80
+    property int barHeight: 35
 }

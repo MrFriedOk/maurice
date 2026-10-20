@@ -1,6 +1,7 @@
 import "../../../data" as D
 //import Quickshell.Widgets
 import "../widgets" as W
+import "../widgets/networking" as Net
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
@@ -31,7 +32,10 @@ RowLayout {
     W.Workspace {
     }
 
-    W.Bt {
+    Net.Bt {
+    }
+
+    Net.Internet {
     }
 
 }

@@ -1,5 +1,4 @@
 import "../../data" as D
-import "../../data/" as D
 import "./sections" as S
 import QtQuick
 import QtQuick.Layouts
@@ -16,7 +15,7 @@ PanelWindow {
 
     color: "transparent"
     exclusionMode: ExclusionMode.Auto
-    implicitHeight: 25
+    implicitHeight: D.General.barHeight
 
     anchors {
         //bottom: true

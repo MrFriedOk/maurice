@@ -1,5 +1,5 @@
-import "../../../data" as D
-import "../universal" as Wi
+import "../../../../data" as D
+import "../../universal" as Wi
 import QtQuick
 import QtQuick.Layouts
 import Quickshell

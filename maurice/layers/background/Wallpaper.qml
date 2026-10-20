@@ -1,48 +1,50 @@
+import "../../data" as D
 import QtQuick
 import Quickshell
+import Quickshell.Io
 import Quickshell.Wayland
 import Quickshell.Widgets
-import Quickshell.Io
-import "../../data" as D
 
-PanelWindow{
+PanelWindow {
     id: win
+
     required property var modelData
     property string image: "../../data/current.png"
-	screen: modelData
 
+    screen: modelData
     WlrLayershell.layer: WlrLayer.Background
-
     //if you wanted the wallpaper to ignore the bar
     exclusionMode: ExclusionMode.Ignore
-        
-    anchors{
+    color: D.Colors.bg
+
+    anchors {
         top: true
         bottom: true
         left: true
-        right:true
+        right: true
     }
-    color: D.Colors.bg
-        Item{
-            anchors.fill: parent
 
-            ClippingRectangle{
-                anchors{
-                    fill:parent
+    Item {
+        anchors.fill: parent
 
-                    //top margin for image, let PanelWindow define bg color for bar
-                    topMargin: 26
-                    margins: 1
-                }
+        ClippingRectangle {
+            radius: 10
 
-                radius: 10
-
-                Image {
-                    anchors.fill:parent
-                    source: win.image
-
-                    fillMode: Image.Stretch
-                }
+            anchors {
+                fill: parent
+                //top margin for image, let PanelWindow define bg color for bar
+                topMargin: D.General.barHeight + 1
+                margins: 1
             }
+
+            Image {
+                anchors.fill: parent
+                source: win.image
+                fillMode: Image.Stretch
+            }
+
         }
+
+    }
+
 }
