@@ -9,4 +9,5 @@ Singleton {
     property bool bold: true
     property int spacing: 2
     property int radius: 2
+    property int animDur: 80
 }

@@ -12,14 +12,15 @@ import "./layers" as E
 import "./layers/lock" as L
 import "./windows" as Windows
 import QtQuick
+import QtQuick.Shapes
 import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
 import "layers/notification" as Not
 
 ShellRoot {
-    // E.Background{}
     // call top layer (the bar and other stuff maybe)
+    // E.Background{}
 
     id: root
 

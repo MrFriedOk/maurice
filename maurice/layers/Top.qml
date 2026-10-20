@@ -3,18 +3,22 @@
 import "../windows" as Windows
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Shapes
 import Quickshell
 import Quickshell.Wayland
 import "bar" as Bars
 
 //apply to every screen
-Variants {
-    model: Quickshell.screens
+Scope {
+    Variants {
+        model: Quickshell.screens
 
-    Windows.Settings {
-    }
+        Windows.Settings {
+        }
 
-    Bars.Bar {
+        Bars.Bar {
+        }
+
     }
 
 }

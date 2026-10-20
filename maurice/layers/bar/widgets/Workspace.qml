@@ -14,12 +14,19 @@ Item{
 		property int padding: 0
 
 		implicitWidth: wid.implicitWidth + padding
+		Behavior on implicitWidth {
+			NumberAnimation{
+				duration: D.General.animDur
+					easing.type: Easing.InoutQuad
+			}
+		}
 	//	Layout.fillWidth: true
 	Layout.fillHeight: true
 	Wi.Scramble{
 		id: wid
 		target: win.wkspc
 		color: D.Colors.fg
+//		Wi.FadeBehavior on target {}
 	}
 
 //		Text{
