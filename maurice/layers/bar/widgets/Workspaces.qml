@@ -9,13 +9,15 @@ Rectangle {
     id: win
 
     property int padding: 2
-		property var workspaces: Hyprland.workspaces
-		      property int focused: Hyprland.focusedWorkspace?.id ?? 0
+		property var workspaces: Hyprland.workspaces.values.filter(w => !w.name.startsWith("special:"))
+		property int focused: Hyprland.focusedWorkspace?.id ?? 0
+		property bool hasSpec: false
 
     color: D.General.widRect? D.Colors.widget : "transparent"
     Layout.fillHeight: true
     implicitWidth: row.implicitWidth + padding
-    radius: D.General.radius
+		radius: D.General.radius
+
 
    // anchors {
    //     left: parent.left
@@ -39,7 +41,8 @@ Rectangle {
             delegate: Rectangle {
                 id: wkspc
 
-                required property int index
+								required property int index
+								required property var modelData
                 property bool hovered: false
 
                 radius: win.radius
@@ -48,7 +51,7 @@ Rectangle {
 									return "transparent"
                     if (hovered)
 										return D.Colors.bg;
-										if (focused === index + 1)
+										if (focused === wkspc.modelData.id)
 										return D.Colors.fg
 										else
 										return D.Colors.surface
@@ -62,17 +65,23 @@ Rectangle {
                     anchors.fill: parent
                     onHoveredChanged: wkspc.hovered = !wkspc.hovered
                     hoverEnabled: true
-                    onClicked: Hyprland.dispatch("notify-send hi")//Hyprland.dispatch("hl.dsp.focus({workspace = ${wkspc.index + 1} })")
+                    onClicked: Hyprland.dispatch()
                 }
 
                 Text {
-									text: wkspc.index + 1
+									text: { 
+										if (wkspc.modelData.id > 0)
+										return wkspc.modelData.id
+										else
+										return "gay"
+									}
+
 									font{
 										family: D.General.family
 										pointSize: D.General.size
 										bold: D.General.bold
 									}
-										color: ( !D.General.widRect && wkspc.hovered ) ? D.Colors.surface : D.Colors.fg
+									color: ((win.focused === wkspc.modelData.id) && D.General.widRect) ? D.Colors.bg : ( !D.General.widRect && wkspc.hovered ) ? D.Colors.surface : D.Colors.fg
 
 										Behavior on color{
 											ColorAnimation{

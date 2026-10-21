@@ -11,5 +11,5 @@ Singleton {
     property int radius: 2
     property int animDur: 80
     property int barHeight: 25
-    property bool widRect: true
+    property bool widRect: false
 }
