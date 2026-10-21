@@ -15,6 +15,8 @@ Item {
     property string id: bt.adapterId
     property string name: bt.name
     property string path: bt.dbusPath
+    property bool launcherVis: false
+    property bool hover: false
 
     implicitWidth: wid.width
     Layout.fillHeight: true
@@ -24,9 +26,31 @@ Item {
 
         text.color: D.Colors.fg
         text.text: "hi"
-        icon.text: root.on ? " ON" : " OFF"
+        icon.color: D.Colors.surface
+        icon.text: root.on ? "ON" : "OFF"
+        opacity: hover ? 0.8 : 1
 
-        Wi.FadeBehavior on icon.text {
+        MouseArea {
+            id: mArea
+
+            enabled: true
+            hoverEnabled: true
+            onHoveredChanged: root.hover = !root.hover
+
+            anchors {
+                fill: parent
+            }
+
+        }
+
+        Behavior on opacity {
+            NumberAnimation {
+              duration: D.General.animDur
+            }
+
+        }
+
+        Wi.FadeBehavior on text.text {
         }
 
     }

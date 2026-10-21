@@ -22,6 +22,8 @@ Item {
         opacity: root.hovered ? 0.8 : 1
         icon.text: wifiOn ? "ON" : "OFF"
         text.text: root.netName
+        text.color: D.Colors.fg
+        icon.color: D.Colors.surface
 
         MouseArea {
             id: mArea
