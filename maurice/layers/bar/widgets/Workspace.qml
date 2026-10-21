@@ -11,9 +11,9 @@ Item{
 
     readonly property string wkspc: activeWindow?.activated ? activeWindow?.appId : "desktop"
 		readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
-		property int padding: 0
 
-		implicitWidth: wid.implicitWidth + padding
+		height: (D.General.barHeight/2) + wid.height/2
+		implicitWidth: wid.implicitWidth
 		Behavior on implicitWidth {
 			NumberAnimation{
 				duration: D.General.animDur
@@ -21,9 +21,11 @@ Item{
 			}
 		}
 	//	Layout.fillWidth: true
-	Layout.fillHeight: true
 	Wi.Scramble{
 		id: wid
+		font{
+			pointSize: D.General.size
+		}
 		target: win.wkspc
 		color: D.Colors.fg
 //		Wi.FadeBehavior on target {}

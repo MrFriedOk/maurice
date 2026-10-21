@@ -12,7 +12,7 @@ Rectangle {
 		property var workspaces: Hyprland.workspaces
 		      property int focused: Hyprland.focusedWorkspace?.id ?? 0
 
-    color: D.Colors.widget
+    color: D.General.widRect? D.Colors.widget : "transparent"
     Layout.fillHeight: true
     implicitWidth: row.implicitWidth + padding
     radius: D.General.radius
@@ -43,7 +43,9 @@ Rectangle {
                 property bool hovered: false
 
                 radius: win.radius
-                color: {
+								color: {
+									if (!D.General.widRect)
+									return "transparent"
                     if (hovered)
 										return D.Colors.bg;
 										if (focused === index + 1)
@@ -64,8 +66,19 @@ Rectangle {
                 }
 
                 Text {
-                    text: wkspc.index + 1
-                    color: D.Colors.fg
+									text: wkspc.index + 1
+									font{
+										family: D.General.family
+										pointSize: D.General.size
+										bold: D.General.bold
+									}
+										color: ( !D.General.widRect && wkspc.hovered ) ? D.Colors.surface : D.Colors.fg
+
+										Behavior on color{
+											ColorAnimation{
+												duration: D.General.animDur
+											}
+										}
 
                     anchors {
                         fill: parent
@@ -76,7 +89,7 @@ Rectangle {
 
                 Behavior on color {
                     ColorAnimation {
-                        duration: 80
+                        duration: D.General.animDur
                     }
 
                 }

@@ -51,7 +51,7 @@ Item {
 
             text.text: status
             text.color: hover ? D.Colors.surface : D.Colors.fg
-            color: hover ? D.Colors.surface : D.Colors.widget
+            color: D.General.widRect ? hover ? D.Colors.surface : D.Colors.widget : "transparent"
             icon.text: wid.hasIcon ? "SES" : ""
             icon.color: D.Colors.surface
 
