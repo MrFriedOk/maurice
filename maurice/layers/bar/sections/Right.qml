@@ -1,5 +1,5 @@
 import "../../../data" as D
-//import Quickshell.Widgets
+import "../universal" as Wi
 import "../widgets" as W
 import "../widgets/audio" as Au
 import QtQuick
@@ -25,7 +25,7 @@ RowLayout {
         //so it goes to the right.com
         right: parent.right
         //should look floaty
-        margins: 1
+        //        margins: 1
         top: parent.top
         bottom: parent.bottom
     }
@@ -34,13 +34,25 @@ RowLayout {
         status: "SUSP"
     }
 
+    Wi.Divider {
+    }
+
     W.Bat {
+    }
+
+    Wi.Divider {
     }
 
     Au.Volume {
     }
 
+    Wi.Divider {
+    }
+
     W.Brightness {
+    }
+
+    Wi.Divider {
     }
 
 }

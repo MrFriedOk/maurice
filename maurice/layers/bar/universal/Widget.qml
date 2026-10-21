@@ -21,7 +21,7 @@ Rectangle {
     property alias icon: icon
     property alias text: text
     property string font: "Atkinson Hyperlegible"
-    property bool hasBg: true
+    property bool hasBg: D.General.widRect
 
     implicitWidth: 75 + padding
     //Layout.fillHeight: true

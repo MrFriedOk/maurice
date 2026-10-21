@@ -1,5 +1,5 @@
 import "../../../data" as D
-//import Quickshell.Widgets
+import "../universal" as Wi
 import "../widgets" as W
 import "../widgets/networking" as Net
 import QtQuick
@@ -29,13 +29,25 @@ RowLayout {
     W.Workspaces {
     }
 
+    Wi.Divider {
+    }
+
     W.Workspace {
+    }
+
+    Wi.Divider {
     }
 
     Net.Bt {
     }
 
+    Wi.Divider {
+    }
+
     Net.Internet {
+    }
+
+    Wi.Divider {
     }
 
 }

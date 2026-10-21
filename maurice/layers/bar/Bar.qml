@@ -25,22 +25,14 @@ PanelWindow {
     }
     //pretty sure this is the default, but this should let the bar shove windows out of the way. Ignore to.. not do that
 
-    Item {
-        anchors {
-            topMargin: 0 //3
-            fill: parent
-        }
-
-        S.Left {
-        }
-
-        S.Middle {
-        }
-
-        S.Right {
-        }
-        // Rectangle{
-
+    S.Left {
     }
+
+    S.Middle {
+    }
+
+    S.Right {
+    }
+    // Rectangle{
 
 }

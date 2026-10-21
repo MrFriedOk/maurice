@@ -13,12 +13,12 @@ Scope {
     Variants {
         model: Quickshell.screens
 
-        Windows.Settings {
-        }
-
         Bars.Bar {
         }
 
+    }
+
+    Windows.Settings {
     }
 
 }
