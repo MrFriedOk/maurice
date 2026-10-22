@@ -17,14 +17,14 @@ Rectangle {
     property int wid: text.implicitWidth + icon.implicitWidth
     property int h: text.implicitHeight + icon.implicitHeight
     property bool hasIcon: icon.text.trim().length > 0
-    property int padding: 15
     property alias icon: icon
     property alias text: text
     property string font: "Atkinson Hyperlegible"
     property bool hasBg: D.General.widRect
 
-    implicitWidth: 75 + padding
+    implicitWidth: item.implicitWidth
     //Layout.fillHeight: true
+    height: D.General.barHeight
     color: hasBg ? D.Colors.widget : "transparent"
     radius: D.General.radius
 
@@ -32,24 +32,24 @@ Rectangle {
         //fill: parent
         //top: parent.top
         //bottom: parent.bottom
+        //margins: 5
 
         fill: parent
-        margins: 5
     }
 
     RowLayout {
-        //implicitWidth: text.implicitWidth + icon.implicitWidth
+        //height: D.General.barHeight / 2
 
         id: item
 
-        spacing: text.anchors.leftMargin + root.padding
+        //width: text.width + icon.width
+        spacing: D.General.txtSpacing
+
+        anchors {
+            centerIn: parent
+        }
 
         Text {
-            //anchors {
-            //    leftMargin: 5
-            //    left: parent.left
-            //}
-
             id: icon
 
             visible: hasIcon
@@ -67,12 +67,7 @@ Rectangle {
 
             id: text
 
-            anchors {
-                right: parent.right
-                //rightMargin: 5
-                leftMargin: 5
-                verticalCenter: parent.verticalCenter
-            }
+            Layout.alignment: Qt.AlignRight
 
             font {
                 family: D.General.family
