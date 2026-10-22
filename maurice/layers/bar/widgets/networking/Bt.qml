@@ -16,26 +16,28 @@ Item {
     property string name: bt.name
     property string path: bt.dbusPath
     property bool launcherVis: false
-    property bool hover: false
+    property bool hovered: false
 
     implicitWidth: wid.width
     Layout.fillHeight: true
 
     Wi.Widget {
+        //opacity: hover ? 0.8 : 1
+
         id: wid
 
-        text.color: D.Colors.fg
-        text.text: "hi"
+        text.color: root.hovered ? D.Colors.surface : D.Colors.fg
+        icon.text: "BT"
         icon.color: D.Colors.surface
-        icon.text: root.on ? "ON" : "OFF"
-        opacity: hover ? 0.8 : 1
+        text.text: root.on ? "ON" : "OFF"
 
         MouseArea {
             id: mArea
 
             enabled: true
             hoverEnabled: true
-            onHoveredChanged: root.hover = !root.hover
+            onHoveredChanged: root.hovered = !root.hovered
+            onClicked: root.bt.enabled = !root.bt.enabled
 
             anchors {
                 fill: parent
@@ -43,9 +45,9 @@ Item {
 
         }
 
-        Behavior on opacity {
-            NumberAnimation {
-              duration: D.General.animDur
+        Behavior on text.color {
+            ColorAnimation {
+                duration: D.General.animDur
             }
 
         }
