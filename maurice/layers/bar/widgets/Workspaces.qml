@@ -6,15 +6,16 @@ import Quickshell
 import Quickshell.Hyprland
 
 Rectangle {
+
     id: win
 
     property int padding: 2
-		property var workspaces: Hyprland.workspaces.values.filter(w => !w.name.startsWith("special:"))
+		property var workspaces: Hyprland.workspaces.values.filter(w => !w.name.startsWith("special"))
 		property int focused: Hyprland.focusedWorkspace?.id ?? 0
-		property bool hasSpec: false
+		property bool hasSpec: Hyprland.workspaces.values.filter(w=> !w.name.startsWith("special"))
 
     color: D.General.widRect? D.Colors.widget : "transparent"
-    Layout.fillHeight: true
+    implicitHeight: parent.height
     implicitWidth: row.implicitWidth + padding
 		radius: D.General.radius
 
@@ -29,7 +30,7 @@ Rectangle {
         spacing: 1
 
         anchors {
-            //centerIn: parent
+					centerIn: parent
 
         }
 
@@ -39,7 +40,7 @@ Rectangle {
 						model: win.workspaces
 
             delegate: Rectangle {
-                id: wkspc
+							id: wkspc
 
 								required property int index
 								required property var modelData
@@ -57,8 +58,8 @@ Rectangle {
 										return D.Colors.surface
 
                 }
-                width: 15
-                height: 15
+                width: height^2
+                height: win.height - win.padding
 
 								MouseArea {
 									enabled: true
@@ -68,13 +69,9 @@ Rectangle {
                     onClicked: Hyprland.dispatch()
                 }
 
-                Text {
-									text: { 
-										if (wkspc.modelData.id > 0)
-										return wkspc.modelData.id
-										else
-										return "gay"
-									}
+								Text {
+									id: text
+									text: wkspc.modelData.id
 
 									font{
 										family: D.General.family
@@ -90,7 +87,7 @@ Rectangle {
 										}
 
                     anchors {
-                        fill: parent
+                        //fill: parent
                         centerIn: parent
                     }
 
@@ -115,6 +112,33 @@ Rectangle {
             easing.type: Easing.InOutCirc
         }
 
-    }
+			}
+			Rectangle{
+				id: spec
+				width: 1
+				height: 1
+				visible: false//win.hasSpec && D.General.widRect
+				Behavior on visible{
+					NumberAnimation{
+						duration: D.General.animDur		
+					}
+				}
+				anchors{
+				fill: parent
+				margins: 1
+			}
+
+			Text{
+				font{
+					family: D.General.family
+					pointSize: D.General.size
+				}
+				anchors{
+					
+					centerIn: parent
+				}
+				text: "Special " 
+			}
+	}
 
 }
