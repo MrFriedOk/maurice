@@ -34,6 +34,12 @@ Item {
 
         icon.text: hovered ? (bat === 1) ? "BAT" : (chrgTime > 0) ? "UP" : "DWN" : "BAT"
         icon.color: {
+            if (icon.text === "DWN")
+                return D.Colors.dwn;
+
+            if (icon.text === "UP")
+                return D.Colors.up;
+
             if (bat <= 0.1)
                 return D.Colors.critical;
 
@@ -45,6 +51,7 @@ Item {
             else
                 return D.Colors.surface;
         }
+        //wow i made this so easy to read
         text.text: hovered ? (bat === 1) ? "FULL" : (chrgTime > 0) ? (chrgTime / 60).toFixed(2) : (emptTime / 60).toFixed(2) : batStr
         text.color: D.Colors.fg
     }
