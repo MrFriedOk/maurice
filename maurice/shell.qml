@@ -16,7 +16,7 @@ import QtQuick.Shapes
 import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
-import "layers/notification" as Not
+import "layers/notification" as Not //poop naming
 
 ShellRoot {
     // call top layer (the bar and other stuff maybe)

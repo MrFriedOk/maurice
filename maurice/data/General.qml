@@ -4,12 +4,17 @@ pragma Singleton
 
 //general stuff, prolly should sort out later
 Singleton {
+    id: gen
+
     property string family: "Maple Mono NF"
-    property int size: barHeight / 2
+    property bool adaptPS: false
+    property int size: adaptPS ? barHeight / 2 : 10
     property bool bold: false
     property int spacing: 2
-    property int radius: 2
+    property int radius: 1
     property int animDur: 80
-    property int barHeight: 25
-    property bool widRect: false
+    property int barHeight: 35
+    property bool widRect: sketchBar ? false : true
+    property bool outline: sketchBar ? false : false
+    property bool sketchBar: false
 }

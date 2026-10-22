@@ -19,10 +19,10 @@ Item {
     Wi.Widget {
         id: wid
 
-        opacity: root.hovered ? 0.8 : 1
-        icon.text: wifiOn ? "ON" : "OFF"
-        text.text: root.netName
-        text.color: D.Colors.fg
+        //opacity: root.hovered ? 0.8 : 1
+        text.text: wifiOn ? "ON" : "OFF"
+        icon.text: "WIFI"
+        text.color: root.hovered ? D.Colors.surface : D.Colors.fg
         icon.color: D.Colors.surface
 
         MouseArea {
@@ -35,6 +35,13 @@ Item {
 
             anchors {
                 fill: parent
+            }
+
+        }
+
+        Behavior on text.color {
+            ColorAnimation {
+                duration: D.General.animDur
             }
 
         }
