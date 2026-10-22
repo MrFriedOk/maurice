@@ -12,4 +12,6 @@ Singleton {
     property color critical: '#881717'
     property color warn: '#c66312'
     property color med: '#cab32f'
+    property color up: '#27f546'
+    property color dwn: critical
 }
