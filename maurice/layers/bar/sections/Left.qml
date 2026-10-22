@@ -1,6 +1,7 @@
 import "../../../data" as D
 import "../universal" as Wi
 import "../widgets" as W
+import "../widgets/audio" as Au
 import "../widgets/networking" as Net
 import QtQuick
 import QtQuick.Layouts
@@ -45,6 +46,12 @@ RowLayout {
     }
 
     Net.Internet {
+    }
+
+    Wi.Divider {
+    }
+
+    Au.Playback {
     }
 
     Wi.Divider {

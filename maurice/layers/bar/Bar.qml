@@ -33,6 +33,19 @@ PanelWindow {
 
     S.Right {
     }
-    // Rectangle{
+
+    Rectangle {
+        visible: D.General.outline
+        width: parent.width
+        height: 1
+        color: D.Colors.surface
+
+        anchors {
+            bottom: parent.bottom
+            left: parent.left
+            right: parent.right
+        }
+
+    }
 
 }
