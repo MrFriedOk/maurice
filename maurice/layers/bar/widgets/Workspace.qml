@@ -12,7 +12,7 @@ Item{
     readonly property string wkspc: activeWindow?.activated ? activeWindow?.appId : "desktop"
 		readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
 
-		height: (D.General.barHeight/2) + wid.height/2
+		implicitHeight: wid.height
 		implicitWidth: wid.implicitWidth
 		Behavior on implicitWidth {
 			NumberAnimation{
