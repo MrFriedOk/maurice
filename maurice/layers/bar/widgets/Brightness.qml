@@ -12,7 +12,7 @@ Item {
     property int padding: 0
     property string device: "nvidia_wmi_ec_backlight"
     property string dspLvl: (lvl / 255).toFixed(2)
-    property string path: "/sys/class/backlight/${device}/brightness"
+    property string path: "/sys/class/backlight/nvidia_wmi_ec_backlight/brightness"
 
     //    Layout.fillWidth: true
     Layout.fillHeight: true
