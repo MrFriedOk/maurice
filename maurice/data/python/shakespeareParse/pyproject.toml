@@ -1,0 +1,19 @@
+[project]
+name = "shakespeareparse-py"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "MrFriedOk", email = "east.richins@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "shakespearelang>=1.0.0",
+]
+
+[project.scripts]
+shakespeareparse-py = "shakespeareparse_py:main"
+
+[build-system]
+requires = ["uv_build>=0.13.4,<0.14.0"]
+build-backend = "uv_build"
