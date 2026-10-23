@@ -44,6 +44,7 @@ Rectangle {
     property string next: "NEXT"
     property string last: "LAST"
     property real pos: player.position
+    readonly property real len: player.length
     //property ObjectModel players: Mpris.players
     property var stuff: ["thing1", "thing2"]
     property string loopState: toString(player.loopState)
@@ -58,6 +59,7 @@ Rectangle {
     property string track: player.trackTitle
     property string artist: player.trackArtist
     property string album: player.trackAlbum
+    readonly property real remain: (pos / len)
     property string art: player.trackArtUrl
 
     width: 200
@@ -74,10 +76,12 @@ Rectangle {
 
     Text {
         //height: D.General.barHeight / 2
+        //text: txt.arg(root.pos,root.len)
+        //text: root.remain
 
         id: text
 
-        text: root.pos
+        property string txt: "%1 : %2"
 
         anchors {
             verticalCenter: parent.verticalCenter
@@ -153,10 +157,39 @@ Rectangle {
                             leftMargin: pop.height
                         }
 
+                        Rectangle {
+                            //total of song
+                            height: 5
+                            width: parent.width - 20
+                            color: D.Colors.surface
+                            radius: D.General.radius
+
+                            anchors {
+                                left: parent.left
+                                right: parent.right
+                                centerIn: parent
+                                verticalCenterOffset: 10
+                            }
+
+                            Rectangle {
+                                //progress bar
+                                color: D.Colors.fg
+                                width: parent.width * root.remain
+
+                                anchors {
+                                    top: parent.top
+                                    bottom: parent.bottom
+                                    left: parent.left
+                                }
+
+                            }
+
+                        }
+
                         Wi.Scramble {
                             id: trackTitle
 
-                            width: parent.width / 1.05
+                            width: parent.width / 1.5
                             // wrapMode: Text.Wrap
                             elide: Text.ElideRight
                             color: D.Colors.fg
@@ -246,6 +279,7 @@ Rectangle {
 
                         //can you 'clip' images to fit inside a rectangle?
                         width: parent.height
+                        color: "transparent"
 
                         anchors {
                             left: parent.left
@@ -257,6 +291,7 @@ Rectangle {
                         Image {
                             source: root.art
                             clip: true
+                            smooth: true
 
                             anchors {
                                 fill: parent
