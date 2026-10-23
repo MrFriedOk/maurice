@@ -1,3 +1,5 @@
 .obsidian
 target
 .qmlls.ini
+.wakatime-project
+.venv
