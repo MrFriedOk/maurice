@@ -54,6 +54,18 @@ Rectangle {
     anchors {
     }
 
+    Rectangle {
+        height: 20
+        visible: false
+
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+        }
+
+    }
+
     Text {
         //height: D.General.barHeight / 2
         //text: txt.arg(root.pos,root.len)
@@ -81,6 +93,12 @@ Rectangle {
     }
 
     Viz {
+        anchors {
+            right: parent.right
+            left: parent.left
+            verticalCenter: parent.verticalCenter
+        }
+
     }
 
     Popup {

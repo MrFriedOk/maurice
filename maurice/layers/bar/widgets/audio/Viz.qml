@@ -3,6 +3,7 @@ import "../../universal" as Wi
 import QtQuick
 import Quickshell
 import Quickshell.Io
+import Quickshell.Services.Mpris
 
 Item {
     //Text {
@@ -13,20 +14,27 @@ Item {
     //        fill: parent
     //    }
     //}
+    //width: 100
+    //height: parent.height
 
     id: root
 
     property var viz: []
+    property bool playing: player.playbackState == MprisPlaybackState.Playing
+    readonly property var player: {
+        const list = Mpris.players.values;
+        return list.find((p) => {
+            return p.playbackState === MprisPlaybackState.Playing;
+        }) ?? list[0] ?? null;
+    }
 
-    //width: 100
-    //height: parent.height
     anchors {
         fill: parent
     }
 
     Process {
-        command: ['cava', '-p', Quickshell.shellPath('cava.conf')]
-        running: true
+        command: ['cava', '-p', Quickshell.shellPath('data/cava.conf')]
+        running: root.playing
 
         stdout: SplitParser {
             onRead: (data) => {
@@ -39,7 +47,9 @@ Item {
     }
 
     Row {
-        spacing: 1
+        visible: root.playing
+        spacing: 0
+        height: parent.height
 
         Repeater {
             model: root.viz
@@ -47,14 +57,22 @@ Item {
             delegate: Rectangle {
                 required property var modelData
 
-                width: 5
-                height: 1 + (modelData / 7) * 16
-                radius: D.General.radius
+                width: 10
+                height: 1 + (modelData / 6) * (D.General.barHeight / 1.5)
+                //radius: D.General.radius
                 color: D.Colors.fg
+
+                anchors {
+                    //bottom: parent.bottom
+
+                    //right: parent.right
+                    //left: parent.left
+                    verticalCenter: parent.verticalCenter
+                }
 
                 Behavior on height {
                     NumberAnimation {
-                        duration: D.General.animDur
+                        duration: 1
                     }
 
                 }
