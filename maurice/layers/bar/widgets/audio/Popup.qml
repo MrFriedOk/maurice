@@ -42,12 +42,6 @@ PopupWindow {
         onTriggered: player.positionChanged()
     }
 
-    anchor {
-        //edges: Edges.Bottom | Edges.Left
-        //gravity: Edges.Bottom | Edges.Right
-        item: parent
-    }
-
     Item {
         id: widget
 
@@ -168,28 +162,63 @@ PopupWindow {
                     }
 
                     Rectangle {
+                        //width: 40
+
                         id: playback
 
                         property var content: [root.last, root.loop, root.pause, root.next]
 
                         height: 25
                         color: D.Colors.surface
-                        width: 40
 
                         Row {
-                            spacing: parent.width / 4
-
                             Repeater {
                                 model: playback.content
 
-                                delegate: Text {
-                                    required property var modelData
+                                delegate: Item {
+                                    id: playbackRoot
 
-                                    text: modelData
-                                    color: D.Colors.fg
+                                    required property var modelData
+                                    required property int index
+
+                                    width: playback.width / 4
+
+                                    Text {
+                                        property var cols: [D.Colors.fg, D.Colors.bg]
+                                        property var col: cols[0]
+
+                                        text: playbackRoot.modelData
+                                        color: cols[0]
+
+                                        anchors {
+                                            fill: parent
+                                        }
+
+                                    }
+
+                                    Rectangle {
+                                        anchors {
+                                            fill: parent
+                                        }
+
+                                    }
+
+                                    MouseArea {
+                                        enabled: true
+                                        hoverEnabled: true
+                                        onHoveredChanged: playbackTxt.col[1]
+
+                                        anchors {
+                                            fill: parent
+                                        }
+
+                                    }
 
                                     anchors {
-                                        verticalCenter: parent.verticalCenter
+                                        //horizontalCenterOffset: index * 25
+                                        //centerIn: parent
+                                        //verticalCenter: parent
+
                                     }
 
                                 }
@@ -197,7 +226,7 @@ PopupWindow {
                             }
 
                             anchors {
-                                fill: parent
+                                centerIn: parent
                             }
 
                         }

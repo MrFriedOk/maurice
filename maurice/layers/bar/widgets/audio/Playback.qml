@@ -3,6 +3,7 @@ import "../../universal" as Wi
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Io
 import Quickshell.Services.Mpris
 
 Rectangle {
@@ -45,6 +46,7 @@ Rectangle {
     property bool open: false
     property bool hovered: false
 
+    radius: D.General.radius
     width: 200
     color: trans ? "transparent" : D.Colors.widget
     height: D.General.barHeight
@@ -79,6 +81,7 @@ Rectangle {
     }
 
     Popup {
+        //handle this here otherwise it breaks lol
         visible: root.open
         width: root.width + expand
 
