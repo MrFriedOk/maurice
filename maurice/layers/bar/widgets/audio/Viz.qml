@@ -20,6 +20,7 @@ Item {
     id: root
 
     property var viz: []
+    property bool huh: D.General.iHateMyCPU
     property bool playing: player.playbackState == MprisPlaybackState.Playing
     readonly property var player: {
         const list = Mpris.players.values;
@@ -33,7 +34,7 @@ Item {
     }
 
     Process {
-        command: ['cava', '-p', Quickshell.shellPath('data/cava.conf')]
+        command: root.huh ? ['cava', '-p', Quickshell.shellPath('data/iPaidForTheWholeCPU.conf')] : ['cava', '-p', Quickshell.shellPath('data/cava.conf')]
         running: root.playing
 
         stdout: SplitParser {
@@ -58,7 +59,7 @@ Item {
                 required property var modelData
 
                 width: 10
-                height: 1 + (modelData / 6) * (D.General.barHeight / 1.5)
+                height: 1 + (modelData / 7) * (D.General.barHeight / 1.25)
                 //radius: D.General.radius
                 color: D.Colors.fg
 
@@ -72,7 +73,7 @@ Item {
 
                 Behavior on height {
                     NumberAnimation {
-                        duration: 1
+                        duration: 80
                     }
 
                 }

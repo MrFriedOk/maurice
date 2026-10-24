@@ -18,4 +18,5 @@ Singleton {
     property bool widRect: sketchBar ? false : true
     property bool outline: sketchBar ? false : false
     property bool sketchBar: false
+    property bool iHateMyCPU: false
 }
