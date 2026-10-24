@@ -53,15 +53,19 @@ Item {
         height: parent.height
 
         Repeater {
+            //radius: D.General.radius
+            //color: D.Colors.fg
+
             model: root.viz
 
             delegate: Rectangle {
                 required property var modelData
+                required property int index
+                property int fade: (index + 1) / index
 
+                color: Qt.rgba(0.5, 0.5, 0.5, 1)
                 width: 10
                 height: 1 + (modelData / 7) * (D.General.barHeight / 1.25)
-                //radius: D.General.radius
-                color: D.Colors.fg
 
                 anchors {
                     //bottom: parent.bottom
