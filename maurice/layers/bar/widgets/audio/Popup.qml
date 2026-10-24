@@ -13,7 +13,6 @@ PopupWindow {
     property string album: player.trackAlbum
     readonly property real remain: (pos / len)
     property string art: player.trackArtUrl
-    property int expand: 250
     property var stuff: ["thing1", "thing2"]
     property string loopState: toString(player.loopState)
     readonly property var player: {
@@ -34,7 +33,6 @@ PopupWindow {
     color: "transparent"
     relativeX: -expand / 2
     relativeY: parent.height
-    width: parent.width + expand
     height: 150
 
     FrameAnimation {
@@ -47,7 +45,6 @@ PopupWindow {
     anchor {
         //edges: Edges.Bottom | Edges.Left
         //gravity: Edges.Bottom | Edges.Right
-
         item: parent
     }
 

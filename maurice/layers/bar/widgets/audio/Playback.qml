@@ -41,12 +41,16 @@ Rectangle {
 
     //omg my naming is actually so good
     property bool trans: !D.General.widRect
+    property int expand: 250
     property bool open: false
     property bool hovered: false
 
     width: 200
     color: trans ? "transparent" : D.Colors.widget
     height: D.General.barHeight
+
+    anchors {
+    }
 
     Text {
         //height: D.General.barHeight / 2
@@ -76,6 +80,12 @@ Rectangle {
 
     Popup {
         visible: root.open
+        width: root.width + expand
+
+        anchor {
+            item: root
+        }
+
     }
 
 }
