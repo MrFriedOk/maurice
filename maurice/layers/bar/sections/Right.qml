@@ -9,6 +9,10 @@ import Quickshell
 //widgets for the right section
 RowLayout {
     //implicitHeight: parent.implicitHeight
+    //Wi.Divider {
+    //}
+    //W.Brightness {
+    //}
 
     //height: 100
     //width: 200
@@ -44,12 +48,6 @@ RowLayout {
     }
 
     Au.Volume {
-    }
-
-    Wi.Divider {
-    }
-
-    W.Brightness {
     }
 
     Wi.Divider {

@@ -1,5 +1,6 @@
 import QtQuick
 import Quickshell
+import Quickshell.Services.Mpris
 pragma Singleton
 
 //general stuff, prolly should sort out later
@@ -18,5 +19,12 @@ Singleton {
     property bool widRect: sketchBar ? false : true
     property bool outline: sketchBar ? false : false
     property bool sketchBar: false
-    property bool iHateMyCPU: false
+    property bool iHateMyCPU: false && vizEnabled
+    property bool vizEnabled: false
+    readonly property var player: {
+        const list = Mpris.players.values;
+        return list.find((p) => {
+            return p.playbackState === MprisPlaybackState.Playing;
+        }) ?? list[0] ?? null;
+    }
 }

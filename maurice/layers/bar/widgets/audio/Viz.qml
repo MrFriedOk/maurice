@@ -20,6 +20,7 @@ Item {
     id: root
 
     property var viz: []
+    property var vizEnabled: D.General.vizEnabled
     property bool huh: D.General.iHateMyCPU
     property bool playing: player.playbackState == MprisPlaybackState.Playing
     readonly property var player: {
@@ -35,7 +36,7 @@ Item {
 
     Process {
         command: root.huh ? ['cava', '-p', Quickshell.shellPath('data/iPaidForTheWholeCPU.conf')] : ['cava', '-p', Quickshell.shellPath('data/cava.conf')]
-        running: root.playing
+        running: root.playing && root.vizEnabled
 
         stdout: SplitParser {
             onRead: (data) => {
@@ -48,7 +49,7 @@ Item {
     }
 
     Row {
-        visible: root.playing
+        visible: root.playing && root.vizEnabled
         spacing: 0
         height: parent.height
 
@@ -59,20 +60,22 @@ Item {
             model: root.viz
 
             delegate: Rectangle {
+                id: bar
+
                 required property var modelData
                 required property int index
-                property int fade: (index + 1) / index
+                property real fade: (-(index + 1) / 100) + 0.7
 
-                color: Qt.rgba(0.5, 0.5, 0.5, 1)
+                color: Qt.rgba(fade, fade, fade, 1)
                 width: 10
-                height: 1 + (modelData / 7) * (D.General.barHeight / 1.25)
+                height: 1 + (modelData / 7) * (D.General.barHeight / 1.05)
 
                 anchors {
-                    //bottom: parent.bottom
-
                     //right: parent.right
                     //left: parent.left
-                    verticalCenter: parent.verticalCenter
+                    //verticalCenter: parent.verticalCenter
+
+                    bottom: parent.bottom
                 }
 
                 Behavior on height {

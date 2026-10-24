@@ -9,6 +9,7 @@
 //	visible = false
 
 import "./layers" as E
+import "./layers/bar/universal" as Mat
 import "./layers/lock" as L
 import "./windows" as Windows
 import QtQuick
@@ -27,6 +28,9 @@ ShellRoot {
     //property int wall: 0
     property bool over: hoverH
     property bool settings: false
+
+    Mat.CoverArtMatugen {
+    }
 
     // call background
     L.Lock {

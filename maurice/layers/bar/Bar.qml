@@ -29,6 +29,7 @@ PanelWindow {
     }
 
     S.Middle {
+        id: middle
     }
 
     S.Right {

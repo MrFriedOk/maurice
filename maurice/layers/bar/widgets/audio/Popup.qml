@@ -15,12 +15,7 @@ PopupWindow {
     property string art: player.trackArtUrl
     property var stuff: ["thing1", "thing2"]
     property string loopState: toString(player.loopState)
-    readonly property var player: {
-        const list = Mpris.players.values;
-        return list.find((p) => {
-            return p.playbackState === MprisPlaybackState.Playing;
-        }) ?? list[0] ?? null;
-    }
+    readonly property var player: D.General.player
     property string loop: "LOOP"
     property string pause: "PAUSE"
     property string next: "NEXT"
