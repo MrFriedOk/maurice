@@ -172,7 +172,11 @@ PopupWindow {
                         color: D.Colors.surface
 
                         Row {
+                            spacing: 20
+
                             Repeater {
+                                //width: playback.width / 4
+
                                 model: playback.content
 
                                 delegate: Item {
@@ -181,9 +185,9 @@ PopupWindow {
                                     required property var modelData
                                     required property int index
 
-                                    width: playback.width / 4
-
                                     Text {
+                                        id: playbackTxt
+
                                         property var cols: [D.Colors.fg, D.Colors.bg]
                                         property var col: cols[0]
 
@@ -218,7 +222,8 @@ PopupWindow {
                                         //horizontalCenterOffset: index * 25
                                         //centerIn: parent
                                         //verticalCenter: parent
-
+                                        top: parent.top
+                                        bottom: parent.bottom
                                     }
 
                                 }

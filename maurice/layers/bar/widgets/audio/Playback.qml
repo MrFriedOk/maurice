@@ -80,6 +80,9 @@ Rectangle {
 
     }
 
+    Viz {
+    }
+
     Popup {
         //handle this here otherwise it breaks lol
         visible: root.open
