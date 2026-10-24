@@ -6,6 +6,10 @@ import Quickshell.Services.Mpris
 
 Scope {
     //readonly property string path: "%1".arg(art)
+    //FileView {
+    //     path: root.art
+    //     onPathChanged: matugen.running = true
+    // }
 
     id: root
 
@@ -16,15 +20,18 @@ Scope {
 
     Process {
         //["matugen", "image", "${root.art}", "--source-color-index", "1"]
+        //["sh", Quickshell.shellPath('data/art.sh'), matugen.url];
+        //console.log("hi", root.art, "no", matugen.url);
+        //if (root.art.startsWith("https"))
+        //  return ['matugen', 'web-image', root.art, 'source-color-index', '1'];
 
         id: matugen
 
-        property string url: root.art
+        property string url: ""
 
-        running: (root.art && !running)
+        running: true
         command: {
-            ["sh", Quickshell.shellPath('data/art.sh'), matugen.url];
-            console.log("hi", root.art);
+            console.log("hui", root.art);
         }
     }
 

@@ -1,0 +1,6 @@
+[config]
+
+
+[templates.quickshell]
+input_path = './quickshell.json'
+output_path = '~/.local/state/quickshell/generated/colors.json'
