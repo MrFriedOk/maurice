@@ -8,7 +8,8 @@ Singleton {
     property color surface: ColorsGen.md3.surface_variant //ColorsGen.palette.tertiary50 //'#565656'
     property color widget: ColorsGen.md3.surface_container //ColorsGen.palette.primary50 //'#1a80cc'
     property color fg: ColorsGen.md3.tertiary //ColorsGen.palette.secondary80 //'#d1d1d0'
-    property color accent: ColorsGen.md3.tertiary //ColorsGen.md3.error //'#cececc'
+    property color accent: ColorsGen.md3.secondary //ColorsGen.md3.error //'#cececc'
+    property color idk: ColorsGen.md3.primary
     property color critical: '#881717'
     property color warn: '#c66312'
     property color med: '#cab32f'

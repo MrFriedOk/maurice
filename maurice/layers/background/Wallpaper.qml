@@ -48,6 +48,8 @@ PanelWindow {
             }
 
             Rectangle {
+                visible: !wall.visible
+
                 anchors {
                     fill: parent
                 }
@@ -60,6 +62,11 @@ PanelWindow {
                     }
 
                     GradientStop {
+                        position: 0.5
+                        color: D.Colors.idk
+                    }
+
+                    GradientStop {
                         position: 1
                         color: D.Colors.accent
                     }
@@ -69,6 +76,8 @@ PanelWindow {
             }
 
             Image {
+                id: wall
+
                 visible: !D.General.adaptiveWall
                 cache: false
                 asynchronous: true
