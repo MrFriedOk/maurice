@@ -9,7 +9,9 @@
 ---
 <img src='assets/blue.png' alt='Image of blue ahh desktop'>
  <sub>The tool used in the screenshot is [`jellyfin-tui`](https://github.com/dhonus/jellyfin-tui</sub>
-<div></div>
+
+---
+
 ## Installing
 ### Dependencies 
 The code in this repo depends on packages/applications besides Quickshell.
