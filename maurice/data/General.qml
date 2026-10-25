@@ -22,6 +22,7 @@ Singleton {
     property bool sketchBar: false
     property bool iHateMyCPU: false && vizEnabled
     property bool vizEnabled: false
+    property bool adaptiveWall: true
     readonly property var player: {
         const list = Mpris.players.values;
         return list.find((p) => {

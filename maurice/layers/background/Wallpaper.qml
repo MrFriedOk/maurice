@@ -34,6 +34,7 @@ PanelWindow {
     }
 
     Item {
+        //visible: !D.General.adaptiveWallChanged
         anchors.fill: parent
 
         ClippingRectangle {
@@ -46,7 +47,29 @@ PanelWindow {
                 margins: 1
             }
 
+            Rectangle {
+                anchors {
+                    fill: parent
+                }
+
+                //color: D.Colors.fg
+                gradient: Gradient {
+                    GradientStop {
+                        position: 0
+                        color: D.Colors.fg
+                    }
+
+                    GradientStop {
+                        position: 1
+                        color: D.Colors.accent
+                    }
+
+                }
+
+            }
+
             Image {
+                visible: !D.General.adaptiveWall
                 cache: false
                 asynchronous: true
                 anchors.fill: parent
