@@ -17,9 +17,11 @@ The code in this repo depends on packages/applications besides Quickshell.
   - `upower`, battery stuff
   - `cava`, visualizer stuff, disabled by default
   - `matugen`, creates colors for the shell
+  - `curl`, for album art cache
+  - `MapleMono-NF`, bundled in the repo, see [LICENSE](data/assets/fonts/MapleMono-NF/LICENSE.txt)
 #### Arch
 ```
-sudo pacman -S hyprland brightnessctl upower cava pipewire quickshell
+sudo pacman -S hyprland brightnessctl upower cava pipewire quickshell curl matugen
 ```
 ### Guided
 For a standard install, step-by-step
