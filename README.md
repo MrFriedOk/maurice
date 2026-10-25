@@ -29,12 +29,13 @@ For a standard install, step-by-step
 - Download the latest release from github
 - Navigate to the `.zip` and extract (anywhere works, just be sure to extract)
 - Run the `install.sh` script
-> [!NOTE] Warning!
+> [!WARNING]
 > The file must be executable in order to run. It should work already but if not, check permissions on the file.
 > Please don't run random scripts! I know this one works but be careful!
+- A backup of any existing Quickshell configs is created at `~/.config/quickshell.bak<timestamp>` before contents are copied over
 - The script copies the contents of the extracted folder you downloaded, so you will need to get rid of that folder as you see fit
 - This rice is built on Hyprland and does not currently set Hyprland up, please ensure you have Hyprland set up
-- To run Quickshell, use the `qs` command in a terminal and add the `-d` flag if you don't want ugly logs and warnings (sorry..) showing up. If you want Quickshell to run on login, put this line somewhere in your Hyprland config (using Lua, not Hyprlang),
+- To run Quickshell, use the `qs` command in a terminal and add the `-d` flag if you don't want ugly logs and warnings (sorry..) showing up on terminal. If you want Quickshell to run on login, put this line somewhere in your Hyprland config (using Lua, not Hyprlang),
 `hl.exec_cmd('qs')`
 - For the Hyprlang version,
 `exec-once = qs`
