@@ -8,15 +8,16 @@ Singleton {
     id: gen
 
     property string family: "Maple Mono NF"
-    property string scheme: "fruit-salad"
+    property string scheme: "vibrant"
     property bool adaptPS: true
+    property var fonts: ["SpaceMono Nerd Font", "Maple Mono NF", "Red Hat Text", "Readex Pro", "OpenDyslexic Nerd Font", "Atkinson Hyperlegible"]
     property int size: adaptPS ? barHeight / 2 : 10
     property int txtSpacing: 5
     property bool bold: false
     property int spacing: 2
     property int radius: 0
     property int animDur: 80
-    property int barHeight: 35
+    property int barHeight: 20
     property bool widRect: sketchBar ? false : true
     property bool outline: sketchBar ? false : false
     property bool sketchBar: false

@@ -18,7 +18,7 @@ Scope {
     id: root
 
 		property bool locked: false
-		property var fonts: ["SpaceMono Nerd Font","Maple Mono NF", "Red Hat Text","Readex Pro","OpenDyslexic Nerd Font", "Atkinson Hyperlegible"]
+		property list<string> fonts: D.General.fonts
 		property string curFont: ""
 
     WlSessionLock {
