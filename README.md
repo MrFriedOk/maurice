@@ -8,7 +8,7 @@
 
 ---
 <img src='assets/blue.png' alt='Image of blue ahh desktop'>
- <sub>The tool used in the screenshot is [`jellyfin-tui`](https://github.com/dhonus/jellyfin-tui</sub>
+ <sub>The tool used in the screenshot is [`jellyfin-tui`](https://github.com/dhonus/jellyfin-tui)</sub>
 
 ---
 
