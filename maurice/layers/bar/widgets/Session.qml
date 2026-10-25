@@ -36,6 +36,9 @@ Item {
             if (status === "OSU!")
                 return ["/home/fried/osu.sh"];
 
+            if (status === "LOCK")
+                return ["qs", "ipc", "call", "lock", "lock"];
+
         }
     }
 

@@ -35,7 +35,7 @@ RowLayout {
     }
 
     W.Session {
-        status: "SUSP"
+        status: "LOCK"
     }
 
     Wi.Divider {
