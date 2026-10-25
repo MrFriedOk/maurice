@@ -34,8 +34,6 @@ For a standard install, step-by-step
 - This rice is built on Hyprland and does not currently set Hyprland up, please ensure you have Hyprland set up
 - To run Quickshell, use the `qs` command in a terminal and add the `-d` flag if you don't want ugly logs and warnings (sorry..) showing up. If you want Quickshell to run on login, put this line somewhere in your Hyprland config (using Lua, not Hyprlang),
 `hl.exec_cmd('qs')`
-- Hyprland should run this once but to run it only on startup, place it like this instead,
-`hl.on('hyprland.start'`
 - For the Hyprlang version,
 `exec-once = qs`
 ## MkDocs
