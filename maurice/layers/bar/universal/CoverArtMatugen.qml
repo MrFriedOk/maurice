@@ -29,8 +29,15 @@ Scope {
     onArtChanged: {
         if (root.art && !matugen.running) {
             matugen.url = root.art;
-            matugen.running = true;
+            buffer.running = true;
         }
+    }
+
+    Timer {
+        id: buffer
+
+        interval: 250
+        onTriggered: matugen.running = true
     }
 
     Process {
@@ -44,11 +51,13 @@ Scope {
         id: matugen
 
         property var url: root.art
+        property string scheme: "scheme-fruit-salad"
+        property string configDir: Quickshell.shellPath('data')
 
-        running: (root.art && !running)
+        //running: (root.art && !running)
         command: {
             console.log("hui", matugen.url);
-            ["sh", Quickshell.shellPath('data/art.sh'), matugen.url];
+            ["sh", Quickshell.shellPath('data/art.sh'), matugen.url, matugen.scheme, matugen.configDir];
         }
         onExited: (code, status) => {
             return console.log("art.sh exited", code);
