@@ -8,6 +8,7 @@ Singleton {
     id: gen
 
     property string family: "Maple Mono NF"
+    property string scheme: "fruit-salad"
     property bool adaptPS: true
     property int size: adaptPS ? barHeight / 2 : 10
     property int txtSpacing: 5

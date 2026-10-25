@@ -51,7 +51,7 @@ Scope {
         id: matugen
 
         property var url: root.art
-        property string scheme: "scheme-fruit-salad"
+        property string scheme: "scheme-%1".arg(D.General.scheme)
         property string configDir: Quickshell.shellPath('data')
 
         //running: (root.art && !running)

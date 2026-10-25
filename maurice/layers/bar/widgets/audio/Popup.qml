@@ -130,7 +130,7 @@ PopupWindow {
                         anchors {
                             horizontalCenter: parent.horizontalCenter
                             topMargin: 5
-                            leftMargin: topMargin
+                            leftMargin: 5
                             top: parent.top
                         }
 

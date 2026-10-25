@@ -6,16 +6,25 @@ import Quickshell.Wayland
 import Quickshell.Widgets
 
 PanelWindow {
-    id: win
+    id: root
 
     required property var modelData
-    property string image: "../../data/current.png"
+    property string image: "/tmp/mpris-art.png" //"../../data/current.png"
 
     screen: modelData
     WlrLayershell.layer: WlrLayer.Background
     //if you wanted the wallpaper to ignore the bar
     exclusionMode: ExclusionMode.Ignore
     color: D.Colors.bg
+
+    FileView {
+        path: "/tmp/mpris-art"
+        watchChanges: true
+        onFileChanged: {
+            root.image = "";
+            root.image = "/tmp/mpris-art.png";
+        }
+    }
 
     anchors {
         top: true
@@ -38,8 +47,10 @@ PanelWindow {
             }
 
             Image {
+                cache: false
+                asynchronous: true
                 anchors.fill: parent
-                source: win.image
+                source: root.image
                 fillMode: Image.Stretch
             }
 

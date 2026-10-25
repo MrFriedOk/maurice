@@ -5,8 +5,13 @@ scheme="$2"
 path="$3/config.toml"
 case "$url" in
   file://*) img="${url#file://}" ;;
-  http*)    img="/tmp/mpris-art-$(printf %s "$url" | md5sum | cut -c1-12).png"
-            [ -f "$img" ] || curl -sfL "$url" -o "$img" || exit 1 ;;
+  #http*)    img="/tmp/mpris-art-$(printf %s "$url" | md5sum | cut -c1-12).png"
+	http*)		img="/tmp/mpris-art.png"
+            #[ -f "$img" ] || curl -sfL "$url" -o "$img" || exit 1 ;;
+						curl -sfL "$url" -o "$img" || exit 1 ;;
   *)        exit 0 ;;
 esac
+touch /tmp/mpris-art
 matugen image "$img" --source-color-index 0 -c $path -t $scheme
+
+#rm /tmp/mpris-art.png
