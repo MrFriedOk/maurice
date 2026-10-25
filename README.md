@@ -65,3 +65,4 @@ This repo is covered by an MIT license, see [license](./LICENSE). [`demo.mp4` ](
 - SelfMadeSystem's Quickshell [`shader_wallpaper` examaple](https://github.com/SelfMadeSystem/quickshell-examples/)
 - [Quickshell docs](https://quickshell.org/docs/v0.3.0/types/)
 - [QtQuick docs](https://doc.qt.io/qt-6/qtquick-index.html)
+- [matugen-themes](https://github.com/InioX/matugen-themes/)
