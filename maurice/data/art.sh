@@ -8,4 +8,4 @@ case "$url" in
             [ -f "$img" ] || curl -sfL "$url" -o "$img" || exit 1 ;;
   *)        exit 0 ;;
 esac
-matugen image "$img" --source-color-index 0 -c $path -t scheme-smart
+matugen image "$img" --source-color-index 0 -c $path -t scheme-fruit-salad

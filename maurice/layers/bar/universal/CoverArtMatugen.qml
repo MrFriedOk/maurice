@@ -39,17 +39,27 @@ Scope {
         //console.log("hi", root.art, "no", matugen.url);
         //if (root.art.startsWith("https"))
         //    return ['matugen', 'web-image', root.art, 'source-color-index', '1'];
+        // ["sh", Quickshell.shellPath('data/thing.sh'), matugen.url];
 
         id: matugen
 
-        property string url: root.art
+        property var url: root.art
 
         running: (root.art && !running)
         command: {
-            //console.log("hui", matugen.url);
+            console.log("hui", matugen.url);
             ["sh", Quickshell.shellPath('data/art.sh'), matugen.url];
-            ["sh", Quickshell.shellPath('data/thing.sh'), matugen.url];
         }
+        onExited: (code, status) => {
+            return console.log("art.sh exited", code);
+        }
+
+        stderr: SplitParser {
+            onRead: (data) => {
+                return console.log("art.sh:", data);
+            }
+        }
+
     }
 
 }
