@@ -60,9 +60,13 @@ An LLM was used to generate some code in this repo. `/maurice/layers/bar/univers
 
 ## Licensing
 This repo is covered by an MIT license, see [license](./LICENSE). [`demo.mp4` ](./demo/demo.mp4) contains a track "Local Forecast" by Kevin MacLeod (incompetech.com) and is licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/. The MIT does not cover this track and remains under its own terms.
+### Fonts
+Maple Mono NF, copyright 2022, The Maple Mono Project Authors. Licensed under SIL Open Font License, Version 1.1.
+See [LICENSE](./maurice/data/assets/fonts/MapleMono-NF/LICENSE.txt).
 ## References
 - RexCrazy804's Quickshell [`basic_bar` example](https://github.com/Rexcrazy804/quickshell-examples/)
 - SelfMadeSystem's Quickshell [`shader_wallpaper` examaple](https://github.com/SelfMadeSystem/quickshell-examples/)
 - [Quickshell docs](https://quickshell.org/docs/v0.3.0/types/)
 - [QtQuick docs](https://doc.qt.io/qt-6/qtquick-index.html)
 - [matugen-themes](https://github.com/InioX/matugen-themes/)
+- [MapleMono NF](https://github.com/subframe7536/maple-font/releases)
