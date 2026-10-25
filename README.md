@@ -9,10 +9,6 @@
 ---
 
 ## Installing
-`shell.qml` is located in the shell folder, `/maurice` and under that same folder is where all the code and assets live. For installation, the release contains a `.zip` of the shell folder.
-Quickshell's default config directory is located at `~/.config/quickshell/` and automatically loads the `shell.qml` inside (if it is given). Otherwise, you can point Quickshell to a separate config, providing the respective `shell.qml` (or just the folder).
-For install, please move all contents under `/maurice` into Quickshell's default config directory and run Quickshell. 
-
 ### Dependencies 
 The code in this repo depends on packages/applications besides Quickshell.
   - `brightnessctl`, used for backlight display/manipulation (currently not working anyway lol)
@@ -20,44 +16,31 @@ The code in this repo depends on packages/applications besides Quickshell.
   - `pipewire`, used for audio display/manipulation
   - `upower`, battery stuff
   - `cava`, not implemented yet but a `Process` will take streams from `cava` and output to a widget.
-
 #### Arch
 ```
 sudo pacman -S hyprland brightnessctl upower cava pipewire quickshell
 ```
-
 ### Guided
 For a standard install, step-by-step
-```
-cd ~/.cache
-git clone https://github.com/MrFriedOk/maurice.git
-cd maurice/maurice
-mv ~/.config/quickshell ~/.config/quickshell.bak
-mkdir ~/.config/quickshell
-cp -r ./* ~/.config/quickshell
-```
-### Usage
-Now that the code is in the right place, you can run `qs` (make sure Quickshell is installed) and it will find your code. For a custom path, use `qs -c /path/to/maurice`.
-The `-d` flag can be given, this 'daemonizes' Quickshell so you don't get ugly logs and can close your terminal without quitting `qs`. 
-For a Hyprland start on login, please append this line to your `hyprland.lua`,
-```
-hl.exec_cmd('qs')
-```
-This ensures that Hyprland executes your Quickshell config on login. If Quickshell fails, it will be silent. Best way to pinpoint an error is to run `qs` and check the logs it gives. 
-Please let me know if there are any issues! This code sucks!
-
-## Demo
-I made a video covering the basic stuff, you can find that under `demo`, I used a song in it too so check out the licensing for that.
-For the actual demo, you can use this repo and just point Quickshell to the `maurice` directory, that's where the `shell.qml` is. Sorry, it's kinda unintuitive ( >///< ).
+- **Ensure all dependencies are installed, packages for Arch Linux are listed above**
+- Download the latest release from github
+- Navigate to the `.zip` and extract (anywhere works, just be sure to extract)
+- Run the `install.sh` script
+> [!NOTE] Warning!
+> The file must be executable in order to run. It should work already but if not, check permissions on the file.
+> Please don't run random scripts! I know this one works but be careful!
+- The script copies the contents of the extracted folder you downloaded, so you will need to get rid of that folder as you see fit
+- This rice is built on Hyprland and does not currently set Hyprland up, please ensure you have Hyprland set up
+- To run Quickshell, use the `qs` command in a terminal and add the `-d` flag if you don't want ugly logs and warnings (sorry..) showing up. If you want Quickshell to run on login, put this line somewhere in your Hyprland config (using Lua, not Hyprlang),
+`hl.exec_cmd('qs')`
 ## MkDocs
 MkDocs is used to display this repo's docs, simply install MkDocs and serve from this directory!
-
 > [!NOTE]
 > Alternatively, you can use the `site` directory, it should contain stuff to serve. From there you can serve the directory any way you want (as long as I remember to keep it up-to-date //v//).
-
 ## LLM Use
-An LLM was used to generate some code in this repo. `/maurice/layers/bar/universal/Scramble.qml` was created by an LLM and modified by me, I did not make any of the logic
-
+An LLM was used to generate some code in this repo. `/maurice/layers/bar/universal/Scramble.qml` was created by an LLM and modified by me, I did not make any of the logic.
+The install script was also created by an LLM and modified by me. `art.sh`'s logic is also all by an LLM with modifications by me.
+Some debugging was also done with an LLM, no agent touched my files though.
 ## Licensing
 This repo is covered by an MIT license, see [license](./LICENSE). [`demo.mp4` ](./demo/demo.mp4) contains a track "Local Forecast" by Kevin MacLeod (incompetech.com) and is licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/. The MIT does not cover this track and remains under its own terms.
 ### Fonts

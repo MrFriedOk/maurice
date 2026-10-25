@@ -48,6 +48,11 @@ PanelWindow {
             }
 
             Rectangle {
+                //GradientStop {
+                //    position: 0.5
+                //    color: D.Colors.idk
+                //}
+
                 visible: !wall.visible
 
                 anchors {
@@ -59,11 +64,6 @@ PanelWindow {
                     GradientStop {
                         position: 0
                         color: D.Colors.fg
-                    }
-
-                    GradientStop {
-                        position: 0.5
-                        color: D.Colors.idk
                     }
 
                     GradientStop {
