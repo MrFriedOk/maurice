@@ -18,8 +18,9 @@ Scope {
     id: root
 
 		property bool locked: false
-		property list<string> fonts: D.General.fonts
-		property string curFont: ""
+		//property var fonts: D.General.fonts
+		//property string curFont: ""
+		property string curFont: D.General.family
 
     WlSessionLock {
         id: lock
@@ -36,6 +37,7 @@ Scope {
 						
 							Layout.fillWidth: true
 							Layout.fillHeight: true
+							//escape box
 							MouseArea{
 								width: 25
 								height: 10
@@ -93,7 +95,7 @@ Scope {
 						font.family: root.curFont
 						Timer{
 							interval: 1000
-							running: true
+							running: false
 							repeat: true
 							onTriggered: {
 								let next
