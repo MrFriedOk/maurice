@@ -12,10 +12,11 @@
 ### Dependencies 
 The code in this repo depends on packages/applications besides Quickshell.
   - `brightnessctl`, used for backlight display/manipulation (currently not working anyway lol)
-  - [`hyprland`](https://hypr.land/), this is a Hyprland rice. Doesn't necessarily require lua over hyprlang (yet).
+  - [`hyprland`](https://hypr.land/), this is a Hyprland rice. Lua version preferable
   - `pipewire`, used for audio display/manipulation
   - `upower`, battery stuff
-  - `cava`, not implemented yet but a `Process` will take streams from `cava` and output to a widget.
+  - `cava`, visualizer stuff, disabled by default
+  - `matugen`, creates colors for the shell
 #### Arch
 ```
 sudo pacman -S hyprland brightnessctl upower cava pipewire quickshell
@@ -33,6 +34,10 @@ For a standard install, step-by-step
 - This rice is built on Hyprland and does not currently set Hyprland up, please ensure you have Hyprland set up
 - To run Quickshell, use the `qs` command in a terminal and add the `-d` flag if you don't want ugly logs and warnings (sorry..) showing up. If you want Quickshell to run on login, put this line somewhere in your Hyprland config (using Lua, not Hyprlang),
 `hl.exec_cmd('qs')`
+- Hyprland should run this once but to run it only on startup, place it like this instead,
+`hl.on('hyprland.start'`
+- For the Hyprlang version,
+`exec-once = qs`
 ## MkDocs
 MkDocs is used to display this repo's docs, simply install MkDocs and serve from this directory!
 > [!NOTE]
