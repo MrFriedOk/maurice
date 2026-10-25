@@ -7,7 +7,9 @@
 </div>
 
 ---
+![[blue.png]]
 
+ <sub>The tool used in the screenshot is [`jellyfin-tui`](https://github.com/dhonus/jellyfin-tui)</sub>
 ## Installing
 ### Dependencies 
 The code in this repo depends on packages/applications besides Quickshell.
