@@ -10,6 +10,14 @@ Scope {
     //     path: root.art
     //     onPathChanged: matugen.running = true
     // }
+    //Connections {
+    //function onTrackArtUrlChanged() {
+    //    if (root.art && !matugen.running) {
+    //        matugen.url = root.art;
+    //        matugen.running = true;
+    //    }
+    //target: root.player
+    //}
 
     id: root
 
@@ -18,32 +26,30 @@ Scope {
     readonly property real length: player.length
     readonly property real pos: player.position
 
+    onArtChanged: {
+        if (root.art && !matugen.running) {
+            matugen.url = root.art;
+            matugen.running = true;
+        }
+    }
+
     Process {
         //["matugen", "image", "${root.art}", "--source-color-index", "1"]
         //["sh", Quickshell.shellPath('data/art.sh'), matugen.url];
         //console.log("hi", root.art, "no", matugen.url);
         //if (root.art.startsWith("https"))
-        //  return ['matugen', 'web-image', root.art, 'source-color-index', '1'];
+        //    return ['matugen', 'web-image', root.art, 'source-color-index', '1'];
 
         id: matugen
 
-        property string url: ""
+        property string url: root.art
 
-        running: true
+        running: (root.art && !running)
         command: {
-            console.log("hui", root.art);
+            //console.log("hui", matugen.url);
+            ["sh", Quickshell.shellPath('data/art.sh'), matugen.url];
+            ["sh", Quickshell.shellPath('data/thing.sh'), matugen.url];
         }
-    }
-
-    Connections {
-        function onTrackArtUrlChanged() {
-            if (root.art && !matugen.running) {
-                matugen.url = root.art;
-                matugen.running = true;
-            }
-        }
-
-        target: root.player
     }
 
 }

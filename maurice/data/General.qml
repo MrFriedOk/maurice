@@ -18,7 +18,7 @@ Singleton {
     property int barHeight: 35
     property bool widRect: sketchBar ? false : true
     property bool outline: sketchBar ? false : false
-    property bool sketchBar: true
+    property bool sketchBar: false
     property bool iHateMyCPU: false && vizEnabled
     property bool vizEnabled: false
     readonly property var player: {
