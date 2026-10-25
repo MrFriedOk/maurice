@@ -19,7 +19,7 @@ The code in this repo depends on packages/applications besides Quickshell.
   - `matugen`, creates colors for the shell
 #### Arch
 ```
-sudo pacman -S hyprland brightnessctl upower cava pipewire quickshell
+sudo pacman -S --needed hyprland brightnessctl upower cava pipewire quickshell
 ```
 ### Guided
 For a standard install, step-by-step
