@@ -14,16 +14,16 @@ tree_hash() {   # one hash for a whole folder: file names and contents
 
 if [ -e "$dest" ] || [ -L "$dest" ]; then
   if [ -f "$state/installed.hash" ] && [ "$(tree_hash "$dest")" = "$(cat "$state/installed.hash")" ]; then
-    echo "Existing install is untouched; replacing it."
+    echo "no changes to update!"
     rm -rf "$dest"
   else
     backup="$dest.bak-$(date +%Y%m%d-%H%M%S)"
     mv "$dest" "$backup"
-    echo "Backed up existing config to $backup"
+		echo "DELETING EVERYTHING!!!!!! (╯°Д°)╯ ┻━┻ (jk), made a backup! $backup"
   fi
 fi
 
 mkdir -p "$dest"
 cp -r "./" "$dest"/ #"$src"/. "$dest"/
 tree_hash "$dest" > "$state/installed.hash"
-echo "Installed. Start it with: qs"
+echo "install success! run with qs and be sure to auto execute qs with hyprland!"
