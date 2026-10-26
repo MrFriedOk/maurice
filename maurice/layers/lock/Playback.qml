@@ -7,6 +7,7 @@ import Quickshell.Services.Mpris
 Rectangle {
     id: root
 
+		property bool locking: false
     property var player: D.General.player
 		property string art: player.trackArtUrl
 		property string pause: "PAUSE"
@@ -22,9 +23,11 @@ Rectangle {
         verticalCenterOffset: 100
 			}
 			Rectangle{
+				radius: parent.radius
 				Rectangle{
 
 					color: D.Colors.surface
+					radius: root.radius
 					anchors{
 						bottom: parent.bottom
 						left: parent.left
@@ -44,6 +47,7 @@ Rectangle {
 							model: playbackCtl.playback
 
 							delegate: Rectangle{
+								radius: root.radius
 								Text{
 									anchors{
 										fill: parent
