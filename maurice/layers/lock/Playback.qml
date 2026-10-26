@@ -8,9 +8,11 @@ Rectangle {
     id: root
 
     property var player: D.General.player
-    property string art: player.trackArtUrl
-property int margin: 5
-    color: D.Colors.widget
+		property string art: player.trackArtUrl
+		property string pause: "PAUSE"
+		property string loop: "LOOP"
+		property int margin: 5
+    color: D.Colors.surface
     width: 1000
     height: 400
     radius: D.General.radius
@@ -20,8 +22,43 @@ property int margin: 5
         verticalCenterOffset: 100
 			}
 			Rectangle{
+				Rectangle{
+					color: D.Colors.surface
+					anchors{
+						bottom: parent.bottom
+						left: parent.left
+						right: parent.right
+						margins: 25
+					}
+					height: 50
+					//playback control container
+					id: playbackCtl
+					property list<string> playback: ["LAST",root.pause,root.loop,"NEXT"]
+					Row{
+						Repeater{
+							model: playbackCtl.playback
+
+							delegate: Rectangle{
+								Text{
+									anchors{
+										fill: parent
+									}
+									text: modelData
+								}
+								required property var modelData
+								required property int index
+								anchors{
+									top: parent.top
+								  bottom: parent.bottom
+								}
+								width: 50
+							}
+
+						}
+					}
+				}
 				//playback info container
-				color: D.Colors.surface
+				color: D.Colors.bg
 				anchors{
 					top: parent.top
 					bottom: parent.bottom
@@ -39,14 +76,15 @@ property int margin: 5
 					verticalCenterOffset: -150
 				
 				}
+				color: D.Colors.fg
 				font{
 					family: D.General.family
 					bold: true
 						pointSize: 20
 
 					}
-					property int index: Math.floor(Math.random()*splash.length)
-					property string curSplash: splash[index]
+				property int index: Math.floor(Math.random()*splash.length)
+				property string curSplash: splash[index]
 				property list<string> splash: ["Now playing,","You are now enjoying,","Some cringy splash,","What would spotify say?"]
 			}
 		}

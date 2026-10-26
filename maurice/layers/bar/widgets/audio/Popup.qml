@@ -16,6 +16,7 @@ PopupWindow {
     property var stuff: ["thing1", "thing2"]
     property string loopState: toString(player.loopState)
     readonly property var player: D.General.player
+    //why did i do it this way?
     property string loop: "LOOP"
     property string pause: "PAUSE"
     property string next: "NEXT"
