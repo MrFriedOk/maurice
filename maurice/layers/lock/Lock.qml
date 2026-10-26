@@ -35,9 +35,7 @@ Scope {
 					color: "transparent"
 					
 					Item{
-						Self.Playback{
-
-						}
+					
 						
 						anchors{
 							fill: parent	
@@ -64,6 +62,9 @@ Scope {
 							onClicked: root.locked = false
 						}
 						PanelWindow{
+							Playback{
+
+							}
 							exclusionMode: ExlusionMode.Ignore
 							id: bg
 
