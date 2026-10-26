@@ -7,20 +7,24 @@ import Quickshell.Wayland
 import Quickshell.Io
 import "../../data" as D
 import "../bar/universal" as Wi
+import "./" as Self
 
 Scope {
 
 	//ipc for control from hyprland, not in rice as of now
 	IpcHandler{
 		target: "lock"
-		function lock(): void {locked = true}
+		function lock(): void {locked = true;} //D.General.barVisible = !D.General.barVisible}
 	}
-    id: root
+	id: root
 
-		property bool locked: false
+
+
+	property bool locked: false
 		//property var fonts: D.General.fonts
 		//property string curFont: ""
 		property string curFont: D.General.family
+		onLockedChanged: D.General.barVisible = !D.General.barVisible
 
     WlSessionLock {
         id: lock
@@ -29,7 +33,11 @@ Scope {
 
 				WlSessionLockSurface {
 					color: "transparent"
+					
 					Item{
+						Self.Playback{
+
+						}
 						
 						anchors{
 							fill: parent	
@@ -68,11 +76,12 @@ Scope {
 							}
 							color: "#bb000000"
 
-					BackgroundEffect.blurRegion: Region{item: bg.contentItem}
+					//BackgroundEffect.blurRegion: Region{item: bg.contentItem}
 
 						}
 
 						Rectangle{ 
+							//clock
 							color: D.Colors.surface
 							height: 200
 							width: 500

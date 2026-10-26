@@ -6,11 +6,17 @@ pragma Singleton
 //general stuff, prolly should sort out later
 Singleton {
     //"Maple Mono NF"
+    //Behavior on barHeight {
+    //    NumberAnimation {
+    //        duration: animDur
+    //    }
+    //}
 
     id: gen
 
     property string family: font.name
     property string scheme: "vibrant"
+    property bool barVisible: true
     property bool adaptPS: true
     property var fonts: [font.name] //["SpaceMono Nerd Font", "Maple Mono NF", "Red Hat Text", "Readex Pro", "OpenDyslexic Nerd Font", "Atkinson Hyperlegible"]
     property int size: adaptPS ? barHeight / 2 : 10

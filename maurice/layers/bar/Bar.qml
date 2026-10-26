@@ -13,6 +13,7 @@ PanelWindow {
 
     id: bar
 
+    visible: D.General.barVisible
     color: "transparent"
     exclusionMode: ExclusionMode.Auto
     implicitHeight: D.General.barHeight

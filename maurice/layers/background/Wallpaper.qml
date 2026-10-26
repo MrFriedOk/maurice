@@ -6,10 +6,14 @@ import Quickshell.Wayland
 import Quickshell.Widgets
 
 PanelWindow {
+    //"../../data/current.png"
+
     id: root
 
     required property var modelData
-    property string image: "/tmp/mpris-art.png" //"../../data/current.png"
+    property var viz: []
+    //property var player: D.General.player
+    property string image: "/tmp/mpris-art.png"
 
     screen: modelData
     WlrLayershell.layer: WlrLayer.Background
@@ -43,15 +47,38 @@ PanelWindow {
             anchors {
                 fill: parent
                 //top margin for image, let PanelWindow define bg color for bar
-                topMargin: D.General.barHeight + 1
+                topMargin: D.General.barVisible ? D.General.barHeight + 1 : 1
                 margins: 1
+
+                Behavior on topMargin {
+                    NumberAnimation {
+                        duration: D.General.animDur
+                    }
+
+                }
+
             }
 
             Rectangle {
-                //GradientStop {
                 //    position: 0.5
                 //    color: D.Colors.idk
                 //}
+                //color: D.Colors.widget
+                // Process {
+                //     id: beat
+                //    running: D.General.iHateMyCPU
+                //     command: ['cava', '-p', Quickshell.shellPath('data/beat.conf')]
+                //     stdout: SplitParser {
+                //         onRead: SplitParser {
+                //             onRead: (d) => {
+                //                 return root.viz = d.split(';').filter((s) => {
+                //                     return s !== "";
+                //                 }).map(Number);
+                //             }
+                //         }
+                //    }
+                //}
+                //GradientStop {
 
                 visible: !wall.visible
 
@@ -59,7 +86,6 @@ PanelWindow {
                     fill: parent
                 }
 
-                //color: D.Colors.fg
                 gradient: Gradient {
                     GradientStop {
                         position: 0

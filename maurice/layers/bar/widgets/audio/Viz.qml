@@ -23,12 +23,7 @@ Item {
     property var vizEnabled: D.General.vizEnabled
     property bool huh: D.General.iHateMyCPU
     property bool playing: player.playbackState == MprisPlaybackState.Playing
-    readonly property var player: {
-        const list = Mpris.players.values;
-        return list.find((p) => {
-            return p.playbackState === MprisPlaybackState.Playing;
-        }) ?? list[0] ?? null;
-    }
+    property var player: D.General.player
 
     anchors {
         fill: parent
