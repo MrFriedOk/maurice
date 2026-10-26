@@ -23,6 +23,7 @@ Rectangle {
 			}
 			Rectangle{
 				Rectangle{
+
 					color: D.Colors.surface
 					anchors{
 						bottom: parent.bottom
@@ -33,9 +34,13 @@ Rectangle {
 					height: 50
 					//playback control container
 					id: playbackCtl
+					
 					property list<string> playback: ["LAST",root.pause,root.loop,"NEXT"]
+
 					Row{
+
 						Repeater{
+							//individual playback ctl
 							model: playbackCtl.playback
 
 							delegate: Rectangle{
@@ -57,7 +62,7 @@ Rectangle {
 						}
 					}
 				}
-				//playback info container
+
 				color: D.Colors.bg
 				anchors{
 					top: parent.top
@@ -68,11 +73,21 @@ Rectangle {
 				}
 				//weird ahh math
 				width: parent.width - (artContainer.width + (root.margin *3))
+
 				Text{
+					id: splashTxt
+					width: parent.width
 					text: curSplash
+					Rectangle{
+						color: '#5d5d5d00'
+						anchors{
+							fill: parent
+						}
+					}
 				anchors{
 					top: parent.top
 					centerIn: parent
+					//horizontalCenterOffset: splashTxt.width/2
 					verticalCenterOffset: -150
 				
 				}
@@ -80,7 +95,7 @@ Rectangle {
 				font{
 					family: D.General.family
 					bold: true
-						pointSize: 20
+						pointSize: (splashTxt.implicitWidth > splashTxt.width)? 2 : 20
 
 					}
 				property int index: Math.floor(Math.random()*splash.length)

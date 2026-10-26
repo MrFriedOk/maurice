@@ -41,13 +41,6 @@ Singleton {
         }) ?? list[0] ?? null;
 			}
 
-			Timer{
-				interval: 2000
-				onTriggered: console.log(gen.splashes)
-				repeat: true
-				running: true
-			}
-
     FontLoader {
         id: font
 
