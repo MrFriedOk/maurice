@@ -3,27 +3,40 @@ import QtQuick
 import "../../data" as D
 
 Rectangle{
-
-				Text{
-					
-				}
-
 				Text{
 					//track title
 				text: root.player.trackTitle
 				color: D.Colors.fg
 				font{
 					family: D.General.family
-					bold: true
+					
 					pointSize: 18
 				}
-				width: parent.width
+				width: contentWidth//parent.width/2
 				anchors{
+					verticalCenterOffset: -65
 					//horizontalCenter: parent.horizontalCenter
 				centerIn: parent
 				}
 			}
-				radius: parent.radius
+			Text{
+				color: D.Colors.fg
+				width: contentWidth //parent.width/2
+				
+				anchors{
+					top: parent.top
+					centerIn: parent
+				}
+				font{
+					family: D.General.family
+					pointSize: 14
+
+				}
+				text: "%1 : %2".arg(root.player.trackArtist,root.player.trackAlbum)
+			}
+			radius: parent.radius
+
+
 				Rectangle{
 
 					color: D.Colors.surface
@@ -81,14 +94,8 @@ Rectangle{
 				Text{
 					//splash text lol
 					id: splashTxt
-					width: parent.width
+					width: contentWidth
 					text: curSplash
-					Rectangle{
-						color: '#5d5d5d00'
-						anchors{
-							fill: parent
-						}
-					}
 				anchors{
 					top: parent.top
 					centerIn: parent
@@ -99,7 +106,7 @@ Rectangle{
 
 			
 
-				color: D.Colors.fg
+				color: D.Colors.surface
 				font{
 					family: D.General.family
 					bold: true
