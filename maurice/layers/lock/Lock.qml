@@ -44,7 +44,7 @@ Scope {
         locked: root.locked
 
 				WlSessionLockSurface {
-					color: "transparent"
+					color: "#aa000000"
 					
 					Item{
 					
@@ -73,7 +73,7 @@ Scope {
 							//onHoveredChanged: parent.color: "green"
 							onClicked: root.locked = false
 						}
-						PanelWindow{
+						Rectangle{
 							Self.Playback{
 							}
 
@@ -90,14 +90,17 @@ Scope {
 
 									TextInput{
 										id: pam
-										text: "hi"
+										//text: "hi"
 										color: D.Colors.fg
 										focus: true
+										cursorVisible: false
+										Component.onCompleted: forceActiveFocus()
 										onAccepted: {
 											ctx.submit(text); text=""
 										}
 										anchors{
 											fill: parent
+											verticalCenter: parent.verticalCenter
 										}
 										enabled: !ctx.busy
 										echoMode: TextInput.Password
@@ -116,13 +119,10 @@ Scope {
 							id: bg
 
 							anchors{
-								top: true
-								bottom: true
-								left: true
-								right: true
+								fill: parent
 
 							}
-							color: "#bb000000"
+						 color: "transparent"//"#bb000000"
 
 					//BackgroundEffect.blurRegion: Region{item: bg.contentItem}
 
@@ -144,7 +144,7 @@ Scope {
 									horizontalCenter: parent.horizontalCenter
 									verticalCenter: parent.verticalCenter
 								}
-							id: text
+							id: clockTxt
 							target: Qt.formatTime(clock.date, "hh:mm")
 						font.pointSize: 96
 						color: D.Colors.fg
