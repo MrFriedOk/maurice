@@ -75,9 +75,41 @@ Scope {
 						}
 						PanelWindow{
 							Self.Playback{
-
 							}
-							exclusionMode: ExlusionMode.Ignore
+
+							Rectangle{
+								//pam container
+								color: D.Colors.surface
+								radius: D.General.radius
+								Rectangle{
+									anchors{
+										fill: parent
+										margins: 5
+									}
+									color: D.Colors.bg
+
+									TextField{
+										id: pam
+										focus: true
+										property string txt: ""
+										anchors{
+											fill: parent
+										}
+										onTextChanged: txt = this.text
+										enabled: root.locked
+										echoMode: TextInput.Password
+										inputMethodHints: Qt.ImhSensitiveData
+									}
+								}
+								anchors{
+									bottomMargin: 50
+									bottom: parent.bottom
+									horizontalCenter: parent.horizontalCenter
+								}
+								width: 400
+								height: 50
+							}
+
 							id: bg
 
 							anchors{
@@ -115,6 +147,7 @@ Scope {
 						color: D.Colors.fg
 						fpc: 3
 						font.family: root.curFont
+
 						Timer{
 							interval: 1000
 							running: false
@@ -124,8 +157,9 @@ Scope {
 								do { next = root.fonts[Math.floor(Math.random()*root.fonts.length)]}
 								while (next === root.curFont)
 								root.curFont = next
+							}
 						}
-						}
+
 					}
 
 					}

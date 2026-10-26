@@ -66,7 +66,7 @@ Rectangle {
                     anchors.fill: parent
                     onHoveredChanged: wkspc.hovered = !wkspc.hovered
                     hoverEnabled: true
-                    onClicked: Hyprland.dispatch()
+                    onClicked: Hyprland.dispatch('hl.dsp.focus({workspace="%1"})'.arg(wkspc.modelData.id))
                 }
 
 								Text {
