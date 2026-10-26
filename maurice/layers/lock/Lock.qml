@@ -88,15 +88,18 @@ Scope {
 									}
 									color: D.Colors.bg
 
-									TextField{
+									TextInput{
 										id: pam
+										text: "hi"
+										color: D.Colors.fg
 										focus: true
-										property string txt: ""
+										onAccepted: {
+											ctx.submit(text); text=""
+										}
 										anchors{
 											fill: parent
 										}
-										onTextChanged: txt = this.text
-										enabled: root.locked
+										enabled: !ctx.busy
 										echoMode: TextInput.Password
 										inputMethodHints: Qt.ImhSensitiveData
 									}
@@ -176,4 +179,14 @@ Scope {
 				precision: SystemClock.Seconds 
 			}
 
+			Self.Context{
+				id: ctx
+			}
+
+			Connections{
+				target: ctx
+				function onUnlocked(){
+					root.locked = false
+				}
+			}
 }
