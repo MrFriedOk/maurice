@@ -62,7 +62,7 @@ Scope {
 							onClicked: root.locked = false
 						}
 						PanelWindow{
-							Playback{
+							Self.Playback{
 
 							}
 							exclusionMode: ExlusionMode.Ignore

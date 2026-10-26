@@ -20,6 +20,8 @@ property int margin: 5
         verticalCenterOffset: 100
 			}
 			Rectangle{
+				//playback info container
+				color: D.Colors.surface
 				anchors{
 					top: parent.top
 					bottom: parent.bottom
@@ -27,12 +29,24 @@ property int margin: 5
 					margins: root.margin
 				
 				}
-				width: parent.width - (artContainer.width + (root.margin *2))
-			Text{
+				//weird ahh math
+				width: parent.width - (artContainer.width + (root.margin *3))
+				Text{
+					text: curSplash
 				anchors{
 					top: parent.top
-
+					centerIn: parent
+					verticalCenterOffset: -150
+				
 				}
+				font{
+					family: D.General.family
+					bold: true
+						pointSize: 20
+
+					}
+					property int index: Math.floor(Math.random()*splash.length)
+					property string curSplash: splash[index]
 				property list<string> splash: ["Now playing,","You are now enjoying,","Some cringy splash,","What would spotify say?"]
 			}
 		}
