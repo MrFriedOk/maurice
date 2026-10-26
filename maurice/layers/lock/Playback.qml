@@ -85,7 +85,7 @@ Rectangle {
 					}
 				property int index: Math.floor(Math.random()*splash.length)
 				property string curSplash: splash[index]
-				property list<string> splash: ["Now playing,","You are now enjoying,","Some cringy splash,","What would spotify say?"]
+				property list<string> splash: D.General.splashes//["Now playing,","You are now enjoying,","Some cringy splash,","What would spotify say?"]
 			}
 		}
 

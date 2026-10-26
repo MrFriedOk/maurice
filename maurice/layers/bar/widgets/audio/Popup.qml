@@ -170,10 +170,17 @@ PopupWindow {
                         Row {
                             spacing: 20
 
-                            Repeater {
-                                //width: playback.width / 4
+                            anchors {
+                                fill: parent
+                            }
 
+                            Repeater {
                                 model: playback.content
+
+                                anchors {
+                                    fill: parent
+                                }
+                                //width: playback.width / 4
 
                                 delegate: Item {
                                     id: playbackRoot

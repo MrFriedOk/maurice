@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell
 import Quickshell.Services.Mpris
+import Quickshell.Io
 pragma Singleton
 
 //general stuff, prolly should sort out later
@@ -14,7 +15,8 @@ Singleton {
 
     id: gen
 
-    property string family: font.name
+		property string family: font.name
+		readonly property list<string> splashes: JSON.parse(splashesJson.text())//JSON.parse(Quickshell.shellPath('data/splashes.json'))
     property string scheme: "vibrant"
     property bool barVisible: true
     property bool adaptPS: true
@@ -37,12 +39,28 @@ Singleton {
         return list.find((p) => {
             return p.playbackState === MprisPlaybackState.Playing;
         }) ?? list[0] ?? null;
-    }
+			}
+
+			Timer{
+				interval: 2000
+				onTriggered: console.log(gen.splashes)
+				repeat: true
+				running: true
+			}
 
     FontLoader {
         id: font
 
         source: Quickshell.shellPath("data/assets/fonts/MapleMono-NF/MapleMono-NF-Regular.ttf")
-    }
+			}
+
+			FileView{
+				id: splashesJson
+				path: Quickshell.shellPath('data/splashes.json')
+			//	JsonAdapter{
+
+
+				//}
+			}
 
 }
