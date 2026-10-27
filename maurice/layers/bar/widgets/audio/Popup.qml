@@ -14,13 +14,11 @@ PopupWindow {
     readonly property real remain: (pos / len)
     property string art: player.trackArtUrl
     property var stuff: ["thing1", "thing2"]
-    property string loopState: toString(player.loopState)
+    property string loopState: player.loopState
     readonly property var player: D.General.player
     //why did i do it this way?
     property string loop: "LOOP"
-    property string pause: "PAUSE"
-    property string next: "NEXT"
-    property string last: "LAST"
+    property string pause: player.isPlaying ? "PAUSE" : "PLAY"
     property real pos: player.position
     readonly property bool seek: player.canSeek && player.lengthSupported && player.positionSupported
     readonly property real len: player.length
@@ -162,50 +160,47 @@ PopupWindow {
 
                         id: playback
 
-                        property var content: [root.last, root.loop, root.pause, root.next]
+                        property var content: ["LAST", root.loop, root.pause, "NEXT"]
 
                         height: 25
                         color: D.Colors.surface
 
                         Row {
-                            spacing: 20
+                            id: row
+
+                            spacing: 2
 
                             anchors {
                                 fill: parent
                             }
 
                             Repeater {
-                                model: playback.content
-
-                                anchors {
-                                    fill: parent
-                                }
                                 //width: playback.width / 4
 
-                                delegate: Item {
+                                model: playback.content
+
+                                delegate: Rectangle {
                                     id: playbackRoot
 
                                     required property var modelData
                                     required property int index
+                                    property bool hovered: false
+
+                                    color: hovered ? D.Colors.surface : D.Colors.widget
+                                    width: (playback.width - (row.spacing * playback.content.length)) / playback.content.length
 
                                     Text {
+                                        //property var cols: [D.Colors.fg, D.Colors.bg]
+                                        //property var col: cols[0]
+
                                         id: playbackTxt
 
-                                        property var cols: [D.Colors.fg, D.Colors.bg]
-                                        property var col: cols[0]
-
                                         text: playbackRoot.modelData
-                                        color: cols[0]
+                                        color: D.Colors.fg //cols[0]
 
                                         anchors {
-                                            fill: parent
-                                        }
-
-                                    }
-
-                                    Rectangle {
-                                        anchors {
-                                            fill: parent
+                                            //fill: parent
+                                            centerIn: parent
                                         }
 
                                     }
@@ -213,7 +208,24 @@ PopupWindow {
                                     MouseArea {
                                         enabled: true
                                         hoverEnabled: true
-                                        onHoveredChanged: playbackTxt.col[1]
+                                        onHoveredChanged: playbackRoot.hovered = !playbackRoot.hovered
+                                        onClicked: {
+                                            if (modelData === "NEXT")
+                                                return root.player.next();
+
+                                            if (modelData === "LAST")
+                                                return root.player.previous();
+
+                                            if (modelData === "LOOP")
+                                                return console.log(root.loopState);
+
+                                            if (modelData === "PAUSE")
+                                                return root.player.pause();
+
+                                            if (modelData === "PLAY")
+                                                return root.player.play();
+
+                                        }
 
                                         anchors {
                                             fill: parent
@@ -225,8 +237,16 @@ PopupWindow {
                                         //horizontalCenterOffset: index * 25
                                         //centerIn: parent
                                         //verticalCenter: parent
+                                        margins: row.spacing
                                         top: parent.top
                                         bottom: parent.bottom
+                                    }
+
+                                    Behavior on color {
+                                        ColorAnimation {
+                                            duration: D.General.animDur
+                                        }
+
                                     }
 
                                 }
