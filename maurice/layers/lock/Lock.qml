@@ -57,6 +57,7 @@ Scope {
 							Layout.fillHeight: true
 							//escape box
 							MouseArea{
+								visible: false
 								width: 25
 								height: 10
 

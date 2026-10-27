@@ -41,15 +41,20 @@ Rectangle{
 			//	}
 			//}
 			Item{
+				id: trackOtherCon 
 				implicitWidth: 400
 				anchors{
 					top: parent.top
 					verticalCenterOffset: -30
-						centerIn: parent
+					centerIn: parent
+				
 
 				}
 
+
 				Text{
+					id: trackOther
+					width: (implicitWidth > trackOtherCon.implicitWidth) ? trackOtherCon.implicitWidth : 250//trackOtherCon.implicitWidth
 					anchors{
 						centerIn: parent
 					}
@@ -110,6 +115,18 @@ Rectangle{
 									}
 									hoverEnabled: true
 									onHoveredChanged: ctl.hovered = !ctl.hovered
+									onClicked: {
+										if (modelData === "NEXT")
+										return root.player.next()
+										if (modelData === "LAST")
+										return root.player.previous()
+										if (modelData === "LOOP")
+										return console.log("hi")
+										if (modelData === "PAUSE")
+										return root.player.pause()
+										if (modelData === "PLAY")
+										return root.player.play()
+									}
 								}
 								radius: root.radius
 								Text{
@@ -133,6 +150,8 @@ Rectangle{
 								required property int index
 								anchors{
 									margins: 5
+									//left: (index === 0) ? parent.left : parent.left
+									leftMargin: (index === 0) ? 5 : 0
 									top: parent.top
 								  bottom: parent.bottom
 								}

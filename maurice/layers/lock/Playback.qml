@@ -12,7 +12,7 @@ Rectangle {
     property bool locking: false
     property var player: D.General.player
     property string art: player.trackArtUrl
-    property string pause: "PAUSE"
+    property string pause: player.isPlaying ? "PAUSE" : "PLAY"
     property string loop: "LOOP"
     property int margin: 5
 

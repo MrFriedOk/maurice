@@ -9,7 +9,7 @@ Item {
     property string color: ""
     property int maxWidth: 200
     property int contentWidth: label.contentWidth
-    property real speed: 40 // pixels per second
+    property real speed: 20 // pixels per second
     readonly property real overflow: Math.max(0, label.implicitWidth - width)
 
     function restart() {
