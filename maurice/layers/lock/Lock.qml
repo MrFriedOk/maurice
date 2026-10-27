@@ -56,24 +56,24 @@ Scope {
 							Layout.fillWidth: true
 							Layout.fillHeight: true
 							//escape box
-							MouseArea{
-								visible: false
-								width: 25
-								height: 10
+							//MouseArea{
+							//	visible: false
+							//	width: 25
+							//	height: 10
 
-								enabled: true
-							anchors{
-								top: parent.top
-								left: parent.left
-							}
-							Rectangle{
-								anchors{
-									fill: parent
-								}
-							}
+							//	enabled: true
+							//anchors{
+							//	top: parent.top
+							//	left: parent.left
+							//}
+							//Rectangle{
+							//	anchors{
+							//		fill: parent
+							//	}
+							//}
 							//onHoveredChanged: parent.color: "green"
-							onClicked: root.locked = false
-						}
+							//onClicked: root.locked = false
+						//}
 						Rectangle{
 							id: other
 							Self.Playback{

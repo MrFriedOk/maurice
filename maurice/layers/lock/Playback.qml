@@ -11,7 +11,7 @@ Rectangle {
 
     property bool locking: false
     property var player: D.General.player
-    property int loopState: D.General.loopState
+    property int loopState: player.loopState
     property string loop: {
         if (loopState === 1)
             return "LOOP 1";

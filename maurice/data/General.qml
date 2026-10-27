@@ -28,13 +28,14 @@ Singleton {
     property int radius: 0
     property int animDur: 80
     property int barHeight: 20
+		property bool settings: false
     property bool widRect: sketchBar ? false : true
     property bool outline: sketchBar ? false : false
     property bool sketchBar: false
     property bool iHateMyCPU: false && vizEnabled
     property bool vizEnabled: false
 		property bool adaptiveWall: true
-		property int loopState: player.loopState
+		//property int loopState: player.loopState
     readonly property var player: {
         const list = Mpris.players.values;
         return list.find((p) => {

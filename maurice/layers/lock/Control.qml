@@ -121,7 +121,7 @@ Rectangle{
 										if (modelData === "LAST")
 										return root.player.previous()
 										if (modelData === "LOOP" || "LOOP 1" || "OFF")
-                    return D.General.loopState = (D.General.loopState + 1) % 3//return D.General.loopMode = (D.General.loopMode+1) % D.General.loopModes.length;
+                    return D.General.player.loopState = (D.General.player.loopState + 1) % 3//return D.General.loopMode = (D.General.loopMode+1) % D.General.loopModes.length;
 										if (modelData === "PAUSE")
 										return root.player.pause()
 										if (modelData === "PLAY")

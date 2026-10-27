@@ -8,6 +8,7 @@
 //if (button.clicked)
 //	visible = false
 
+import "./data" as D
 import "./layers" as E
 import "./layers/bar/universal" as Mat
 import "./layers/lock" as L
@@ -22,12 +23,12 @@ import "layers/notification" as Not //poop naming
 ShellRoot {
     // call top layer (the bar and other stuff maybe)
     // E.Background{}
+    //property bool settings: D.General.setting
 
     id: root
 
     //property int wall: 0
     property bool over: hoverH
-    property bool settings: false
 
     Mat.CoverArtMatugen {
     }
@@ -44,7 +45,7 @@ ShellRoot {
 
     PanelWindow {
         color: hoverH.hovered ? "green" : "red"
-        implicitWidth: 3
+        implicitWidth: 1
         exclusionMode: ExclusionMode.Ignore
         WlrLayershell.layer: WlrLayer.Top
 
@@ -55,20 +56,30 @@ ShellRoot {
         }
 
         HoverHandler {
+            //property bool hovered: false
+
             id: hoverH
+
+            onHoveredChanged: {
+                //hovered = !hovered;
+                if (hovered)
+                    return buffer.running = true;
+                else
+                    return buffer.running = false;
+            }
         }
 
     }
 
     Timer {
-        id: clock
+        id: buffer
 
-        interval: 1000
-        onTriggered: settings = false
+        interval: 500
+        onTriggered: D.General.settings = true
     }
 
     Windows.Settings {
-        visible: settings
+        visible: D.General.settings //root.settings
     }
 
     E.Top {

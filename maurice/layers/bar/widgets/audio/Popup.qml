@@ -19,13 +19,13 @@ PopupWindow {
     readonly property var player: D.General.player
     //why did i do it this way?
     property string loop: {
-        if (D.General.loopState === 1)
+        if (D.General.player.loopState === 1)
             return "LOOP 1";
 
-        if (D.General.loopState === 0)
+        if (D.General.player.loopState === 0)
             return "OFF";
 
-        if (D.General.loopState === 2)
+        if (D.General.player.loopState === 2)
             return "LOOP";
 
     }
@@ -228,7 +228,7 @@ PopupWindow {
                                                 return root.player.previous();
 
                                             if (modelData === "LOOP 1" || "LOOP" || "OFF")
-                                                return D.General.loopState = (D.General.loopState + 1) % 3;
+                                                return D.General.player.loopState = (D.General.player.loopState + 1) % 3;
 
                                             if (modelData === "PAUSE")
                                                 return root.player.pause();

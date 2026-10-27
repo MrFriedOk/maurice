@@ -1,3 +1,4 @@
+import "../data" as D
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
@@ -5,13 +6,12 @@ import Quickshell.Io
 import Quickshell.Wayland
 
 PanelWindow {
+    //signal closeRequest()
+    //property bool open: D.General.settings
+
     id: root
 
-    property bool open: false
-
-    signal closeRequest()
-
-    visible: open
+    visible: D.General.settings
     implicitWidth: {
         if (open)
             return 1000;
@@ -33,14 +33,15 @@ PanelWindow {
 
         MouseArea {
             //root.visible = false;
+            //root.closeRequest;
 
             id: area
 
             anchors.fill: parent
+            enabled: true
             hoverEnabled: true
             onClicked: {
-                //open = !open;
-                root.closeRequest;
+                D.General.settings = false;
             }
         }
 
