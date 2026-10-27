@@ -296,6 +296,7 @@ PopupWindow {
                     }
 
                     Image {
+                        cache: false
                         source: root.art
                         clip: true
                         smooth: true

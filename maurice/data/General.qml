@@ -34,9 +34,7 @@ Singleton {
     property bool iHateMyCPU: false && vizEnabled
     property bool vizEnabled: false
 		property bool adaptiveWall: true
-		property int loopMode: 2
-		property int loopState: player.loopState = loopMode
-		property list<int> loopModes: [0,1,2]
+		property int loopState: player.loopState
     readonly property var player: {
         const list = Mpris.players.values;
         return list.find((p) => {

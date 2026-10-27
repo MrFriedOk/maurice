@@ -90,6 +90,7 @@ Scope {
                 radius: parent.radius
 
                 Image {
+                    cache: false
                     anchors.fill: parent
                     Layout.fillHeight: true
                     Layout.fillWidth: true
