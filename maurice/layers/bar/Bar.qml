@@ -13,6 +13,9 @@ PanelWindow {
 
     id: bar
 
+    required property var modelData
+
+    screen: modelData
     visible: D.General.barVisible
     color: "transparent"
     exclusionMode: ExclusionMode.Auto

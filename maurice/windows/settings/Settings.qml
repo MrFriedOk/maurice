@@ -1,4 +1,4 @@
-import "../data" as D
+import "../../data" as D
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
@@ -12,21 +12,18 @@ PanelWindow {
     id: root
 
     visible: D.General.settings
-    implicitWidth: {
-        if (open)
-            return 1000;
-        else
-            return 10;
-    }
-    implicitHeight: 100
-    color: "green"
+    //implicitHeight: 100
+    height: 500
+    width: 700
+    color: D.Colors.bg
 
     Rectangle {
-        color: area.containsMouse ? "red" : "green"
-        width: 25
-        height: 25
+        color: area.containsMouse ? D.Colors.widget : D.Colors.surface
+        width: 20
+        height: 20
 
         anchors {
+            margins: 5
             right: parent.right
             top: parent.top
         }
