@@ -5,12 +5,18 @@ import Quickshell
 Rectangle {
     //pam container
 
+    id: root
+
+    property int shapeWidth: 20
+
     color: D.Colors.surface
     radius: D.General.radius
     width: 400
     height: 50
 
     Rectangle {
+        id: field
+
         color: D.Colors.bg
 
         Row {
@@ -33,7 +39,9 @@ Rectangle {
             }
 
             Repeater {
-                model: 24
+                id: shapeRep
+
+                model: 12 //Math.round(field.implicitWidth / root.shapeWidth) //12
 
                 delegate: Item {
                     id: slot
@@ -47,7 +55,7 @@ Rectangle {
                             shape = Math.floor(Math.random() * 3);
 
                     }
-                    width: 20
+                    width: root.shapeWidth //shapes.implicitWidth / shapeRep.model //20
                     height: width
                     scale: filled ? 1 : 0
 
