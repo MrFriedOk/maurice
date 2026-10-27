@@ -1,39 +1,60 @@
 import Quickshell
 import QtQuick
 import "../../data" as D
+import "../bar/universal" as Wi
 
 Rectangle{
-				Text{
+				//Text{
 					//track title
-				text: root.player.trackTitle
-				color: D.Colors.fg
-				font{
-					family: D.General.family
+				//text: root.player.trackTitle
+				//color: D.Colors.fg
+				//font{
+				//	family: D.General.family
 					
-					pointSize: 18
-				}
-				width: contentWidth//parent.width/2
-				anchors{
-					verticalCenterOffset: -65
+				//	pointSize: 18
+				//}
+				//width: contentWidth//parent.width/2
+				//anchors{
+				//	verticalCenterOffset: -65
 					//horizontalCenter: parent.horizontalCenter
-				centerIn: parent
-				}
+				//centerIn: parent
+				//}
+				//
+				//}
+				//
+				Wi.Scroll{
+					maxWidth: 200 //contentWidth
+					text: root.player.trackTitle
+					anchors{
+						verticalCenterOffset: -65
+						centerIn: parent
+					}
+
 			}
-			Text{
-				color: D.Colors.fg
-				width: contentWidth //parent.width/2
-				
+
+			Wi.Scroll{
+				maxWidth: 500
+				text: "%1 : %2".arg(root.player.trackArtist,root.player.trackAlbum)
 				anchors{
 					top: parent.top
 					centerIn: parent
 				}
-				font{
-					family: D.General.family
-					pointSize: 14
-
-				}
-				text: "%1 : %2".arg(root.player.trackArtist,root.player.trackAlbum)
 			}
+			//Text{
+			//	color: D.Colors.fg
+			//	width: contentWidth //parent.width/2
+				
+			//	anchors{
+			//		top: parent.top
+			//		centerIn: parent
+			//	}
+			//	font{
+			//		family: D.General.family
+			//		pointSize: 14
+
+				//}
+				//text: "%1 : %2".arg(root.player.trackArtist,root.player.trackAlbum)
+			//}
 			radius: parent.radius
 
 

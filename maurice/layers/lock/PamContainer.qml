@@ -5,26 +5,31 @@ import Quickshell
 Rectangle {
     //pam container
 
-    color: "white" //D.Colors.surface
+    color: D.Colors.surface
     radius: D.General.radius
     width: 400
     height: 50
 
     Rectangle {
-        color: "gray" //D.Colors.bg
+        color: D.Colors.bg
 
         Row {
             //transform: Translate {
             //    id: shift
             //}
+            //width: 5
 
             id: shapes
 
-            spacing: 5
+            spacing: 6
 
             anchors {
-                fill: parent
-                centerIn: parent
+                //centerIn: parent
+
+                //fill: parent
+                verticalCenter: parent.verticalCenter
+                left: parent.left
+                leftMargin: shapes.spacing
             }
 
             Repeater {
@@ -42,21 +47,36 @@ Rectangle {
                             shape = Math.floor(Math.random() * 3);
 
                     }
-                    width: 10
+                    width: 20
                     height: width
                     scale: filled ? 1 : 0
 
                     Rectangle {
+                        id: thing
+
+                        color: D.Colors.fg //"white"
                         visible: slot.shape === 0
                         radius: D.General.radius + 3
+
+                        SequentialAnimation {
+                            ColorAnimation {
+                                duration: D.General.animDur
+                            }
+
+                        }
 
                         anchors {
                             fill: parent
                         }
 
+                        ColorAnimation {
+                            duration: D.General.animDur
+                        }
+
                     }
 
                     Rectangle {
+                        color: D.Colors.fg
                         visible: slot.shape === 1
                         radius: D.General.radius + 2
 
@@ -67,6 +87,7 @@ Rectangle {
                     }
 
                     Rectangle {
+                        color: D.Colors.fg
                         visible: slot.shape === 2
                         radius: D.General.radius
 
@@ -110,7 +131,7 @@ Rectangle {
             echoMode: TextInput.Password
             inputMethodHints: Qt.ImhSensitiveData
             onTextChanged: ctx.length = text.length
-            opacity: 0.5
+            opacity: 0
 
             anchors {
                 fill: parent

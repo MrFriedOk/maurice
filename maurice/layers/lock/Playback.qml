@@ -1,4 +1,5 @@
 import "../../data" as D
+import "../bar/universal" as Wi
 import "./" as Self //idk why tf i named it self
 import QtQuick
 import Quickshell
