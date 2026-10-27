@@ -87,7 +87,7 @@ Rectangle{
 					//playback control container
 					id: playbackCtl
 					
-					property list<string> playback: ["LAST",root.pause,root.loop,"NEXT"]
+					property list<string> playback: ["LAST",root.loop,root.pause,"NEXT"]
 
 					Row{
 						id: row
@@ -120,8 +120,8 @@ Rectangle{
 										return root.player.next()
 										if (modelData === "LAST")
 										return root.player.previous()
-										if (modelData === "LOOP")
-										return console.log("hi")
+										if (modelData === "LOOP" || "LOOP 1" || "OFF")
+                    return D.General.loopState = (D.General.loopState + 1) % 3//return D.General.loopMode = (D.General.loopMode+1) % D.General.loopModes.length;
 										if (modelData === "PAUSE")
 										return root.player.pause()
 										if (modelData === "PLAY")

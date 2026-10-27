@@ -9,11 +9,25 @@ import Quickshell.Services.Mpris
 Rectangle {
     id: root
 
-    property bool locking: false
-    property var player: D.General.player
+		property bool locking: false
+		property int mode: D.General.loopMode
+		readonly property list<int> modes: D.General.loopModes//[0,1,2]
+		property var player: D.General.player
+		property int loopState: D.General.loopState
+		property string loop: {
+        if (loopState === 1)
+            return "LOOP 1";
+
+        if (loopState === 0)
+            return "OFF";
+
+        if (loopState === 2)
+            return "LOOP";
+
+    }
     property string art: player.trackArtUrl
-    property string pause: player.isPlaying ? "PAUSE" : "PLAY"
-    property string loop: "LOOP"
+		property string pause: player.isPlaying ? "PAUSE" : "PLAY"
+
     property int margin: 5
 
     color: D.Colors.surface

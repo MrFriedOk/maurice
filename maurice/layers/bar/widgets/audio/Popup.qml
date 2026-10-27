@@ -13,18 +13,19 @@ PopupWindow {
     readonly property string album: player.trackAlbum
     readonly property real remain: (pos / len)
     property string art: player.trackArtUrl
+    //property int mode: D.General.loopMode
     property var stuff: ["thing1", "thing2"]
-    property int loopState: player.loopState
+    //property int loopState: D.General.loopState
     readonly property var player: D.General.player
     //why did i do it this way?
     property string loop: {
-        if (loopState === 1)
+        if (D.General.loopState === 1)
             return "LOOP 1";
 
-        if (loopState === 0)
+        if (D.General.loopState === 0)
             return "OFF";
 
-        if (loopState === 2)
+        if (D.General.loopState === 2)
             return "LOOP";
 
     }
@@ -227,7 +228,7 @@ PopupWindow {
                                                 return root.player.previous();
 
                                             if (modelData === "LOOP 1" || "LOOP" || "OFF")
-                                                return console.log(root.loopState);
+                                                return D.General.loopState = (D.General.loopState + 1) % 3;
 
                                             if (modelData === "PAUSE")
                                                 return root.player.pause();
