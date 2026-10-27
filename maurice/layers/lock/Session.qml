@@ -26,7 +26,7 @@ Rectangle {
             fill: parent
 					}
 
-			ColumnLayout{
+			Column{
 				clip: true
 				spacing: 5
 				width: 50
@@ -36,6 +36,7 @@ Rectangle {
 					//top: parent.top
 					//bottom: parent.bottom
 				}
+
 				Repeater{
 					model: root.funcs//root.hovered ? root.funcs : "Z"
 					delegate: Rectangle{
@@ -60,8 +61,9 @@ Rectangle {
 
 						anchors{
 							horizontalCenter: parent.horizontalCenter
-							left: parent.left
-							right: parent.right
+							//left: parent.left
+							//right: parent.right
+							fill: parent
 						}
 
 						Item{
@@ -80,8 +82,9 @@ Rectangle {
 								centerIn: parent
 							}
 							text: btnCont.modelData
+							}
+					
 						}
-					}
 					}
 				}
 		}

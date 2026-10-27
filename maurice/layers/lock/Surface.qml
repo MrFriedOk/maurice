@@ -7,15 +7,14 @@ import Quickshell
 import Quickshell.Wayland
 
 WlSessionLockSurface {
-    color: "#aa000000"
+    //color: "#aa000000"
 
-    Item {
-        //	visible: false
-        //	width: 25
+    Rectangle {
         //	height: 10
         //Layout.fillWidth: true
         //Layout.fillHeight: true
         //escape box
+        //	width: 25
 
         Self.Session {
         }
@@ -102,6 +101,20 @@ WlSessionLockSurface {
             }
 
         }
+
+        gradient: Gradient {
+            GradientStop {
+                position: 0
+                color: D.Colors.fg
+            }
+
+            GradientStop {
+                position: 1
+                color: D.Colors.accent
+            }
+
+        }
+        //	visible: false
 
     }
 
