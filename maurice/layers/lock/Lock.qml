@@ -14,20 +14,20 @@ Scope {
 	//ipc for control from hyprland, not in rice as of now
 	IpcHandler{
 		target: "lock"
-		function lock(): void {root.locking = !root.locking}//{locked = true;} //D.General.barVisible = !D.General.barVisible}
+		function lock(): void {root.locked = !root.locked}//{locked = true;} //D.General.barVisible = !D.General.barVisible}
 	}
 	id: root
 
-	Timer{
-		running: root.locking
-		interval: 0
-		onTriggered: {root.locked = !root.locked; root.locking = !root.locking}
-	}
+	//Timer{
+	//	running: root.locking
+	//	interval: 0
+		//onTriggered: {root.locked = !root.locked; root.locking = !root.locking}
+	//}
 
-	function unlocking(){
-		if (!root.locked)
-		console.log("gay")
-	}
+	//function unlocking(){
+	//	if (!root.locked)
+	//	console.log("gay")
+	//}
 
 
 	property bool locked: false

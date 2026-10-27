@@ -17,7 +17,7 @@ Singleton {
 
 		property string family: font.name
 		readonly property list<string> splashes: JSON.parse(splashesJson.text())//JSON.parse(Quickshell.shellPath('data/splashes.json'))
-    property string scheme: "vibrant"
+    property string scheme: "fruit-salad"
     property bool barVisible: true
     property bool adaptPS: true
     property var fonts: [font.name] //["SpaceMono Nerd Font", "Maple Mono NF", "Red Hat Text", "Readex Pro", "OpenDyslexic Nerd Font", "Atkinson Hyperlegible"]
