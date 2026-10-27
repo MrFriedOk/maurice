@@ -23,7 +23,7 @@ Rectangle{
 				//}
 				//
 				Wi.Scroll{
-					maxWidth: 200 //contentWidth
+					maxWidth: 400 //contentWidth
 					text: root.player.trackTitle
 					anchors{
 						verticalCenterOffset: -65
@@ -32,29 +32,39 @@ Rectangle{
 
 			}
 
-			Wi.Scroll{
-				maxWidth: 500
-				text: "%1 : %2".arg(root.player.trackArtist,root.player.trackAlbum)
-				anchors{
-					top: parent.top
-					centerIn: parent
-				}
-			}
-			//Text{
-			//	color: D.Colors.fg
-			//	width: contentWidth //parent.width/2
-				
+			//Wi.Scroll{
+			//	maxWidth: 400
+		//		text: "%1 : %2".arg(root.player.trackArtist,root.player.trackAlbum)
 			//	anchors{
 			//		top: parent.top
 			//		centerIn: parent
 			//	}
-			//	font{
-			//		family: D.General.family
-			//		pointSize: 14
-
-				//}
-				//text: "%1 : %2".arg(root.player.trackArtist,root.player.trackAlbum)
 			//}
+			Item{
+				implicitWidth: 400
+				anchors{
+					top: parent.top
+					verticalCenterOffset: -30
+						centerIn: parent
+
+				}
+
+				Text{
+					anchors{
+						centerIn: parent
+					}
+					color: D.Colors.fg
+					//width: parent.width/2
+					elide: Text.ElideMiddle
+				
+					font{
+						family: D.General.family
+						pointSize: 14
+
+					}
+					text: "%1 : %2".arg(root.player.trackArtist,root.player.trackAlbum)
+				}
+			}
 			radius: parent.radius
 
 
@@ -86,6 +96,11 @@ Rectangle{
 							model: playbackCtl.playback
 
 							delegate: Rectangle{
+									Behavior on color{
+										ColorAnimation{
+											duration: D.General.animDur
+										}
+									}
 								id: ctl
 								color: hovered ? D.Colors.surface : D.Colors.widget
 								property bool hovered: false
@@ -105,6 +120,7 @@ Rectangle{
 
 									}
 									color: D.Colors.fg
+
 									anchors{
 										//fill: parent
 										top: parent.top
