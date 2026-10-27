@@ -74,49 +74,14 @@ Scope {
 							onClicked: root.locked = false
 						}
 						Rectangle{
+							id: other
 							Self.Playback{
 							}
 
-							Rectangle{
-								//pam container
-								color: D.Colors.surface
-								radius: D.General.radius
-								Rectangle{
-									anchors{
-										fill: parent
-										margins: 5
-									}
-									color: D.Colors.bg
+							Self.PamContainer{
 
-									TextInput{
-										id: pam
-										//text: "hi"
-										color: D.Colors.fg
-										focus: true
-										cursorVisible: false
-										Component.onCompleted: forceActiveFocus()
-										onAccepted: {
-											ctx.submit(text); text=""
-										}
-										anchors{
-											fill: parent
-											verticalCenter: parent.verticalCenter
-										}
-										enabled: !ctx.busy
-										echoMode: TextInput.Password
-										inputMethodHints: Qt.ImhSensitiveData
-									}
-								}
-								anchors{
-									bottomMargin: 50
-									bottom: parent.bottom
-									horizontalCenter: parent.horizontalCenter
-								}
-								width: 400
-								height: 50
 							}
-
-							id: bg
+							//id: bg
 
 							anchors{
 								fill: parent
@@ -181,6 +146,7 @@ Scope {
 
 			Self.Context{
 				id: ctx
+				property int length: 3
 			}
 
 			Connections{
