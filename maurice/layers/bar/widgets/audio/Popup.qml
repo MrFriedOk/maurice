@@ -8,16 +8,26 @@ import Quickshell.Services.Mpris
 PopupWindow {
     id: root
 
-    property string track: player.trackTitle
-    property string artist: player.trackArtist
-    property string album: player.trackAlbum
+    readonly property string track: player.trackTitle
+    readonly property string artist: player.trackArtist
+    readonly property string album: player.trackAlbum
     readonly property real remain: (pos / len)
     property string art: player.trackArtUrl
     property var stuff: ["thing1", "thing2"]
-    property string loopState: player.loopState
+    property int loopState: player.loopState
     readonly property var player: D.General.player
     //why did i do it this way?
-    property string loop: "LOOP"
+    property string loop: {
+        if (loopState === 1)
+            return "LOOP 1";
+
+        if (loopState === 0)
+            return "OFF";
+
+        if (loopState === 2)
+            return "LOOP";
+
+    }
     property string pause: player.isPlaying ? "PAUSE" : "PLAY"
     property real pos: player.position
     readonly property bool seek: player.canSeek && player.lengthSupported && player.positionSupported
@@ -216,7 +226,7 @@ PopupWindow {
                                             if (modelData === "LAST")
                                                 return root.player.previous();
 
-                                            if (modelData === "LOOP")
+                                            if (modelData === "LOOP 1" || "LOOP" || "OFF")
                                                 return console.log(root.loopState);
 
                                             if (modelData === "PAUSE")
