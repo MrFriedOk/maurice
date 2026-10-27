@@ -6,4 +6,7 @@ Scope {
     S.SettingsPrompt {
     }
 
+    S.Settings {
+    }
+
 }

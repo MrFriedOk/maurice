@@ -1,12 +1,11 @@
-import "../data" as D
+import "../../data" as D
 import QtQuick
 import Quickshell
 import Quickshell.Wayland
 
 PanelWindow {
     //color: hoverH.hovered ? "green" : "red"
-    color: "white"
-    //"transparent"
+    color: "transparent"
     implicitWidth: 1
     exclusionMode: ExclusionMode.Ignore
     WlrLayershell.layer: WlrLayer.Top

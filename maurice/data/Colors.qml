@@ -10,8 +10,8 @@ Singleton {
     property color fg: ColorsGen.md3.tertiary //ColorsGen.palette.secondary80 //'#d1d1d0'
     property color accent: ColorsGen.md3.secondary //ColorsGen.md3.error //'#cececc'
     property color idk: ColorsGen.md3.primary
-    property color critical: '#881717'
-    property color warn: '#c66312'
+    property color critical: ColorsGen.md3.error //'#881717'
+    property color warn: ColorsGen.md3.error //'#c66312'
     property color med: '#cab32f'
     property color up: '#27f546'
     property color dwn: critical
