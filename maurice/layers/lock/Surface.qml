@@ -10,13 +10,16 @@ WlSessionLockSurface {
     color: "#aa000000"
 
     Item {
-        //MouseArea{
         //	visible: false
         //	width: 25
         //	height: 10
         //Layout.fillWidth: true
         //Layout.fillHeight: true
         //escape box
+
+        Self.Session {
+        }
+        //MouseArea{
 
         anchors {
             fill: parent
