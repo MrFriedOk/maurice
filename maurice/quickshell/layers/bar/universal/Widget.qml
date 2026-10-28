@@ -23,7 +23,6 @@ Rectangle {
     property bool hasBg: D.General.widRect
 
     implicitWidth: item.implicitWidth
-    //Layout.fillHeight: true
     height: D.General.barHeight
     color: hasBg ? D.Colors.widget : "transparent"
     radius: D.General.radius
@@ -42,6 +41,7 @@ Rectangle {
 
         id: item
 
+        //implicitWidth: icon.implicitWidth + text.implicitWidth
         //width: text.width + icon.width
         spacing: D.General.txtSpacing
 
@@ -52,6 +52,7 @@ Rectangle {
         Text {
             id: icon
 
+            horizontalAlignment: Text.AlignHCenter
             visible: hasIcon
 
             font {
@@ -63,10 +64,9 @@ Rectangle {
         }
 
         Text {
-            //horizontalAlignment: Text.AlignHCenter
-
             id: text
 
+            horizontalAlignment: Text.AlignHCenter
             Layout.alignment: Qt.AlignRight
 
             font {
@@ -78,5 +78,13 @@ Rectangle {
         }
 
     }
+
+    Behavior on implicitWidth {
+        NumberAnimation {
+            duration: D.General.animDur - 60
+        }
+
+    }
+    //Layout.fillHeight: true
 
 }

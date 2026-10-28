@@ -23,6 +23,9 @@ Rectangle{
 				//}
 				//
 				Wi.Scroll{
+					cAlign: true
+					pointSize: 16
+					
 					maxWidth: 400 //contentWidth
 					text: root.player.trackTitle
 					anchors{
@@ -45,7 +48,7 @@ Rectangle{
 				implicitWidth: 400
 				anchors{
 					top: parent.top
-					verticalCenterOffset: -30
+					verticalCenterOffset: -25
 					centerIn: parent
 				
 
@@ -53,6 +56,7 @@ Rectangle{
 
 
 				Text{
+					horizontalAlignment: Text.AlignHCenter
 					id: trackOther
 					width: (implicitWidth > trackOtherCon.implicitWidth) ? trackOtherCon.implicitWidth : 250//trackOtherCon.implicitWidth
 					anchors{
@@ -64,7 +68,7 @@ Rectangle{
 				
 					font{
 						family: D.General.family
-						pointSize: 14
+						pointSize: 16
 
 					}
 					text: "%1 : %2".arg(root.player.trackArtist,root.player.trackAlbum)

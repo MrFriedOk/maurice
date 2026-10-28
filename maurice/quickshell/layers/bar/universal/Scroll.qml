@@ -6,6 +6,8 @@ Item {
     id: root
 
     property string text: ""
+    property int pointSize: 0
+    property bool cAlign: false
     property string color: ""
     property int maxWidth: 200
     property int contentWidth: label.contentWidth
@@ -31,11 +33,12 @@ Item {
     Text {
         id: label
 
+        horizontalAlignment: root.cAlign ? Text.ALginHCenter : false
         color: D.Colors.fg
         text: root.text
 
         font {
-            pointSize: 14
+            pointSize: root.pointSize ? root.pointSize : 14
             family: D.General.family
         }
 

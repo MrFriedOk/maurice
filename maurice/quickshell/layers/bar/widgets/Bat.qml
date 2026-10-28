@@ -17,7 +17,6 @@ Item {
     property real emptTime: UPower.displayDevice.timeToEmpty
     property real chrgTime: UPower.displayDevice.timeToFull
     property string batStr: bat.toFixed(2)
-    property int padding: 0
     property bool hovered: false
 
     function gay() {
@@ -26,7 +25,7 @@ Item {
     }
 
     visible: hasBat
-    implicitWidth: wid.width + padding
+    implicitWidth: wid.implicitWidth
     Layout.fillHeight: true
 
     Wi.Widget {

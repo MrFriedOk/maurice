@@ -37,6 +37,16 @@ Rectangle {
     //}
     //property ObjectModel players: Mpris.players
     //}
+    //    Text {
+    //      //height: D.General.barHeight / 2
+    //       //text: txt.arg(root.pos,root.len)
+    //      //text: root.remain
+    //        id: text
+    //        property string txt: "%1 : %2"
+    //      anchors {
+    //          verticalCenter: parent.verticalCenter
+    //     }
+    //}
 
     id: root
 
@@ -65,22 +75,6 @@ Rectangle {
         }
 
     }
-
-//    Text {
-  //      //height: D.General.barHeight / 2
- //       //text: txt.arg(root.pos,root.len)
-  //      //text: root.remain
-
-
-//        id: text
-
-//        property string txt: "%1 : %2"
-
-  //      anchors {
-  //          verticalCenter: parent.verticalCenter
-   //     }
-
-    //}
 
     MouseArea {
         hoverEnabled: true
