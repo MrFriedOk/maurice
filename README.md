@@ -8,7 +8,7 @@
 
 ---
 <img src='assets/blue.png' alt='Image of blue ahh desktop'>
- <div align=center> <sub>The tool used in the screenshot is [`jellyfin-tui`](https://github.com/dhonus/jellyfin-tui)</sub> </div>
+ <div align=center> <sub>The tool used in the screenshot is [`jellyfin-tui`](https://github.com/dhonus/jellyfin-tui) </sub> </div>
 
 ---
 
@@ -22,7 +22,7 @@ The code in this repo depends on packages/applications besides Quickshell.
   - `cava`, visualizer stuff, disabled by default
   - `matugen`, creates colors for the shell
   - `curl`, for album art cache
-  - `MapleMono-NF`, bundled in the repo, see [LICENSE](data/assets/fonts/MapleMono-NF/LICENSE.txt)
+  - `MapleMono-NF`, bundled in the repo, see [LICENSE](maurice/quickshell/data/assets/fonts/MapleMono-NF/LICENSE.txt)
 #### Arch
 ```
 sudo pacman -S --needed hyprland brightnessctl upower cava pipewire quickshell curl matugen
@@ -55,7 +55,7 @@ Some debugging was also done with an LLM, no agent touched my files though.
 This repo is covered by an MIT license, see [license](./LICENSE). [`demo.mp4` ](./demo/demo.mp4) contains a track "Local Forecast" by Kevin MacLeod (incompetech.com) and is licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/. The MIT does not cover this track and remains under its own terms.
 ### Fonts
 Maple Mono NF, copyright 2022, The Maple Mono Project Authors. Licensed under SIL Open Font License, Version 1.1.
-See [LICENSE](./maurice/data/assets/fonts/MapleMono-NF/LICENSE.txt).
+See [LICENSE](maurice/quickshell/data/assets/fonts/MapleMono-NF/LICENSE.txt).
 ## References
 - RexCrazy804's Quickshell [`basic_bar` example](https://github.com/Rexcrazy804/quickshell-examples/)
 - SelfMadeSystem's Quickshell [`shader_wallpaper` examaple](https://github.com/SelfMadeSystem/quickshell-examples/)
