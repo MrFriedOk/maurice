@@ -4,34 +4,39 @@ cd "$(dirname "$0")"
 
 osu=false
 src=maurice
-dest=("${XDG_CONFIG_HOME:-$HOME/.config}"/{quickshell,hypr,kitty,nvim})
-share="${XDG_DATA_HOME:-$HOME/.local/share}/osu.AppImage"
+config=("${XDG_CONFIG_HOME:-$HOME/.config}"/{quickshell,hypr,kitty,nvim})
+share="${XDG_DATA_HOME:-$HOME/.local/share}/"
 state="${XDG_STATE_HOME:-$HOME/.local/state}/maurice"
-mkdir -p "$state"
+osu="$share/osu.AppImage"
+#mkdir -p "$state"
+#mkdir -p "$share"
 
-tree_hash() { # one hash for a whole folder: file names and contents
-	(cd "$1" && find . -type f ! -name '.qmlls.ini' -print0 | sort -z |
-		xargs -0 -r sha256sum | sha256sum | cut -d' ' -f1)
+install(){
+	local origin="$1" to="$2"
+	local hash="$state/$(basename "$to").hash"
+
+	if [-e "$to"] || [ -L "$to" ]; then
+		if [ -f "$hash" ] && [ "$(tree_hash "$to")" = "$(cat "$hash")"]; then
+			echo "replacing untouched install $to"
+			rm -rf "$to"
+		else
+			mv "$to" "$to.bak-$(date +%Y%m%d-%H%M%S)"
+			echo "DELETED EVERYTHING!!! jk, made a backup of existing dirs!"
+		fi
+	fi
+	mkdir -p "$to"
+	cp -r "$from"/. "$to"/
+	tree_hash "$to" > "$hash"
 }
 
-if [ -e "$dest" ] || [ -L "$dest" ]; then
-	if [ -f "$state/installed.hash" ] && [ "$(tree_hash "$dest")" = "$(cat "$state/installed.hash")" ]; then
-		echo "no changes to update!"
-		rm -rf "$dest"
-	else
-		backup="$dest.bak-$(date +%Y%m%d-%H%M%S)"
-		mv "$dest" "$backup"
-		echo "DELETING EVERYTHING!!!!!! (╯°Д°)╯ ┻━┻ (jk), made a backup! $backup"
-	fi
-fi
-
-mkdir -p "$dest"
-cp -r "./" "$dest"/ #"$src"/. "$dest"/
-tree_hash "$dest" >"$state/installed.hash"
-echo "install success! run with qs and be sure to auto execute qs with hyprland!"
+install quickshell "$config/quickshell"
+install kitty "$config/kitty"
+install hypr "$config/hypr"
+install nvim "$config/nvim"
 
 if $osu; then
 	echo "downloading osu.AppImage"
-	curl -fL https://github.com/ppy/osu/releases/download/2026.1013.0-tachyon/osu.AppImage -o $share
+	curl -fL https://github.com/ppy/osu/releases/download/2026.1013.0-tachyon/osu.AppImage -o $osu
+	chmod +x $osu
 	echo "done, enjoy!"
 fi
