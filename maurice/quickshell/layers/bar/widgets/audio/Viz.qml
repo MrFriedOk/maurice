@@ -51,6 +51,7 @@ Item {
         Repeater {
             //radius: D.General.radius
             //color: D.Colors.fg
+            //property real fade: (-(index + 1) / 100) + 0.7
 
             model: root.viz
 
@@ -59,9 +60,8 @@ Item {
 
                 required property var modelData
                 required property int index
-                property real fade: (-(index + 1) / 100) + 0.7
 
-                color: Qt.rgba(fade, fade, fade, 1)
+                color: D.Colors.fg //Qt.rgba(fade, fade, fade, 1)
                 width: 10
                 height: 1 + (modelData / 7) * (D.General.barHeight / 1.05)
 

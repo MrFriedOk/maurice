@@ -92,6 +92,35 @@ Rectangle {
 
     }
 
+    Item {
+        visible: !D.General.vizEnabled
+
+        anchors {
+            fill: parent
+        }
+
+        Text {
+            property int max: parent.width
+
+            horizontalAlignment: Text.AlignHCenter
+            width: max - 20
+            elide: Text.ElideRight
+            color: D.Colors.fg
+            text: D.General.player.trackTitle
+
+            anchors {
+                centerIn: parent
+            }
+
+            font {
+                family: D.General.family
+                pointSize: parent.width / 20 //D.General.size
+            }
+
+        }
+
+    }
+
     Viz {
         anchors {
             right: parent.right
