@@ -13,7 +13,7 @@ Item {
     property bool wifiOn: Networking.wifiEnabled
     property bool hovered: false
 
-    implicitWidth: wid.width
+    implicitWidth: wid.implicitWidth
     Layout.fillHeight: true
 
     Wi.Widget {

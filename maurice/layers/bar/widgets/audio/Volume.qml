@@ -13,9 +13,8 @@ Item {
     property string volStr: defNode.audio.volume.toFixed(2)
     //reference point to a real, idk why i made this
     property real ref: 0
-    property int padding: 0
 
-    implicitWidth: wid.implicitWidth + padding
+    implicitWidth: wid.implicitWidth
     Layout.fillHeight: true
 
     PwObjectTracker {

@@ -18,7 +18,7 @@ Item {
     property bool launcherVis: false
     property bool hovered: false
 
-    implicitWidth: wid.width
+    implicitWidth: wid.implicitWidth
     Layout.fillHeight: true
 
     Wi.Widget {
