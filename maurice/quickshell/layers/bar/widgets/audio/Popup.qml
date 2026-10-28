@@ -6,12 +6,17 @@ import Quickshell
 import Quickshell.Services.Mpris
 
 PopupWindow {
+    //function songProgress(pos, len) {
+    //    remain = pos / len;
+    //    return remain;
+    //}
+
     id: root
 
     readonly property string track: player.trackTitle
     readonly property string artist: player.trackArtist
     readonly property string album: player.trackAlbum
-    readonly property real remain: (pos / len)
+    readonly property real remain: (pos / len) //songProgress(pos, len)
     property string art: player.trackArtUrl
     //property int mode: D.General.loopMode
     property var stuff: ["thing1", "thing2"]
@@ -44,7 +49,9 @@ PopupWindow {
         // only emit the signal when the position is actually changing.
         running: player.playbackState == MprisPlaybackState.Playing && root.visible && root.seek
         // emit the positionChanged signal every frame.
-        onTriggered: player.positionChanged()
+        onTriggered: {
+            player.positionChanged();
+        }
     }
 
     Item {
@@ -87,6 +94,8 @@ PopupWindow {
 
                     Rectangle {
                         //total of song
+                        id: progCont
+
                         visible: root.seek
                         height: 5
                         width: parent.width - 20
@@ -109,9 +118,22 @@ PopupWindow {
                         }
 
                         Rectangle {
+                            //function checkOver() {
+                            //    int remain = root.pos / root.len;
+                            //    if (width > progCont.width && (!player.loopState === 0))
+                            //			remain = 0;
+                            //		return remain
+                            //}
+                            //parent.width * root.remain;
+
                             //progress bar
                             color: D.Colors.fg
-                            width: parent.width * root.remain
+                            width: {
+                                if (width > parent.width && (!root.player.loopState === 0))
+                                    return 0;
+                                else
+                                    return parent.width * root.remain;
+                            }
                             radius: parent.radius
 
                             anchors {
@@ -127,6 +149,7 @@ PopupWindow {
                     Wi.Scramble {
                         id: trackTitle
 
+                        horizontalAlignment: Text.AlignHCenter
                         width: parent.width / 1.5
                         // wrapMode: Text.Wrap
                         elide: Text.ElideRight
@@ -149,6 +172,7 @@ PopupWindow {
                     Wi.Scramble {
                         id: otherStuff
 
+                        horizontalAlignment: Text.AlignHCenter
                         color: D.Colors.fg
                         width: parent.width / 2
                         elide: Text.ElideMiddle

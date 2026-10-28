@@ -66,20 +66,21 @@ Rectangle {
 
     }
 
-    Text {
-        //height: D.General.barHeight / 2
-        //text: txt.arg(root.pos,root.len)
-        //text: root.remain
+//    Text {
+  //      //height: D.General.barHeight / 2
+ //       //text: txt.arg(root.pos,root.len)
+  //      //text: root.remain
 
-        id: text
 
-        property string txt: "%1 : %2"
+//        id: text
 
-        anchors {
-            verticalCenter: parent.verticalCenter
-        }
+//        property string txt: "%1 : %2"
 
-    }
+  //      anchors {
+  //          verticalCenter: parent.verticalCenter
+   //     }
+
+    //}
 
     MouseArea {
         hoverEnabled: true
@@ -99,14 +100,14 @@ Rectangle {
             fill: parent
         }
 
-        Text {
+        Wi.Scramble {
             property int max: parent.width
 
             horizontalAlignment: Text.AlignHCenter
             width: max - 20
             elide: Text.ElideRight
             color: D.Colors.fg
-            text: D.General.player.trackTitle
+            target: D.General.player.trackTitle
 
             anchors {
                 centerIn: parent
