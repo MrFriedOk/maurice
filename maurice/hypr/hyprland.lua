@@ -1,0 +1,5 @@
+require("stuff.lua")
+require("stuff.execs")
+require("stuff.rule")
+require("stuff.keybind")
+require("stuff.color")
