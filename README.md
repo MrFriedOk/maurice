@@ -65,3 +65,4 @@ See [LICENSE](maurice/quickshell/data/assets/fonts/MapleMono-NF/LICENSE.txt).
 - [MapleMono NF](https://github.com/subframe7536/maple-font/releases)
 - [illogical-impulse](https://github.com/end-4/dots-hyprland/)
 - Hyprland's example [hyprland github](https://github.com/hyprwm/Hyprland/)
+- [Kitty themes](https://github.com/dexpota/kitty-themes/blob/master/themes/Glacier.conf)
