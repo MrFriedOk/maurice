@@ -1,0 +1,5 @@
+return {
+	"nyoom-engineering/oxocarbon.nvim",
+--	"nyoom-engineering/nyoom.nvim"
+	build = false,
+}

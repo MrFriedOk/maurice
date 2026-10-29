@@ -1,0 +1,5 @@
+--require("config.lazy").setup("config.plugins")
+require("config.lazy")
+require("config.keybinds")
+require("config.options")
+--require("config.plugins")

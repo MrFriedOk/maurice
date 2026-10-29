@@ -3,41 +3,53 @@ import QtQuick
 import Quickshell
 import Quickshell.Wayland
 
-PanelWindow {
-    exclusionMode: ExclusionMode.Ignore
-    color: "transparent"
-    width: prompt.hovered ? 200 : 5
-
-    MouseArea {
-        id: prompt
-
-        property bool hovered: false
-
-        hoverEnabled: true
-        onHoveredChanged: hovered = !hovered
-
+Scope {
+    PanelWindow {
+        exclusionMode: ExlcusionMode.Ignore
+        width: 1
+        WlrLayershell.layer: WlrLayer.Top
+        color: prompt.hovered ? "red" : "green"
         anchors {
-            fill: parent
+            right: true
+            bottom: true
+            top: true
         }
+        MouseArea {
+            id: prompt
 
+            property bool hovered: false
+            enabled: true
+
+            hoverEnabled: true
+            onHoveredChanged: hovered = !hovered
+
+            anchors {
+                fill: parent
+            }
+        }
     }
 
-    anchors {
-        right: true
-        top: true
-        bottom: true
-    }
-
-    Rectangle {
+    PanelWindow {
+        exclusionMode: ExclusionMode.Ignore
+        color: "transparent"
+        width: 150
         visible: prompt.hovered
-        color: D.Colors.widget
 
         anchors {
-            fill: parent
-            topMargin: D.General.barHeight + 2
-            bottomMargin: 2
+            right: true
+            top: true
+            bottom: true
         }
 
-    }
+        Rectangle {
+            visible: prompt.hovered
+            color: D.Colors.widget
 
+            anchors {
+                fill: parent
+                topMargin: D.General.barHeight + 2
+                bottomMargin: 2
+            }
+        }
+    }
 }

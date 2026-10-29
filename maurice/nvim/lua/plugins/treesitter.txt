@@ -1,0 +1,118 @@
+return {
+	{
+	-- Incremental rename
+	{
+		"smjonas/inc-rename.nvim",
+		cmd = "IncRename",
+		config = true,
+	},
+
+	-- Go forward/backward with square brackets
+	{
+		"nvim-mini/mini.bracketed",
+		event = "BufReadPost",
+		config = function()
+			local bracketed = require("mini.bracketed")
+			bracketed.setup({
+				file = { suffix = "" },
+				window = { suffix = "" },
+				quickfix = { suffix = "" },
+				yank = { suffix = "" },
+				treesitter = { suffix = "n" },
+			})
+		end,
+	},
+
+	-- Better increase/descrease
+	{
+		"monaqa/dial.nvim",
+    -- stylua: ignore
+    keys = {
+      { "<C-a>", function() return require("dial.map").inc_normal() end, expr = true, desc = "Increment" },
+      { "<C-x>", function() return require("dial.map").dec_normal() end, expr = true, desc = "Decrement" },
+    },
+		config = function()
+			local augend = require("dial.augend")
+			require("dial.config").augends:register_group({
+				default = {
+					augend.integer.alias.decimal,
+					augend.integer.alias.hex,
+					augend.date.alias["%Y/%m/%d"],
+					augend.constant.alias.bool,
+					augend.semver.alias.semver,
+					augend.constant.new({ elements = { "let", "const" } }),
+				},
+			})
+		end,
+	},
+
+	{
+	{ "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
+
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		opts = {
+			ensure_installed = {
+				"astro",
+				"cmake",
+				"cpp",
+				"css",
+				"fish",
+				"gitignore",
+				"go",
+				"graphql",
+				"http",
+				"java",
+				"php",
+				"rust",
+				"scss",
+				"sql",
+				"svelte",
+			},
+
+			-- matchup = {
+			-- 	enable = true,
+			-- },
+
+			-- https://github.com/nvim-treesitter/playground#query-linter
+			query_linter = {
+				enable = true,
+				use_virtual_text = true,
+				lint_events = { "BufWrite", "CursorHold" },
+			},
+
+			playground = {
+				enable = true,
+				disable = {},
+				updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+				persist_queries = true, -- Whether the query persists across vim sessions
+				keybindings = {
+					toggle_query_editor = "o",
+					toggle_hl_groups = "i",
+					toggle_injected_languages = "t",
+					toggle_anonymous_nodes = "a",
+					toggle_language_display = "I",
+					focus_language = "f",
+					unfocus_language = "F",
+					update = "R",
+					goto_node = "<cr>",
+					show_help = "?",
+				},
+			},
+		},
+		config = function(_, opts)
+			local TS = require("nvim-treesitter")
+			TS.setup(opts)
+
+			-- MDX
+			vim.filetype.add({
+				extension = {
+					mdx = "mdx",
+				},
+			})
+			vim.treesitter.language.register("markdown", "mdx")
+		end,
+	},
+	}
+}
