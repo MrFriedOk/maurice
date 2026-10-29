@@ -40,16 +40,17 @@ vicmd_symbol = "[>](color6)"
 
 [directory]
 #directory indicator
-format = "hi"#"[|(fg:color1 bg:color4)[|]"
+format = "[「](fg:color1 bg:color4)[/](fg:color4 bg:color1)[」](fg:color1 bg:color4)"#"[|(fg:color1 bg:color4)[|]"
+
 home_symbol = "UwU"
 
 [rust]
 format = "you like writing rust, don't you?"
 
 [git_branch]
-format = "[「][][」]"#"gay"#"[|(fg:color8 bg:color4)[ ](bg:color8 fg:color5)[|](fg:color8 bg:color4)[(bg:color8 fg:color5) $branch](fg:color3 bg:color4)[|](fg:color4) "
+format = "[「](fg:color1 bg:color4)[](fg:color4 bg:color1)[」](fg:color1 bg:color4)"#"[|(fg:color8 bg:color4)[ ](bg:color8 fg:color5)[|](fg:color8 bg:color4)[(bg:color8 fg:color5) $branch](fg:color3 bg:color4)[|](fg:color4) "
 
 [python]
-format = "uwu"#"[|(fg:color8 bg:color4)[${symbol} ${version}](bg:color8 fg:color5)[|](fg:color8 bg:color4)[(bg:color8 fg:color5)( ${virtualenv})](fg:color3 bg:color4)[|](fg:color4) "
+format = "[「](fg:color1 bg:color4)[py](fg:color4 bg:color1)[」](fg:color1 bg:color4)"#"[|(fg:color8 bg:color4)[${symbol} ${version}](bg:color8 fg:color5)[|](fg:color8 bg:color4)[(bg:color8 fg:color5)( ${virtualenv})](fg:color3 bg:color4)[|](fg:color4) "
 symbol = 'py'
 pyenv_prefix = 'venv'
