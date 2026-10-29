@@ -1,6 +1,7 @@
 require("stuff.exec")
 require("stuff.rule")
 require("stuff.keybind")
-require("stuff.color")
+require("stuff.style")
 require("stuff.var")
+require("stuff.animations")
 --gay

@@ -1,5 +1,4 @@
 hl.config({
-
 	gestures = {
 		workspace_swipe_distance = 700,
 		workspace_swipe_cancel_ratio = 0.2,
@@ -32,8 +31,8 @@ hl.config({
 		},
 	},
 	decoration = {
-		--rounding_power = 2.5,
-		--rounding = 8,
+		rounding_power = 2.5,
+		rounding = 8,
 
 		blur = {
 			enabled = false,
@@ -123,6 +122,7 @@ hl.config({
 		--				size = 1
 	},
 
+	--osu be rly low quality without this :c
 	xwayland = {
 		force_zero_scaling = true,
 	},
