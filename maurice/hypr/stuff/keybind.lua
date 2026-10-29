@@ -76,7 +76,7 @@ hl.bind("SUPER + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "t
 --workspace move
 for i = 1, 10 do
 	hl.bind("SUPER + SHIFT + " .. (i % 10), function()
-		hl.dispatch(hl.dsp.window.move({ workspace = workspace_in_group(i), follow = true }))
+		hl.dispatch(hl.dsp.window.move({ workspace = i, follow = true }))
 	end)
 end
 
@@ -84,7 +84,7 @@ end
 for i = 1, 10 do
 	local numpadkey = { 87, 88, 89, 83, 84, 85, 79, 80, 81, 90 }
 	hl.bind("SUPER + SHIFT + code:" .. numpadkey[i], function()
-		hl.dispatch(hl.dsp.window.move({ workspace = workspace_in_group(i), follow = false }))
+		hl.dispatch(hl.dsp.window.move({ workspace = i, follow = false }))
 	end)
 end
 
@@ -95,20 +95,20 @@ hl.bind("CTRL + SUPER + S", hl.dsp.workspace.toggle_special("special"))
 --workspace switch via number
 for i = 1, 10 do
 	hl.bind("SUPER + " .. (i % 10), function()
-		hl.dispatch(hl.dsp.focus({ workspace = workspace_in_group(i) }))
+		hl.dispatch(hl.dsp.focus({ workspace = i }))
 	end)
 end
 --j
 for i = 1, 10 do
 	local numberkey = { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 }
 	hl.bind("SUPER + code:" .. numberkey[i], function()
-		hl.dispatch(hl.dsp.focus({ workspace = workspace_in_group(i) }))
+		hl.dispatch(hl.dsp.focus({ workspace = i }))
 	end)
 end
 for i = 1, 10 do
 	local numpadkey = { 87, 88, 89, 83, 84, 85, 79, 80, 81, 90 }
 	hl.bind("SUPER + code:" .. numpadkey[i], function()
-		hl.dispatch(hl.dsp.focus({ workspace = workspace_in_group(i) }))
+		hl.dispatch(hl.dsp.focus({ workspace = i }))
 	end)
 end
 
