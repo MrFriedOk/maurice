@@ -2,6 +2,8 @@ local fileExp = "dolphin"
 local launcher = "rofi -show drun"
 local terminal = "kitty"
 local browser = "firefox"
+local office = "libreoffice"
+local editor = "nvim"
 
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl s 5%+"), { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl s 5%-"), { locked = true, repeating = true })
@@ -18,7 +20,7 @@ hl.bind(
 	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"),
 	{ locked = true, repeating = true }
 )
-hl.bind("SUPER + A", hl.dsp.exec_cmd("rofi -show drun"))
+hl.bind("SUPER + A", hl.dsp.exec_cmd(launcher))
 
 --emoticond by cloveian!! >w<
 hl.bind("SUPER + SHIFT + E", hl.dsp.exec_cmd("emoticond menu --launcher rofi"))
@@ -52,16 +54,17 @@ end
 
 hl.bind("SUPER + Minus", function()
 	zoomfunction(-0.3)
-end, { repeating = true, description = "zoom out" })
+end, {repeating = true})
 hl.bind("SUPER + Equal", function()
 	zoomfunction(0.3)
-end, { repeating = true, description = "zoom in" })
+end, {repeating = true})
 
 --window ctl with mouse
-hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true, description = "Window: Move" })
+hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true)
 hl.bind("SUPER + mouse:274", hl.dsp.window.drag(), { mouse = true })
-hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true, description = "Window: Resize" })
+hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true)
 
+--focus with arrows
 for i = 1, 4 do
 	local arrowkey = { "Left", "Right", "Up", "Down" }
 	local focusdir = { "l", "r", "u", "d" }
@@ -71,12 +74,8 @@ for i = 1, 4 do
 		{ description = "Window: Focus " .. arrowkey[i] }
 	)
 end
-for i = 1, 2 do
-	local arrowkey = { "BracketLeft", "BracketRight" }
-	local focusdir = { "l", "r" }
-	hl.bind("SUPER + " .. arrowkey[i], hl.dsp.focus({ direction = focusdir[i] }))
-end
---#/# bind = SUPER + SHIFT, ←/↑/→/↓,, -- Move in direction
+
+--move windows with arrows
 for i = 1, 4 do
 	local arrowkey = { "Left", "Right", "Up", "Down" }
 	local focusdir = { "l", "r", "u", "d" }
@@ -87,49 +86,27 @@ for i = 1, 4 do
 	)
 end
 
-hl.bind("ALT + F4", function()
-	hl.exec_cmd('notify-send "Wrong close keybind" "Super+Q to close. Use Alt+F4 for Windows VMs" -a Hyprland')
-end, { non_consuming = true })
-hl.bind("SUPER + Q", hl.dsp.window.close(), { description = "Window: Close" })
-hl.bind("SUPER + SHIFT + ALT + Q", hl.dsp.exec_cmd("hyprctl kill"), { description = "Window: Forcefully zap a window" })
+hl.bind("SUPER + Q", hl.dsp.window.close(), { description = "close" })
 
---# Window split ratio
---#/# binde = SUPER, ;/',, -- Adjust split ratio
-hl.bind("SUPER + Semicolon", hl.dsp.layout("splitratio -0.1"), { repeating = true })
-hl.bind("SUPER + Apostrophe", hl.dsp.layout("splitratio +0.1"), { repeating = true })
---# Positioning mode
-hl.bind("SUPER + SHIFT + T", hl.dsp.window.float({ action = "toggle" }), { description = "Window: Float/Tile" })
-hl.bind(
-	"SUPER + D",
-	hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }),
-	{ description = "Window: Maximize" }
-)
-hl.bind(
-	"SUPER + F",
-	hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }),
-	{ description = "Window: Fullscreen" }
-)
-hl.bind(
-	"SUPER + ALT + F",
-	hl.dsp.window.fullscreen_state({ internal = 0, client = 3, action = "toggle" }),
-	{ description = "Window: Fullscreen spoof" }
-)
-hl.bind("SUPER + P", hl.dsp.window.pin(), { description = "Window: Pin" })
+hl.bind("SUPER + CTRL + Equal", hl.dsp.layout("splitratio -0.1"), { repeating = true })
+hl.bind("SUPER + CTRL + Minus", hl.dsp.layout("splitratio +0.1"), { repeating = true })
 
---#/# bind = SUPER+ALT, Hash,, -- Send to workspace -- (1, 2, 3,...)
+hl.bind("SUPER + SHIFT + T", hl.dsp.window.float({ action = "toggle" }))
+
+hl.bind("SUPER + D", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }))
+
+hl.bind("SUPER + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
+
+hl.bind("SUPER + P", hl.dsp.window.pin())
+
+--workspace move
 for i = 1, 10 do
 	hl.bind("SUPER + SHIFT + " .. (i % 10), function()
 		hl.dispatch(hl.dsp.window.move({ workspace = workspace_in_group(i), follow = true }))
-	end, { description = "Window: Send to workspace " .. i })
+	end)
 end
---# We also use raw keycodes because some keyboard layouts register number keys as different chars. The codes can be verified with `wev`
--- for i = 1, 10 do
---     local numberkey = { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 }
---     hl.bind("SUPER + ALT + code:" .. numberkey[i], function()
---         hl.dispatch(hl.dsp.window.move({ workspace = workspace_in_group(i), follow = false }))
---     end)
--- end
---# keypad numbers
+
+--for keypad
 for i = 1, 10 do
 	local numpadkey = { 87, 88, 89, 83, 84, 85, 79, 80, 81, 90 }
 	hl.bind("SUPER + SHIFT + code:" .. numpadkey[i], function()
@@ -137,37 +114,8 @@ for i = 1, 10 do
 	end)
 end
 
---# #/# bind = SUPER+SHIFT, Scroll ↑/↓,, -- Send to workspace left/right
-for i = 1, 4 do
-	local key = { "SUPER + SHIFT + mouse_", "SUPER + ALT + mouse_" }
-	local keycombos = { key[1] .. "up", key[1] .. "down", key[2] .. "up", key[2] .. "down" }
-	local prefix = { "r-", "r+", "r-", "r+" }
-	hl.bind(keycombos[i], hl.dsp.window.move({ workspace = prefix[i] .. "1" }))
-end
+hl.bind("SUPER + SHIFT + S", hl.dsp.window.move({ workspace = "special:special", follow = false }))
 
---#/# bind = SUPER+SHIFT, Page_↑/↓,, -- Send to workspace left/right
-for i = 1, 2 do
-	local keydirs = { "Up", "Down" }
-	local prefix = { "r-", "r+" }
-	local descdir = { "left", "right" }
-	hl.bind(
-		"SUPER + SHIFT + Page_" .. keydirs[i],
-		hl.dsp.window.move({ workspace = prefix[i] .. "1" }),
-		{ description = "Window: Send to workspace " .. descdir[i] }
-	)
-end
-for i = 1, 4 do
-	local key = { "SUPER + ALT + Page_", "CTRL + SUPER + SHIFT + " }
-	local keycombos = { key[1] .. "down", key[1] .. "up", key[2] .. "Right", key[2] .. "Left" }
-	local prefix = { "r+", "r-", "r+", "r-" }
-	hl.bind(keycombos[i], hl.dsp.window.move({ workspace = prefix[i] .. "1" })) -- # [hidden]
-end
-
-hl.bind(
-	"SUPER + SHIFT + S",
-	hl.dsp.window.move({ workspace = "special:special", follow = false }),
-	{ description = "Window: Send to scratchpad" }
-)
 hl.bind("CTRL + SUPER + S", hl.dsp.workspace.toggle_special("special"))
 
 --##! Workspace
@@ -193,8 +141,7 @@ for i = 1, 10 do
 	end)
 end
 
---#/# bind = CTRL+SUPER, ←/→,, -- Focus left/right
---#/# bind = CTRL+SUPER+ALT, ←/→,, -- # [hidden] Focus busy left/right
+--focus by arrow
 for i = 1, 2 do
 	local keys = { "Left", "Right" }
 	local prefix = { "r-", "r+" }
@@ -205,97 +152,19 @@ for i = 1, 2 do
 		{ description = "Workspace: Focus " .. descdir[i] }
 	)
 end
-for i = 1, 2 do
-	local keys = { "Left", "Right" }
-	local prefix = { "m-", "m+" }
-	hl.bind("CTRL + SUPER + ALT + " .. keys[i], hl.dsp.focus({ workspace = prefix[i] .. "1" }))
-end
---#/# bind = SUPER, Page_↑/↓,, -- Focus left/right
-for i = 1, 4 do
-	local key = { "SUPER + Page_Down", "SUPER + Page_Up" }
-	local keycombos = { key[1], key[2], "CTRL + " .. key[1], "CTRL + " .. key[2] }
-	local prefix = { "r+", "r-", "r+", "r-" }
-	hl.bind(keycombos[i], hl.dsp.focus({ workspace = prefix[i] .. "1" }))
-end
---#/# bind = SUPER, Scroll ↑/↓,, -- Focus left/right
-for i = 1, 4 do
-	local key = { "SUPER + mouse_down", "SUPER + mouse_up" }
-	local keycombos = { key[1], key[2], "CTRL + " .. key[1], "CTRL + " .. key[2] }
-	local prefix = { "+", "-", "r+", "r-" }
-	hl.bind(keycombos[i], hl.dsp.focus({ workspace = prefix[i] .. "1" }))
-end
---## Special
-hl.bind("SUPER + S", hl.dsp.workspace.toggle_special("special"), { description = "Workspace: Toggle scratchpad" })
+
+--special
+hl.bind("SUPER + S", hl.dsp.workspace.toggle_special("special"))
+--for you middle mouse button-havers
 hl.bind("SUPER + mouse:275", hl.dsp.workspace.toggle_special("special"))
-for i = 1, 4 do
-	local key = { "BracketLeft", "BracketRight", "Up", "Down" }
-	local prefix = { "-1", "+1", "r-5", "r+5" }
-	hl.bind("CTRL + SUPER + " .. key[i], hl.dsp.focus({ workspace = prefix[i] }))
-end
 
---##! Virtual machines
-hl.define_submap("virtual-machine", function()
-	hl.bind("SUPER + ALT + F1", function()
-		local currentsubmap = hl.get_current_submap()
-		if currentsubmap == "virtual-machine" then
-			hl.dispatch(
-				hl.dsp.exec_cmd("notify-send 'Exited Virtual Machine submap' 'Keybinds re-enabled' -a 'Hyprland'")
-			)
-			hl.dispatch(hl.dsp.submap("reset"))
-		elseif currentsubmap == "" then
-			hl.dispatch(
-				hl.dsp.exec_cmd(
-					"notify-send 'Entered Virtual Machine submap' 'Keybinds disabled. hit SUPER+ALT+F1 to escape' -a 'Hyprland'"
-				)
-			)
-			hl.dispatch(hl.dsp.submap("virtual-machine"))
-		end
-	end, { submap_universal = true })
-end)
+--LOOOOOOOOOOOOOOOock sesssion
+hl.bind("SUPER + L", hl.dsp.exec_cmd("qs ipc call lock lock"))
 
---#!
---# Testing
-hl.bind(
-	"SUPER + ALT + F11",
-	hl.dsp.exec_cmd(
-		'bash -c \'RANDOM_IMAGE=$(find ~/Pictures -type f | shuf -n 1); ACTION=$(notify-send "Test notification with body image" "This notification should contain your user account <b>image</b> and <a href=\\"https://discord.com/app\\">Discord</a> <b>icon</b>. Oh and here is a random image in your Pictures folder: <img src=\\"$RANDOM_IMAGE\\" alt=\\"Testing image\\"/>" -a "Hyprland" -p -h "string:image-path:/var/lib/AccountsService/icons/$USER" -t 6000 -i "discord" -A "openImage=Profile image" -A "action2=Open the random image" -A "action3=Useless button"); [[ $ACTION == *openImage ]] && xdg-open "/var/lib/AccountsService/icons/$USER"; [[ $ACTION == *action2 ]] && xdg-open "$RANDOM_IMAGE"\''
-	)
-) -- # [hidden]
-hl.bind(
-	"SUPER + ALT + F12",
-	hl.dsp.exec_cmd(
-		'bash -c \'RANDOM_IMAGE=$(find ~/Pictures -type f | shuf -n 1); ACTION=$(notify-send "Test notification" "This notification should contain a random image in your <b>Pictures</b> folder and <a href=\\"https://discord.com/app\\">Discord</a> <b>icon</b>.\n<i>Flick right to dismiss!</i>" -a "Discord (fake)" -p -h "string:image-path:$RANDOM_IMAGE" -t 6000 -i "discord" -A "openImage=Profile image" -A "action2=Useless button"); [[ $ACTION == *openImage ]] && xdg-open "/var/lib/AccountsService/icons/$USER"\''
-	)
-) -- # [hidden]
-hl.bind(
-	"SUPER + ALT + Equal",
-	hl.dsp.exec_cmd("notify-send 'Urgent notification' 'Ah hell no' -u critical -a 'Hyprland keybind'")
-) -- # [hidden]
-
---##! Session
---hl.bind("SUPER + L", hl.dsp.exec_cmd("loginctl lock-session"), { description = "Session: Lock" })
---hl.bind("SUPER + L", hl.dsp.exec_cmd("/home/fried/Projects/maurice/maurice/layers/Lock.qml"))
-hl.bind("SUPER + L", hl.dsp.exec_cmd("qs -c ~/Projects/maurice/maurice/quickshell ipc call lock lock"))
-hl.bind(
-	"SUPER + SHIFT + L",
-	hl.dsp.exec_cmd("systemctl suspend || loginctl suspend"),
-	{ locked = true, description = "Session: Sleep" }
-) -- Sleep
--- hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd("systemctl suspend || loginctl suspend"), {locked = true} ) -- # [hidden] Suspend when laptop lid is closed, uncomment if for whatever reason it's not the default behavior
-
---hl.bind("CTRL + SHIFT + ALT + SUPER + Delete", hl.dsp.exec_cmd("systemctl poweroff || loginctl poweroff"),
---    { description = "Session: Shut down" }) -- # [hidden] Power off
-
---##! Apps
---hl.bind("SUPER + Return", hl.dsp.exec_cmd(terminal), { description = "App: Terminal" })
+--apps
 hl.bind("SUPER + T", hl.dsp.exec_cmd(terminal))
 hl.bind("XF86PerformanceMode", hl.dsp.exec_cmd("~/osu.sh"))
---hl.bind("CTRL + ALT + T", hl.dsp.exec_cmd(terminal))
-hl.bind("SUPER + E", hl.dsp.exec_cmd(fileManager), { description = "App: File manager" })
-hl.bind("SUPER + B", hl.dsp.exec_cmd(browser), { description = "App: Browser" })
-hl.bind("SUPER + C", hl.dsp.exec_cmd(codeEditor), { description = "App: Code editor" })
-hl.bind("SUPER + O", hl.dsp.exec_cmd(officeSoftware), { description = "App: Office software" })
---hl.bind("SUPER + X", hl.dsp.exec_cmd(textEditor), { description = "App: Text editor" })
-hl.bind("CTRL + SUPER + V", hl.dsp.exec_cmd(volumeMixer), { description = "App: Volume mixer" })
---hl.bind("SUPER + I", hl.dsp.exec_cmd(settingsApp), { description = "App: Settings app" })
---hl.bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd(taskManager), { description = "App: Task manager" })
+hl.bind("SUPER + E", hl.dsp.exec_cmd(fileExp))
+hl.bind("SUPER + B", hl.dsp.exec_cmd(browser))
+hl.bind("SUPER + C", hl.dsp.exec_cmd(editor))
+hl.bind("SUPER + O", hl.dsp.exec_cmd(office))
