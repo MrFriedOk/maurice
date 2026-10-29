@@ -1,13 +1,55 @@
 add_newline = false
 # layout of icons and stuff uwwu
 format = """
-$directory
+$directory$git_branch$rust$python
 $character
+"""
+
+right_format = """
+stuff_on_the_right
 """
 
 continuation_prompt = '>>'
 
 palette = 'colors'
 
-#colors 
+#colors, from glacier https://github.com/dexpota/kitty-themes
 [palettes.colors]
+color0 = '#2e343c'
+color8 = '#404a55'
+color1 = '#bd0f2f'
+color9 = '#bd0f2f'
+color2 = '#35a770'
+color10 = '#49e998'
+color3 = '#fb9435'
+color11 = '#fddf6e'
+color4 = '#1f5872'
+color12 = '#2a8bc1'
+color5 = '#bd2523'
+color13 = '#ea4727'
+color6 = '#778397'
+color14 = '#a0b6d3'
+color7 = '#ffffff'
+color15 = '#ffffff'
+
+[character]
+success_symbol = "[>](color9 bold)"
+error_symbol = "[!](@{error})"
+#idk what this honestly
+vicmd_symbol = "[>](color6)"
+
+[directory]
+#directory indicator
+format = "hi"#"[|(fg:color1 bg:color4)[|]"
+home_symbol = "UwU"
+
+[rust]
+format = "you like writing rust, don't you?"
+
+[git_branch]
+format = "[「][][」]"#"gay"#"[|(fg:color8 bg:color4)[ ](bg:color8 fg:color5)[|](fg:color8 bg:color4)[(bg:color8 fg:color5) $branch](fg:color3 bg:color4)[|](fg:color4) "
+
+[python]
+format = "uwu"#"[|(fg:color8 bg:color4)[${symbol} ${version}](bg:color8 fg:color5)[|](fg:color8 bg:color4)[(bg:color8 fg:color5)( ${virtualenv})](fg:color3 bg:color4)[|](fg:color4) "
+symbol = 'py'
+pyenv_prefix = 'venv'
