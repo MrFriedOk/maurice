@@ -1,0 +1,13 @@
+add_newline = false
+# layout of icons and stuff uwwu
+format = """
+$directory
+$character
+"""
+
+continuation_prompt = '>>'
+
+palette = 'colors'
+
+#colors 
+[palettes.colors]
