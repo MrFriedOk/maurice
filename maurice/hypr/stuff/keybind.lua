@@ -4,6 +4,7 @@ local terminal = "kitty"
 local browser = "firefox"
 local office = "libreoffice"
 local editor = "nvim"
+require("stuff.var")
 
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl s 5%+"), { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl s 5%-"), { locked = true, repeating = true })
@@ -32,8 +33,7 @@ hl.bind("SUPER + P", hl.dsp.exec_cmd("hyprshot -m region -f $(date '+%Y-%m-%d_%H
 hl.bind(
 	"SUPER + SHIFT + X",
 	hl.dsp.exec_cmd(
-		qsIsAlive
-			.. " || pidof slurp || grim -g \"$(slurp $SLURP_ARGS)\" \"/tmp/ocr_image.png\" && tesseract \"/tmp/ocr_image.png\" stdout -l $(tesseract --list-langs | awk 'NR>1{print $1}' | tr '\\\\n' '+' | sed 's/\\\\+$/\\\\n/') | wl-copy && rm \"/tmp/ocr_image.png\""
+		" || pidof slurp || grim -g \"$(slurp $SLURP_ARGS)\" \"/tmp/ocr_image.png\" && tesseract \"/tmp/ocr_image.png\" stdout -l $(tesseract --list-langs | awk 'NR>1{print $1}' | tr '\\\\n' '+' | sed 's/\\\\+$/\\\\n/') | wl-copy && rm \"/tmp/ocr_image.png\""
 	)
 )
 --color picker, i hardly know'er
@@ -59,10 +59,7 @@ end
 for i = 1, 4 do
 	local arrowkey = { "Left", "Right", "Up", "Down" }
 	local focusdir = { "l", "r", "u", "d" }
-	hl.bind(
-		"SUPER + SHIFT + " .. arrowkey[i],
-		hl.dsp.window.move({ direction = focusdir[i] }),
-	)
+	hl.bind("SUPER + SHIFT + " .. arrowkey[i], hl.dsp.window.move({ direction = focusdir[i] }))
 end
 
 hl.bind("SUPER + Q", hl.dsp.window.close(), { description = "close" })
