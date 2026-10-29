@@ -63,3 +63,4 @@ See [LICENSE](maurice/quickshell/data/assets/fonts/MapleMono-NF/LICENSE.txt).
 - [QtQuick docs](https://doc.qt.io/qt-6/qtquick-index.html)
 - [matugen-themes](https://github.com/InioX/matugen-themes/)
 - [MapleMono NF](https://github.com/subframe7536/maple-font/releases)
+- [illogical-impulse](https://github.com/end-4/dots-hyprland/)
