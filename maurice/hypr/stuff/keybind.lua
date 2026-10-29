@@ -25,8 +25,10 @@ hl.bind("SUPER + A", hl.dsp.exec_cmd(launcher))
 --emoticond by cloveian!! >w<
 hl.bind("SUPER + SHIFT + E", hl.dsp.exec_cmd("emoticond menu --launcher rofi"))
 
+--screnshot, sry windows users
 hl.bind("SUPER + P", hl.dsp.exec_cmd("hyprshot -m region -f $(date '+%Y-%m-%d_%H.%M.%S.png') -o ~/Screenshots"))
 
+--ocr
 hl.bind(
 	"SUPER + SHIFT + X",
 	hl.dsp.exec_cmd(
@@ -34,35 +36,13 @@ hl.bind(
 			.. " || pidof slurp || grim -g \"$(slurp $SLURP_ARGS)\" \"/tmp/ocr_image.png\" && tesseract \"/tmp/ocr_image.png\" stdout -l $(tesseract --list-langs | awk 'NR>1{print $1}' | tr '\\\\n' '+' | sed 's/\\\\+$/\\\\n/') | wl-copy && rm \"/tmp/ocr_image.png\""
 	)
 )
---# Color picker
-hl.bind(
-	"SUPER + SHIFT + P",
-	hl.dsp.exec_cmd("hyprpicker -a"),
-	{ description = "Utilities: Pick color #RRGGBB >> clipboard" }
-)
-
-local function zoomfunction(value)
-	local zoomvalue = hl.get_config("cursor:zoom_factor")
-	if (zoomvalue + value) > 3.0 then
-		hl.config({ cursor = { zoom_factor = 3.0 } })
-	elseif (zoomvalue + value) < 1.0 then
-		hl.config({ cursor = { zoom_factor = 1.0 } })
-	else
-		hl.config({ cursor = { zoom_factor = zoomvalue + value } })
-	end
-end
-
-hl.bind("SUPER + Minus", function()
-	zoomfunction(-0.3)
-end, {repeating = true})
-hl.bind("SUPER + Equal", function()
-	zoomfunction(0.3)
-end, {repeating = true})
+--color picker, i hardly know'er
+hl.bind("SUPER + SHIFT + P", hl.dsp.exec_cmd("hyprpicker -a"))
 
 --window ctl with mouse
-hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true)
+hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind("SUPER + mouse:274", hl.dsp.window.drag(), { mouse = true })
-hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true)
+hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 --focus with arrows
 for i = 1, 4 do
@@ -82,7 +62,6 @@ for i = 1, 4 do
 	hl.bind(
 		"SUPER + SHIFT + " .. arrowkey[i],
 		hl.dsp.window.move({ direction = focusdir[i] }),
-		{ description = "Window: Move " .. arrowkey[i] }
 	)
 end
 
@@ -96,8 +75,6 @@ hl.bind("SUPER + SHIFT + T", hl.dsp.window.float({ action = "toggle" }))
 hl.bind("SUPER + D", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }))
 
 hl.bind("SUPER + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
-
-hl.bind("SUPER + P", hl.dsp.window.pin())
 
 --workspace move
 for i = 1, 10 do
@@ -118,22 +95,19 @@ hl.bind("SUPER + SHIFT + S", hl.dsp.window.move({ workspace = "special:special",
 
 hl.bind("CTRL + SUPER + S", hl.dsp.workspace.toggle_special("special"))
 
---##! Workspace
---# Switching
---#/# bind = SUPER, Hash,, -- Focus workspace -- (1, 2, 3,...)
+--workspace switch via number
 for i = 1, 10 do
 	hl.bind("SUPER + " .. (i % 10), function()
 		hl.dispatch(hl.dsp.focus({ workspace = workspace_in_group(i) }))
-	end, { description = "Workspace: Focus " .. i })
+	end)
 end
---# We also use raw keycodes because some keyboard layouts register number keys as different chars. The codes can be verified with `wev`
+--j
 for i = 1, 10 do
 	local numberkey = { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 }
 	hl.bind("SUPER + code:" .. numberkey[i], function()
 		hl.dispatch(hl.dsp.focus({ workspace = workspace_in_group(i) }))
 	end)
 end
---# keypad numbers
 for i = 1, 10 do
 	local numpadkey = { 87, 88, 89, 83, 84, 85, 79, 80, 81, 90 }
 	hl.bind("SUPER + code:" .. numpadkey[i], function()
@@ -145,12 +119,7 @@ end
 for i = 1, 2 do
 	local keys = { "Left", "Right" }
 	local prefix = { "r-", "r+" }
-	local descdir = { "left", "right" }
-	hl.bind(
-		"CTRL + SUPER + " .. keys[i],
-		hl.dsp.focus({ workspace = prefix[i] .. "1" }),
-		{ description = "Workspace: Focus " .. descdir[i] }
-	)
+	hl.bind("CTRL + SUPER + " .. keys[i], hl.dsp.focus({ workspace = prefix[i] .. "1" }))
 end
 
 --special
