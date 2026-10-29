@@ -1,7 +1,7 @@
 add_newline = false
 # layout of icons and stuff uwwu
 format = """
-$directory$git_branch$rust$python
+$directory$git_branch
 $character
 """
 
@@ -40,7 +40,7 @@ vicmd_symbol = "[>](color6)"
 
 [directory]
 #directory indicator
-format = "[「](fg:color1 bg:color4)[/](fg:color4 bg:color1)[」](fg:color1 bg:color4)"#"[|(fg:color1 bg:color4)[|]"
+format = "[](fg:color1 bg:color0)[/$path](fg:color4 bg:color0)[](fg:color1 bg:color0)"#"[|(fg:color1 bg:color4)[|]"
 
 home_symbol = "UwU"
 
@@ -48,9 +48,9 @@ home_symbol = "UwU"
 format = "you like writing rust, don't you?"
 
 [git_branch]
-format = "[「](fg:color1 bg:color4)[](fg:color4 bg:color1)[」](fg:color1 bg:color4)"#"[|(fg:color8 bg:color4)[ ](bg:color8 fg:color5)[|](fg:color8 bg:color4)[(bg:color8 fg:color5) $branch](fg:color3 bg:color4)[|](fg:color4) "
+format = "[](fg:color1 bg:color0)[  $branch](fg:color4 bg:color1)[](fg:color1 bg:color4)"#"[|(fg:color8 bg:color4)[ ](bg:color8 fg:color5)[|](fg:color8 bg:color4)[(bg:color8 fg:color5) $branch](fg:color3 bg:color4)[|](fg:color4) "
 
 [python]
-format = "[「](fg:color1 bg:color4)[py](fg:color4 bg:color1)[」](fg:color1 bg:color4)"#"[|(fg:color8 bg:color4)[${symbol} ${version}](bg:color8 fg:color5)[|](fg:color8 bg:color4)[(bg:color8 fg:color5)( ${virtualenv})](fg:color3 bg:color4)[|](fg:color4) "
+format = "[](fg:color1 bg:color0)[](fg:color4 bg:color1)[](fg:color1 bg:color4)"#"[|(fg:color8 bg:color4)[${symbol} ${version}](bg:color8 fg:color5)[|](fg:color8 bg:color4)[(bg:color8 fg:color5)( ${virtualenv})](fg:color3 bg:color4)[|](fg:color4) "
 symbol = 'py'
 pyenv_prefix = 'venv'

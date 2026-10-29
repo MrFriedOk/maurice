@@ -1,6 +1,6 @@
 hl.on("hyprland.start", function()
-	--
-	hl.exec_Cmd("gnome-keyring-daemon --start --components=secrets")
+	--gay
+	--	hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")
 	--cursor
 	hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 18")
 
