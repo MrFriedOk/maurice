@@ -33,19 +33,11 @@ hl.config({
 		blur = {
 
 			enabled = true,
-			xray = true,
+			xray = false,
 			special = false,
 			new_optimizations = true, --i think needed for xray to work?
-			size = 1, --big blur makes less passes look better
+			size = 3, --big blur makes less passes look better
 			passes = 1,
-			brightness = 1,
-			contrast = 0.89,
-			vibrancy = 0.5,
-			vibrancy_darkness = 0.5,
-			popups = false,
-			popups_ignorealpha = 0.6,
-			input_methods = true,
-			input_methods_ignorealpha = 0.8,
 		},
 		--dihm
 		dim_inactive = true,

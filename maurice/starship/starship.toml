@@ -1,19 +1,19 @@
 add_newline = false
 # layout of icons and stuff uwwu
-format = """
-$directory$git_branch
+format = """\
+$directory\
 $character
 """
 
-right_format = """
-stuff_on_the_right
+right_format = """\
+$git_branch$python$rust
 """
 
 continuation_prompt = '>>'
 
 palette = 'colors'
 
-#colors, from glacier https://github.com/dexpota/kitty-themes
+#colors
 [palettes.colors]
 color0 = '#1c1c1c'
 color8 = '#4a4a4a'
@@ -26,7 +26,7 @@ color11 = '#cbbb92'
 color4  = '#7f94a8'
 color12 = '#96a9bb'
 color5 = '#a28aa5'
-color13 = '#b5a0b8'
+color14 = '#b5a0b8'
 color6 = '#7fa3a0'
 color13 = '#96b5b2'
 color7 = '#c8c8c4'
@@ -34,7 +34,7 @@ color15 = '#e8e8e4'
 
 [character]
 success_symbol = "[>](color9 bold)"
-error_symbol = "[!](@{error})"
+error_symbol = "[!](color1 bold)"
 #idk what this honestly
 vicmd_symbol = "[>](color6)"
 
