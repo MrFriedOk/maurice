@@ -67,6 +67,6 @@ alias g='gitui'
 
 alias n='nvim'
 
-abbrv mkdir='mkdir -p'
-abbrv cp='cp -r'
+abbr mkdir 'mkdir -p'
+abbr cp 'cp -r'
 
