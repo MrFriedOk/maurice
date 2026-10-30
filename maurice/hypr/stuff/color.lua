@@ -23,7 +23,7 @@ hl.config({
 		},
 	},
 	decoration = {
-		rounding_power = 2.5,
+		rounding_power = 1,
 		rounding = 10,
 
 		shadow = {
@@ -35,11 +35,10 @@ hl.config({
 			enabled = false,
 			xray = true,
 			special = false,
-			new_optimizations = true,
-			size = 10,
+			new_optimizations = true, --i think needed for xray to work?
+			size = 10, --big blur makes less passes look better
 			passes = 1,
 			brightness = 1,
-			noise = 0.05,
 			contrast = 0.89,
 			vibrancy = 0.5,
 			vibrancy_darkness = 0.5,
@@ -58,7 +57,5 @@ hl.config({
 	},
 	dwindle = {
 		preserve_split = true,
-		smart_split = false,
-		smart_resizing = false,
 	},
 })
