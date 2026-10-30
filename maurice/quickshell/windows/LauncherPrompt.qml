@@ -20,12 +20,6 @@ Scope {
                 ipc.toggle();
             }
         },
-        {
-            text: "gay"
-        },
-        {
-            text: "uwu"
-        },
     ]
 
     IpcHandler {
@@ -114,10 +108,17 @@ Scope {
 
                         MouseArea {
                             id: area
+
                             anchors {
                                 fill: parent
                             }
                             hoverEnabled: true
+                            onClicked: {
+                                command: {
+                                    if (delegateRt.modelData.name === "setting")
+                                        return ["qs", "ipc", "call", "settings", "toggle"];
+                                }
+                            }
                         }
                         anchors {
                             horizontalCenter: parent.horizontalCenter

@@ -7,6 +7,7 @@ import Quickshell.Wayland
 
 Scope {
     IpcHandler {
+        id: ipc
         target: "settings"
 
         function toggle(): void {
@@ -17,6 +18,7 @@ Scope {
     LazyLoader {
         id: settings
         active: false
+
         //loading: D.General.settings
 
         FloatingWindow {
@@ -25,7 +27,7 @@ Scope {
 
             id: root
 
-            title: "maurice"
+            title: "settings"
             //WlrLayershell.Layer: WlrLayer.Top
             visible: false
             //implicitHeight: 100
@@ -110,7 +112,7 @@ Scope {
                         enabled: true
                         hoverEnabled: true
                         onClicked: {
-                            D.General.settings = false;
+                            ipc.toggle();
                         }
                     }
                 }
