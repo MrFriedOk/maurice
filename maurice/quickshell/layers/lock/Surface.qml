@@ -17,7 +17,7 @@ WlSessionLockSurface {
         property int hi: 110
         property real sensitivity: 1.25
         property real floor: 30
-        property int cooldownMs: 150 * 4
+        property int cooldownMs: 150 * 2//* 4
         property int holdMs: 80
         property real alpha: 0.02
 
