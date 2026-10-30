@@ -16,7 +16,6 @@ PanelWindow {
     required property var modelData
 
     screen: modelData
-    visible: D.General.barVisible
     color: "transparent"
     exclusionMode: ExclusionMode.Auto
     implicitHeight: D.General.barHeight
@@ -29,15 +28,13 @@ PanelWindow {
     }
     //pretty sure this is the default, but this should let the bar shove windows out of the way. Ignore to.. not do that
 
-    S.Left {
-    }
+    S.Left {}
 
     S.Middle {
         id: middle
     }
 
-    S.Right {
-    }
+    S.Right {}
 
     Rectangle {
         visible: D.General.outline
@@ -50,7 +47,5 @@ PanelWindow {
             left: parent.left
             right: parent.right
         }
-
     }
-
 }

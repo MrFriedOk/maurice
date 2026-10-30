@@ -32,7 +32,7 @@ hl.config({
 
 		blur = {
 
-			enabled = true,
+			enabled = false,
 			xray = false,
 			special = false,
 			new_optimizations = true, --i think needed for xray to work?

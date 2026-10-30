@@ -18,9 +18,8 @@ Singleton {
     property string family: font.name
     readonly property list<string> splashes: JSON.parse(splashesJson.text())//JSON.parse(Quickshell.shellPath('data/splashes.json'))
     property string scheme: "fruit-salad"
-    property bool barVisible: true
     property bool adaptPS: true
-    property var fonts: [font.name] //["SpaceMono Nerd Font", "Maple Mono NF", "Red Hat Text", "Readex Pro", "OpenDyslexic Nerd Font", "Atkinson Hyperlegible"]
+    //property var fonts: [font.name] //["SpaceMono Nerd Font", "Maple Mono NF", "Red Hat Text", "Readex Pro", "OpenDyslexic Nerd Font", "Atkinson Hyperlegible"]
     property int size: adaptPS ? barHeight / 2 : 10
     property int txtSpacing: 5
     property bool bold: false
@@ -31,7 +30,7 @@ Singleton {
     property bool widRect: sketchBar ? false : true
     property bool outline: sketchBar ? false : false
     property bool sketchBar: false
-    property bool iHateMyCPU: false && vizEnabled
+    property bool iHateMyCPU: true //&& vizEnabled
     property bool vizEnabled: false
     property bool adaptiveWall: true
     //property int loopState: player.loopState

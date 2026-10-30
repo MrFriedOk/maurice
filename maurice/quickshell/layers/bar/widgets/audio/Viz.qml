@@ -34,13 +34,12 @@ Item {
         running: root.playing && root.vizEnabled
 
         stdout: SplitParser {
-            onRead: (data) => {
-                return root.viz = data.split(";").filter((s) => {
+            onRead: data => {
+                return root.viz = data.split(";").filter(s => {
                     return s !== "";
                 }).map(Number);
             }
         }
-
     }
 
     Row {
@@ -59,7 +58,6 @@ Item {
                 id: bar
 
                 required property var modelData
-                required property int index
 
                 color: D.Colors.fg //Qt.rgba(fade, fade, fade, 1)
                 width: 10
@@ -77,13 +75,8 @@ Item {
                     NumberAnimation {
                         duration: 80
                     }
-
                 }
-
             }
-
         }
-
     }
-
 }

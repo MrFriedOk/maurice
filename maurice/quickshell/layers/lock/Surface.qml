@@ -5,19 +5,55 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
+import Quickshell.Io
 
 WlSessionLockSurface {
     //color: "#aa000000"
 
     Rectangle {
+        id: rootRect
+        property var viz: []
+        Process {
+            running: D.General.iHateMyCPU
+            command: ["cava", "-p", Quickshell.shellPath('data/lock.conf')]
+            stdout: SplitParser {
+                onRead: d => {
+                    return rootRect.viz = d.split(";").filter(s => {
+                        return s !== "";
+                    }).map(Number);
+                }
+            }
+        }
+        Row {
+            height: 200
+            anchors {
+                //top: parent.top
+                bottom: parent.bottom
+                left: parent.left
+                right: parent.right
+            }
+            Repeater {
+                model: rootRect.viz
+
+                delegate: Rectangle {
+                    required property var modelData
+                    anchors {
+                        bottom: bottom.bottom
+                    }
+
+                    color: D.Colors.light
+                    width: parent.width / rootRect.viz.length
+                    height: 3 + (modelData * 7)
+                }
+            }
+        }
         //	height: 10
         //Layout.fillWidth: true
         //Layout.fillHeight: true
         //escape box
         //	width: 25
 
-        Self.Session {
-        }
+        Self.Session {}
         //MouseArea{
 
         anchors {
@@ -44,11 +80,9 @@ WlSessionLockSurface {
 
             color: "transparent"
 
-            Self.Playback {
-            }
+            Self.Playback {}
 
-            Self.PamContainer {
-            }
+            Self.PamContainer {}
             //id: bg
 
             anchors {
@@ -97,9 +131,7 @@ WlSessionLockSurface {
                         root.curFont = next;
                     }
                 }
-
             }
-
         }
 
         gradient: Gradient {
@@ -112,10 +144,8 @@ WlSessionLockSurface {
                 position: 1
                 color: D.Colors.accent
             }
-
         }
         //	visible: false
 
     }
-
 }

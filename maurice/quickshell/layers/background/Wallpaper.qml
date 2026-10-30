@@ -47,16 +47,14 @@ PanelWindow {
             anchors {
                 fill: parent
                 //top margin for image, let PanelWindow define bg color for bar
-                topMargin: D.General.barVisible ? D.General.barHeight + 1 : 1
+                topMargin: D.General.barHeight //D.General.barVisible ? D.General.barHeight + 1 : 1
                 margins: 1
 
                 Behavior on topMargin {
                     NumberAnimation {
                         duration: D.General.animDur
                     }
-
                 }
-
             }
 
             Rectangle {
@@ -96,9 +94,7 @@ PanelWindow {
                         position: 1
                         color: D.Colors.accent
                     }
-
                 }
-
             }
 
             Image {
@@ -111,9 +107,6 @@ PanelWindow {
                 source: root.image
                 fillMode: Image.Stretch
             }
-
         }
-
     }
-
 }

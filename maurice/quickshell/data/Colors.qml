@@ -1,6 +1,6 @@
+pragma Singleton
 import QtQuick
 import Quickshell
-pragma Singleton
 
 //the colors (temp)
 Singleton {
@@ -15,41 +15,37 @@ Singleton {
     property color med: '#cab32f'
     property color up: '#27f546'
     property color dwn: critical
+    property color light: ColorsGen.md3.on_tertiary
 
     //super efficient
     Behavior on bg {
         ColorAnimation {
             duration: 400
         }
-
     }
 
     Behavior on surface {
         ColorAnimation {
             duration: 400
         }
-
     }
 
     Behavior on widget {
         ColorAnimation {
             duration: 400
         }
-
     }
 
     Behavior on fg {
         ColorAnimation {
             duration: 400
         }
-
     }
 
     Behavior on accent {
         ColorAnimation {
             duration: 400
         }
-
     }
     //ColorsGen.palette.primary5 //'#131313'
 
