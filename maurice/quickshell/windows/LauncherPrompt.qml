@@ -4,36 +4,22 @@ import Quickshell
 import Quickshell.Wayland
 
 Scope {
+    id: root
+    property bool out: false
     PanelWindow {
-        exclusionMode: ExlcusionMode.Ignore
-        width: 1
-        WlrLayershell.layer: WlrLayer.Top
-        color: prompt.hovered ? "red" : "green"
-        anchors {
-            right: true
-            bottom: true
-            top: true
-        }
+        WlrLayershell.namespace: "launcher"
         MouseArea {
-            id: prompt
-
-            property bool hovered: false
-            enabled: true
-
-            hoverEnabled: true
-            onHoveredChanged: hovered = !hovered
-
+            id: hold
             anchors {
                 fill: parent
             }
+            hoverEnabled: true
+            onHoveredChanged: root.out = false
         }
-    }
-
-    PanelWindow {
         exclusionMode: ExclusionMode.Ignore
         color: "transparent"
         width: 150
-        visible: prompt.hovered
+        visible: root.out || hold.containsMouse
 
         anchors {
             right: true
@@ -42,13 +28,34 @@ Scope {
         }
 
         Rectangle {
-            visible: prompt.hovered
+            //visible: prompt.hovered
             color: D.Colors.widget
 
             anchors {
                 fill: parent
                 topMargin: D.General.barHeight + 2
                 bottomMargin: 2
+            }
+        }
+    }
+    PanelWindow {
+        exclusionMode: ExlcusionMode.Ignore
+        width: 1
+        visible: !root.out
+        color: "transparent"
+        anchors {
+            right: true
+            bottom: true
+            top: true
+        }
+        MouseArea {
+            id: prompt
+
+            hoverEnabled: true
+            onHoveredChanged: root.out = true
+
+            anchors {
+                fill: parent
             }
         }
     }
