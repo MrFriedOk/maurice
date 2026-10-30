@@ -6,6 +6,8 @@ local office = "libreoffice"
 local editor = "nvim"
 require("stuff.var")
 
+hl.bind("SUPER + N", hl.dsp.exec_cmd("qs ipc call menu toggle"))
+
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl s 5%+"), { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl s 5%-"), { locked = true, repeating = true })
 

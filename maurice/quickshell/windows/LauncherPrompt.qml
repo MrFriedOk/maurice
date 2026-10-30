@@ -2,24 +2,41 @@ import "../data" as D
 import QtQuick
 import Quickshell
 import Quickshell.Wayland
+import Quickshell.Io
 
 Scope {
     id: root
-    property bool out: false
+    property list<string> items: [
+        {
+            text: "",
+            action: () => {
+                ipc.toggle();
+            }
+        },
+    ]
+    IpcHandler {
+        id: ipc
+        target: "menu"
+
+        function toggle(): void {
+            menu.out = !menu.out;
+        }
+    }
     PanelWindow {
-        WlrLayershell.namespace: "launcher"
+        id: menu
+        property bool out: false
         MouseArea {
             id: hold
             anchors {
                 fill: parent
             }
             hoverEnabled: true
-            onHoveredChanged: root.out = false
+            // onHoveredChanged: root.out = false
         }
         exclusionMode: ExclusionMode.Ignore
         color: "transparent"
         width: 150
-        visible: root.out || hold.containsMouse
+        visible: out || hold.containsMouse
 
         anchors {
             right: true
@@ -36,26 +53,13 @@ Scope {
                 topMargin: D.General.barHeight + 2
                 bottomMargin: 2
             }
-        }
-    }
-    PanelWindow {
-        exclusionMode: ExlcusionMode.Ignore
-        width: 1
-        visible: !root.out
-        color: "transparent"
-        anchors {
-            right: true
-            bottom: true
-            top: true
-        }
-        MouseArea {
-            id: prompt
-
-            hoverEnabled: true
-            onHoveredChanged: root.out = true
-
-            anchors {
-                fill: parent
+            Column {
+                anchors {
+                    fill: parent
+                }
+                Repeater {
+                    model: root.items
+                }
             }
         }
     }
