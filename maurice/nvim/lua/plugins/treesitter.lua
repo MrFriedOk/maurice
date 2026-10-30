@@ -16,6 +16,7 @@ return {
 			"css",
 			"html",
 			"rust",
+			"toml",
 		})
 
 		vim.api.nvim_create_autocmd("FileType", {

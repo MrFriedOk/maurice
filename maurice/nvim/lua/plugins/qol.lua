@@ -7,7 +7,6 @@ return {
 			version = "1.*",
 			opts = {
 				keymap = { preset = "default" },
-				sources = { default = { "lsp", "path", "snippets", "buffer" } },
 			},
 		},
 		{
@@ -80,5 +79,19 @@ return {
 				map("<leader>gb", gs.blame_line, "Blame line")
 			end,
 		},
+	},
+
+	--debug
+	{
+		"mfusseneggar/nvim-dap",
+	},
+	{
+		"rcarriga/nvim-dap-ui",
+		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+		opts = {},
+	},
+	{
+		"williamboman/mason.nvim",
+		opts = {},
 	},
 }
