@@ -4,6 +4,8 @@ hl.on("hyprland.start", function()
 	--cursor
 	hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 18")
 
+	hl.exec_cmd("dbus-update-activation-environment --all")
+
 	--qs
 	hl.exec_cmd("qs")
 
