@@ -35,9 +35,11 @@ install(){
 }
 
 install quickshell "$config/quickshell"
-#install kitty "$config/kitty"
+install kitty "$config/kitty"
 install hypr "$config/hypr"
-#install nvim "$config/nvim"
+install nvim "$config/nvim"
+install fish "$config/fish"
+install starship "$config/starship"
 
 if $osu; then
 	echo "downloading osu.AppImage"
