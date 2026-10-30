@@ -53,6 +53,9 @@ The install script was also created by an LLM and modified by me. `art.sh`'s log
 Some debugging was also done with an LLM, no agent touched my files though.
 ## Licensing
 This repo is covered by an MIT license, see [license](./LICENSE). [`demo.mp4` ](./demo/demo.mp4) contains a track "Local Forecast" by Kevin MacLeod (incompetech.com) and is licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/. The MIT does not cover this track and remains under its own terms.
+### SVG
+Modified by changing color, original SVG by:
+<a href="https://github.com/krystonschwarze/coolicons?ref=svgrepo.com" target="_blank">Krystonschwarze</a> in CC Attribution License via <a href="https://www.svgrepo.com/" target="_blank">SVG Repo</a>
 ### Fonts
 Maple Mono NF, copyright 2022, The Maple Mono Project Authors. Licensed under SIL Open Font License, Version 1.1.
 See [LICENSE](maurice/quickshell/data/assets/fonts/MapleMono-NF/LICENSE.txt).
