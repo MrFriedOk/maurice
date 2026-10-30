@@ -12,15 +12,13 @@ WlSessionLockSurface {
 
     Rectangle {
         id: rootRect
-        property var viz: []
-        property list<int> band: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
-        property real avg: 0
-        property int lo: 2
-        property int hi: 25
-        property real sensitivity: 1.3
+        property list<int> bars: []
+        property int lo: 90
+        property int hi: 110
+        property real sensitivity: 1.25
         property real floor: 30
-        property int cooldownMs: 150
-        property int holdMs: 120
+        property int cooldownMs: 150 * 4
+        property int holdMs: 80
         property real alpha: 0.02
 
         property real band: 0
@@ -28,12 +26,36 @@ WlSessionLockSurface {
         property bool beat: false
 
         property real _last: 0
+
+        onBarsChanged: {
+            if (!bars || bars.length <= hi)
+                return;
+            let sum = 0;
+            for (let i = lo; i <= hi; i++)
+                sum += bars[i];
+            band = sum / (hi - lo + 1);
+
+            const now = Date.now();
+            if (band > avg * sensitivity && band > floor && now - _last > cooldownMs) {
+                _last = now;
+                beat = true;
+                hold.restart();
+            }
+
+            avg += (band - avg) * alpha;
+        }
+
+        Timer {
+            id: hold
+            interval: rootRect.holdMs
+            onTriggered: rootRect.beat = false
+        }
         Process {
             running: D.General.iHateMyCPU
             command: ["cava", "-p", Quickshell.shellPath('data/lock.conf')]
             stdout: SplitParser {
                 onRead: d => {
-                    return rootRect.viz = d.split(";").filter(s => {
+                    return rootRect.bars = d.split(";").filter(s => {
                         return s !== "";
                     }).map(Number);
                 }
@@ -46,9 +68,8 @@ WlSessionLockSurface {
                 fill: parent
                 leftMargin: vizRow.spacing
             }
-            readonly property bool beat: //(rootRect.viz[2 .. 25] > 30)
             Repeater {
-                model: rootRect.viz
+                model: rootRect.bars
 
                 delegate: Rectangle {
                     id: delegateRt
@@ -59,7 +80,7 @@ WlSessionLockSurface {
                     }
 
                     color: D.Colors.light
-                    width: (parent.width / rootRect.viz.length) - vizRow.spacing
+                    width: (parent.width / rootRect.bars.length) - vizRow.spacing
                     height: 2 + (modelData * 6)//higher num makes bars more aggressive :3 (they also peak faster :c)
                 }
             }
@@ -154,12 +175,16 @@ WlSessionLockSurface {
         gradient: Gradient {
             GradientStop {
                 position: 0
-                color: (vizRow.beat) ? D.Colors.light : D.Colors.fg
+                color: (rootRect.beat) ? D.Colors.light : D.Colors.fg
                 Behavior on color {
                     ColorAnimation {
-                        duration: 200
+                        duration: 140
                     }
                 }
+            }
+            GradientStop {
+                position: .50
+                color: D.Colors.fg
             }
 
             GradientStop {
