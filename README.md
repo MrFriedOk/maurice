@@ -23,9 +23,12 @@ The code in this repo depends on packages/applications besides Quickshell.
   - `matugen`, creates colors for the shell
   - `curl`, for album art cache
   - `MapleMono-NF`, bundled in the repo, see [LICENSE](maurice/quickshell/data/assets/fonts/MapleMono-NF/LICENSE.txt)
+  - `fish`, shell used with kitty
+  - `starship`, shell customization
+  - `nvim`, the best text editor!
 #### Arch
 ```
-sudo pacman -S --needed hyprland brightnessctl upower cava pipewire quickshell curl matugen
+sudo pacman -S --needed hyprland brightnessctl upower cava pipewire quickshell curl matugen fish starship
 ```
 ### Guided
 For a standard install, step-by-step
@@ -70,3 +73,4 @@ See [LICENSE](maurice/quickshell/data/assets/fonts/MapleMono-NF/LICENSE.txt).
 - Hyprland's example [hyprland github](https://github.com/hyprwm/Hyprland/)
 - [Kitty themes](https://github.com/dexpota/kitty-themes/blob/master/themes/Glacier.conf)
 - [`edgy.nvim` and its guide](https://github.com/folke/edgy.nvim)
+- [Bezier Generator](https://www.cssportal.com/css-cubic-bezier-generator/)
