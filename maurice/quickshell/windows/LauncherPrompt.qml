@@ -15,7 +15,7 @@ Scope {
     }
     property list<var> items: [
         {
-            text: "",
+            name: "setting",
             action: () => {
                 ipc.toggle();
             }
@@ -89,12 +89,12 @@ Scope {
                         }
 
                         Shape {
-                            rotation: area.containsMouse ? -5 : 0
+                            visible: delegateRt.modelData.name === "setting"
+                            rotation: area.containsMouse ? -20 : 0
                             width: size
                             height: size
-                            property real size: 80
-                            readonly property real viewBox: 24
-                            scale: size / viewBox
+                            readonly property real size: 24
+                            scale: 5 //size / viewBox
                             Behavior on rotation {
                                 NumberAnimation {
                                     duration: 120

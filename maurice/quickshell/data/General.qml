@@ -1,8 +1,8 @@
+pragma Singleton
 import QtQuick
 import Quickshell
 import Quickshell.Services.Mpris
 import Quickshell.Io
-pragma Singleton
 
 //general stuff, prolly should sort out later
 Singleton {
@@ -15,8 +15,8 @@ Singleton {
 
     id: gen
 
-		property string family: font.name
-		readonly property list<string> splashes: JSON.parse(splashesJson.text())//JSON.parse(Quickshell.shellPath('data/splashes.json'))
+    property string family: font.name
+    readonly property list<string> splashes: JSON.parse(splashesJson.text())//JSON.parse(Quickshell.shellPath('data/splashes.json'))
     property string scheme: "fruit-salad"
     property bool barVisible: true
     property bool adaptPS: true
@@ -28,34 +28,31 @@ Singleton {
     property int radius: 0
     property int animDur: 80
     property int barHeight: 20
-		property bool settings: false
     property bool widRect: sketchBar ? false : true
     property bool outline: sketchBar ? false : false
     property bool sketchBar: false
     property bool iHateMyCPU: false && vizEnabled
     property bool vizEnabled: false
-		property bool adaptiveWall: true
-		//property int loopState: player.loopState
+    property bool adaptiveWall: true
+    //property int loopState: player.loopState
     readonly property var player: {
         const list = Mpris.players.values;
-        return list.find((p) => {
+        return list.find(p => {
             return p.playbackState === MprisPlaybackState.Playing;
         }) ?? list[0] ?? null;
-			}
+    }
 
     FontLoader {
         id: font
 
         source: Quickshell.shellPath("data/assets/fonts/MapleMono-NF/MapleMono-NF-Regular.ttf")
-			}
+    }
 
-			FileView{
-				id: splashesJson
-				path: Quickshell.shellPath('data/splashes.json')
-			//	JsonAdapter{
+    FileView {
+        id: splashesJson
+        path: Quickshell.shellPath('data/splashes.json')
+        //	JsonAdapter{
 
-
-				//}
-			}
-
+        //}
+    }
 }

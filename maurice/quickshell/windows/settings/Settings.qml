@@ -6,14 +6,17 @@ import Quickshell.Io
 import Quickshell.Wayland
 
 Scope {
-	IpcHandler{
-		target: "settings"
+    IpcHandler {
+        target: "settings"
 
-		function toggle(): void {D.General.settings = !D.General.settings}
-	}
-	LazyLoader {
-		id: settings
-		active: D.General.settings
+        function toggle(): void {
+            settings.active = !settings.active;
+            root.visible = !root.visible;
+        }
+    }
+    LazyLoader {
+        id: settings
+        active: false
         //loading: D.General.settings
 
         FloatingWindow {
@@ -24,7 +27,7 @@ Scope {
 
             title: "maurice"
             //WlrLayershell.Layer: WlrLayer.Top
-            visible: D.General.settings
+            visible: false
             //implicitHeight: 100
             height: 500
             width: 700
@@ -63,7 +66,6 @@ Scope {
                             top: parent.top
                             bottom: parent.bottom
                         }
-
                     }
 
                     Rectangle {
@@ -80,9 +82,7 @@ Scope {
                             rightMargin: 5
                             topMargin: 20 + btn.anchors.margins
                         }
-
                     }
-
                 }
 
                 Rectangle {
@@ -113,13 +113,8 @@ Scope {
                             D.General.settings = false;
                         }
                     }
-
                 }
-
             }
-
         }
-
     }
-
 }
