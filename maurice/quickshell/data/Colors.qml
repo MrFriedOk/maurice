@@ -15,7 +15,7 @@ Singleton {
     property color med: '#cab32f'
     property color up: '#27f546'
     property color dwn: critical
-    property color light: ColorsGen.md3.on_tertiary
+    property color light: '#d2e0e0'
 
     //super efficient
     Behavior on bg {

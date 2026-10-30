@@ -25,12 +25,11 @@ WlSessionLockSurface {
             }
         }
         Row {
-            height: 200
+            id: vizRow
+            spacing: 1
             anchors {
-                //top: parent.top
-                bottom: parent.bottom
-                left: parent.left
-                right: parent.right
+                fill: parent
+                leftMargin: vizRow.spacing
             }
             Repeater {
                 model: rootRect.viz
@@ -38,12 +37,12 @@ WlSessionLockSurface {
                 delegate: Rectangle {
                     required property var modelData
                     anchors {
-                        bottom: bottom.bottom
+                        bottom: parent.bottom
                     }
 
                     color: D.Colors.light
-                    width: parent.width / rootRect.viz.length
-                    height: 3 + (modelData * 7)
+                    width: (parent.width / rootRect.viz.length) - vizRow.spacing
+                    height: 2 + (modelData * 6)//higher num makes bars more aggressive :3 (they also peak faster :c)
                 }
             }
         }
