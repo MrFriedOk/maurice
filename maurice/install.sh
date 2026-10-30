@@ -26,7 +26,7 @@ install(){
 			rm -rf "$to"
 		else
 			mv "$to" "$to.bak-$(date +%Y%m%d-%H%M%S)"
-			echo "DELETED EVERYTHING!!! jk, made a backup of existing dirs!"
+			echo "DELETED EVERYTHING!!! jk, made a backup of existing dirs! $to"
 		fi
 	fi
 	mkdir -p "$to"
