@@ -23,9 +23,12 @@ The code in this repo depends on packages/applications besides Quickshell.
   - `matugen`, creates colors for the shell
   - `curl`, for album art cache
   - `MapleMono-NF`, bundled in the repo, see [LICENSE](maurice/quickshell/data/assets/fonts/MapleMono-NF/LICENSE.txt)
+  - `fish`, shell used with kitty
+  - `starship`, shell customization
+  - `nvim`, the best text editor!
 #### Arch
 ```
-sudo pacman -S --needed hyprland brightnessctl upower cava pipewire quickshell curl matugen
+sudo pacman -S --needed hyprland brightnessctl upower cava pipewire quickshell curl matugen fish starship
 ```
 ### Guided
 For a standard install, step-by-step
