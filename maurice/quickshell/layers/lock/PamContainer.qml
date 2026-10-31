@@ -42,7 +42,7 @@ Rectangle {
             Repeater {
                 id: shapeRep
 
-                model: 12 //Math.round(field.implicitWidth / root.shapeWidth) //12
+                model: 14 //Math.round(field.implicitWidth / root.shapeWidth) //12
 
                 delegate: Item {
                     id: slot
@@ -63,13 +63,13 @@ Rectangle {
                             easing.type: Easing.InOutQuad
                         }
                     }
-                    scale: filled ? 1 : 0
+                    scale: filled ? 1 + (Math.floor(Math.random() * .5)) : 0
                     rotation: Math.floor(Math.random() * (15 - -15)) - 15
 
                     Shape {
                         width: 419
                         height: 403
-                        scale: (parent.width / width) + (Math.floor(Math.random() * .005))
+                        scale: (parent.width / width)// + (Math.floor(Math.random() * .005))
                         transformOrigin: Item.Center
 
                         anchors {
@@ -77,8 +77,8 @@ Rectangle {
                             centerIn: parent
                         }
                         ShapePath {
-                            property list<string> cols: [D.Colors.fg, D.Colors.accent, D.Colors.light]
-                            fillColor: cols[Math.floor(Math.random() * cols.length)]
+                            property list<color> cols: [D.Colors.fg, D.Colors.accent, D.Colors.light]
+                            fillColor: D.Colors.femboy[Math.floor(Math.random() * D.Colors.femboy.length)]//D.Colors.trans[Math.floor(Math.random() * D.Colors.trans.length)]//D.Colors.lesbian[Math.floor(Math.random() * D.Colors.lesbian.length)] //cols[Math.floor(Math.random() * cols.length)]
                             strokeWidth: -1
 
                             PathSvg {

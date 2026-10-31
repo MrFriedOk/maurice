@@ -16,6 +16,9 @@ Singleton {
     property color up: '#27f546'
     property color dwn: critical
     property color light: '#d2e0e0'
+    property list<color> lesbian: ['#d62900', '#ff9b55', '#ffffff', '#d462a6', '#a50062']
+    property list<color> trans: ['#5bcefa', '#f5a9b8', "#ffffff"]
+    property list<color> femboy: ['#d460a7', '#e4adcd', '#ffffff', '#57cef8']
 
     //super efficient
     Behavior on bg {
