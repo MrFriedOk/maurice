@@ -63,6 +63,7 @@ WlSessionLockSurface {
         }
         Row {
             id: vizRow
+            visible: D.General.iHateMyCPU
             spacing: 1
             anchors {
                 fill: parent
@@ -175,7 +176,7 @@ WlSessionLockSurface {
         gradient: Gradient {
             GradientStop {
                 position: 0
-                color: (rootRect.beat) ? D.Colors.light : D.Colors.fg
+                color: (rootRect.beat && D.General.iHateMyCPU) ? D.Colors.light : D.Colors.fg
                 Behavior on color {
                     ColorAnimation {
                         duration: 140

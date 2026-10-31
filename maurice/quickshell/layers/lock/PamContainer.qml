@@ -28,7 +28,7 @@ Rectangle {
 
             id: shapes
 
-            spacing: 6
+            spacing: 7
 
             anchors {
                 //centerIn: parent
@@ -36,7 +36,7 @@ Rectangle {
                 //fill: parent
                 verticalCenter: parent.verticalCenter
                 left: parent.left
-                leftMargin: shapes.spacing
+                leftMargin: shapes.spacing + 4
             }
 
             Repeater {
@@ -57,13 +57,19 @@ Rectangle {
                     }
                     width: root.shapeWidth //shapes.implicitWidth / shapeRep.model //20
                     height: width
+                    Behavior on scale {
+                        NumberAnimation {
+                            duration: 120
+                            easing.type: Easing.InOutQuad
+                        }
+                    }
                     scale: filled ? 1 : 0
                     rotation: Math.floor(Math.random() * (15 - -15)) - 15
 
                     Shape {
                         width: 419
                         height: 403
-                        scale: (parent.width / width)
+                        scale: (parent.width / width) + (Math.floor(Math.random() * .005))
                         transformOrigin: Item.Center
 
                         anchors {
