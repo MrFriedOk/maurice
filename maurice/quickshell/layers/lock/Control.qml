@@ -3,206 +3,193 @@ import QtQuick
 import "../../data" as D
 import "../bar/universal" as Wi
 
-Rectangle{
-				//Text{
-					//track title
-				//text: root.player.trackTitle
-				//color: D.Colors.fg
-				//font{
-				//	family: D.General.family
-					
-				//	pointSize: 18
-				//}
-				//width: contentWidth//parent.width/2
-				//anchors{
-				//	verticalCenterOffset: -65
-					//horizontalCenter: parent.horizontalCenter
-				//centerIn: parent
-				//}
-				//
-				//}
-				//
-				Wi.Scroll{
-					cAlign: true
-					pointSize: 16
-					
-					maxWidth: 400 //contentWidth
-					text: root.player.trackTitle
-					anchors{
-						verticalCenterOffset: -65
-						centerIn: parent
-					}
+Rectangle {
+    //Text{
+    //track title
+    //text: root.player.trackTitle
+    //color: D.Colors.fg
+    //font{
+    //	family: D.General.family
 
-			}
+    //	pointSize: 18
+    //}
+    //width: contentWidth//parent.width/2
+    //anchors{
+    //	verticalCenterOffset: -65
+    //horizontalCenter: parent.horizontalCenter
+    //centerIn: parent
+    //}
+    //
+    //}
+    //
+    Wi.Scroll {
+        cAlign: true
+        pointSize: 16
 
-			//Wi.Scroll{
-			//	maxWidth: 400
-		//		text: "%1 : %2".arg(root.player.trackArtist,root.player.trackAlbum)
-			//	anchors{
-			//		top: parent.top
-			//		centerIn: parent
-			//	}
-			//}
-			Item{
-				id: trackOtherCon 
-				implicitWidth: 400
-				anchors{
-					top: parent.top
-					verticalCenterOffset: -25
-					centerIn: parent
-				
+        maxWidth: 400 //contentWidth
+        text: root.player.trackTitle
+        anchors {
+            verticalCenterOffset: -65
+            centerIn: parent
+        }
+    }
 
-				}
+    //Wi.Scroll{
+    //	maxWidth: 400
+    //		text: "%1 : %2".arg(root.player.trackArtist,root.player.trackAlbum)
+    //	anchors{
+    //		top: parent.top
+    //		centerIn: parent
+    //	}
+    //}
+    Item {
+        id: trackOtherCon
+        implicitWidth: 400
+        anchors {
+            top: parent.top
+            verticalCenterOffset: -25
+            centerIn: parent
+        }
 
+        Text {
+            id: trackOther
+            horizontalAlignment: Text.AlignHCenter
+            width: (implicitWidth > trackOtherCon.implicitWidth) ? trackOtherCon.implicitWidth : 250//trackOtherCon.implicitWidth
+            anchors {
+                centerIn: parent
+            }
+            color: D.Colors.fg
+            //width: parent.width/2
+            elide: Text.ElideMiddle
 
-				Text{
-					horizontalAlignment: Text.AlignHCenter
-					id: trackOther
-					width: (implicitWidth > trackOtherCon.implicitWidth) ? trackOtherCon.implicitWidth : 250//trackOtherCon.implicitWidth
-					anchors{
-						centerIn: parent
-					}
-					color: D.Colors.fg
-					//width: parent.width/2
-					elide: Text.ElideMiddle
-				
-					font{
-						family: D.General.family
-						pointSize: 16
+            font {
+                family: D.General.family
+                pointSize: 16
+            }
+            text: "%1 : %2".arg(root.player.trackArtist, root.player.trackAlbum)
+        }
+    }
+    radius: parent.radius
 
-					}
-					text: "%1 : %2".arg(root.player.trackArtist,root.player.trackAlbum)
-				}
-			}
-			radius: parent.radius
+    Rectangle {
+        //playback control container
+        id: playbackCtl
 
+        color: D.Colors.surface
+        radius: root.radius
+        anchors {
+            bottom: parent.bottom
+            left: parent.left
+            right: parent.right
+            margins: 25
+        }
+        height: 50
 
-				Rectangle{
+        property list<string> playback: ["LAST", root.loop, root.pause, "NEXT"]
 
-					color: D.Colors.surface
-					radius: root.radius
-					anchors{
-						bottom: parent.bottom
-						left: parent.left
-						right: parent.right
-						margins: 25
-					}
-					height: 50
-					//playback control container
-					id: playbackCtl
-					
-					property list<string> playback: ["LAST",root.loop,root.pause,"NEXT"]
+        Row {
+            id: row
+            spacing: 5
+            anchors {
+                fill: parent
+                margins: 5
+            }
 
-					Row{
-						id: row
-						spacing: 5
-						anchors{
-							fill: parent
-						}
+            Repeater {
+                //individual playback ctl
+                model: playbackCtl.playback
 
-						Repeater{
-							//individual playback ctl
-							model: playbackCtl.playback
+                delegate: Rectangle {
+                    id: ctl
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: D.General.animDur
+                        }
+                    }
+                    color: hovered ? D.Colors.surface : D.Colors.widget
+                    property bool hovered: false
+                    MouseArea {
+                        anchors {
+                            fill: parent
+                        }
+                        hoverEnabled: true
+                        onHoveredChanged: ctl.hovered = !ctl.hovered
+                        onClicked: {
+                            if (modelData === "NEXT")
+                                return root.player.next();
+                            if (modelData === "LAST")
+                                return root.player.previous();
+                            if (modelData === "LOOP" || "LOOP 1" || "OFF")
+                                return D.General.player.loopState = (D.General.player.loopState + 1) % 3;//return D.General.loopMode = (D.General.loopMode+1) % D.General.loopModes.length;
+                            if (modelData === "PAUSE")
+                                return root.player.pause();
+                            if (modelData === "PLAY")
+                                return root.player.play();
+                        }
+                    }
+                    radius: root.radius
+                    Text {
+                        width: contentWidth
+                        font {
+                            pointSize: 14
+                            family: D.General.family
+                        }
+                        color: D.Colors.fg
 
-							delegate: Rectangle{
-									Behavior on color{
-										ColorAnimation{
-											duration: D.General.animDur
-										}
-									}
-								id: ctl
-								color: hovered ? D.Colors.surface : D.Colors.widget
-								property bool hovered: false
-								MouseArea{
-									anchors{
-										fill: parent
-									}
-									hoverEnabled: true
-									onHoveredChanged: ctl.hovered = !ctl.hovered
-									onClicked: {
-										if (modelData === "NEXT")
-										return root.player.next()
-										if (modelData === "LAST")
-										return root.player.previous()
-										if (modelData === "LOOP" || "LOOP 1" || "OFF")
-                    return D.General.player.loopState = (D.General.player.loopState + 1) % 3//return D.General.loopMode = (D.General.loopMode+1) % D.General.loopModes.length;
-										if (modelData === "PAUSE")
-										return root.player.pause()
-										if (modelData === "PLAY")
-										return root.player.play()
-									}
-								}
-								radius: root.radius
-								Text{
-									width: contentWidth
-									font{
-										pointSize: 14
-										family: D.General.family
+                        anchors {
+                            //fill: parent
+                            top: parent.top
+                            bottom: parent.bottom
+                            centerIn: parent
+                        }
+                        text: modelData
+                    }
+                    required property var modelData
+                    required property int index
+                    anchors {
+                        //left: (index === 0) ? parent.left : parent.left
+                        top: parent.top
+                        bottom: parent.bottom
+                    }
+                    width: (playbackCtl.width / playbackCtl.playback.length) - (row.spacing + 1)
+                }
+            }
+        }
+    }
 
-									}
-									color: D.Colors.fg
+    color: D.Colors.bg
+    anchors {
+        top: parent.top
+        bottom: parent.bottom
+        right: parent.right
+        margins: root.margin
+    }
+    //weird ahh math
+    width: parent.width - (artContainer.width + (root.margin * 3))
 
-									anchors{
-										//fill: parent
-										top: parent.top
-										bottom: parent.bottom
-										centerIn: parent
-									}
-									text: modelData
-								}
-								required property var modelData
-								required property int index
-								anchors{
-									margins: 5
-									//left: (index === 0) ? parent.left : parent.left
-									leftMargin: (index === 0) ? 5 : 0
-									top: parent.top
-								  bottom: parent.bottom
-								}
-								width: (playbackCtl.width - (row.spacing*playbackCtl.playback.length))/playbackCtl.playback.length
-							}
+    Text {
+        //splash text lol
+        id: splashTxt
+        width: contentWidth
 
-						}
-					}
-				}
+        text: curSplash
+        anchors {
+            top: parent.top
+            centerIn: parent
+            //horizontalCenterOffset: splashTxt.width/2
+            verticalCenterOffset: -150
+        }
 
-				color: D.Colors.bg
-				anchors{
-					top: parent.top
-					bottom: parent.bottom
-					right: parent.right
-					margins: root.margin
-				
-				}
-				//weird ahh math
-				width: parent.width - (artContainer.width + (root.margin *3))
+        color: D.Colors.surface
+        font {
+            family: D.General.family
+            bold: true
+            pointSize: 20//(splashTxt.implicitWidth > splashTxt.width)? 2 : 20
 
-				Text{
-					//splash text lol
-					id: splashTxt
-					width: contentWidth
+        }
 
-					text: curSplash
-				anchors{
-					top: parent.top
-					centerIn: parent
-					//horizontalCenterOffset: splashTxt.width/2
-					verticalCenterOffset: -150
-				
-				}
-
-			
-
-				color: D.Colors.surface
-				font{
-					family: D.General.family
-					bold: true
-						pointSize: 20//(splashTxt.implicitWidth > splashTxt.width)? 2 : 20
-
-					}
-
-				property int index: Math.floor(Math.random()*splash.length)
-				property string curSplash: splash[index]
-				property list<string> splash: D.General.splashes//["Now playing,","You are now enjoying,","Some cringy splash,","What would spotify say?"]
-			}
-		}
+        property int index: Math.floor(Math.random() * splash.length)
+        property string curSplash: splash[index]
+        property list<string> splash: D.General.splashes//["Now playing,","You are now enjoying,","Some cringy splash,","What would spotify say?"]
+    }
+}
