@@ -13,8 +13,8 @@ WlSessionLockSurface {
     Rectangle {
         id: rootRect
         property list<int> bars: []
-        property int lo: 90
-        property int hi: 110
+        property int lo: 2
+        property int hi: 25
         property real sensitivity: 1.25
         property real floor: 30
         property int cooldownMs: 150 * 2//* 4
