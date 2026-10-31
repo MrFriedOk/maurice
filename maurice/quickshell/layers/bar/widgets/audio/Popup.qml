@@ -32,7 +32,6 @@ PopupWindow {
 
         if (D.General.player.loopState === 2)
             return "LOOP";
-
     }
     property string pause: player.isPlaying ? "PAUSE" : "PLAY"
     property real pos: player.position
@@ -114,7 +113,6 @@ PopupWindow {
                             anchors {
                                 fill: parent
                             }
-
                         }
 
                         Rectangle {
@@ -128,12 +126,8 @@ PopupWindow {
 
                             //progress bar
                             color: D.Colors.fg
-                            width: {
-                                if (width > parent.width && (!root.player.loopState === 0))
-                                    return 0;
-                                else
-                                    return parent.width * root.remain;
-                            }
+                            width: root.remain*parent.width
+
                             radius: parent.radius
 
                             anchors {
@@ -141,9 +135,7 @@ PopupWindow {
                                 bottom: parent.bottom
                                 left: parent.left
                             }
-
                         }
-
                     }
 
                     Wi.Scramble {
@@ -166,7 +158,6 @@ PopupWindow {
                             leftMargin: 5
                             top: parent.top
                         }
-
                     }
 
                     Wi.Scramble {
@@ -187,7 +178,6 @@ PopupWindow {
                             topMargin: 25 + trackTitle.anchors.topMargin
                             top: parent.top
                         }
-
                     }
 
                     Rectangle {
@@ -237,7 +227,6 @@ PopupWindow {
                                             //fill: parent
                                             centerIn: parent
                                         }
-
                                     }
 
                                     MouseArea {
@@ -259,13 +248,11 @@ PopupWindow {
 
                                             if (modelData === "PLAY")
                                                 return root.player.play();
-
                                         }
 
                                         anchors {
                                             fill: parent
                                         }
-
                                     }
 
                                     anchors {
@@ -281,17 +268,13 @@ PopupWindow {
                                         ColorAnimation {
                                             duration: D.General.animDur
                                         }
-
                                     }
-
                                 }
-
                             }
 
                             anchors {
                                 centerIn: parent
                             }
-
                         }
 
                         anchors {
@@ -300,9 +283,7 @@ PopupWindow {
                             left: parent.left
                             margins: 10
                         }
-
                     }
-
                 }
 
                 Rectangle {
@@ -328,15 +309,9 @@ PopupWindow {
                         anchors {
                             fill: parent
                         }
-
                     }
-
                 }
-
             }
-
         }
-
     }
-
 }
