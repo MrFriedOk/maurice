@@ -1,9 +1,3 @@
-local fileExp = "dolphin"
-local launcher = "rofi -show drun"
-local terminal = "kitty"
-local browser = "firefox"
-local office = "libreoffice"
-local editor = "nvim"
 require("stuff.var")
 
 hl.bind("SUPER + N", hl.dsp.exec_cmd("qs ipc call menu toggle"))
