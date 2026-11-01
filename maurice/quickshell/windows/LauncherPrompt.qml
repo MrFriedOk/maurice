@@ -7,6 +7,12 @@ import QtQuick.Shapes
 
 Scope {
     id: root
+    Timer {
+        id: returnAnim
+        interval: D.General.animDur
+        onTriggered: menu.out = !menu.out
+        onRunningChanged: menu.out ? cont.width = 1 : cont.width = menu.width
+    }
     function size(md, ref) {
         if (md.text.length > 1)
             return (ref / 3);
@@ -17,7 +23,7 @@ Scope {
         {
             name: "setting",
             action: () => {
-                ipc.toggle();
+                Quickshell.execDetached('qs', 'ipc', 'call', 'settings', 'toggle');
             }
         },
     ]
@@ -27,7 +33,7 @@ Scope {
         target: "menu"
 
         function toggle(): void {
-            menu.out = !menu.out;
+            returnAnim.running = true;
         }
     }
 
@@ -54,16 +60,32 @@ Scope {
         }
 
         Rectangle {
+            id: cont
             //visible: prompt.hovered
             color: D.Colors.widget
+            width: menu.out ? parent.width : 1
+            Behavior on width {
+                NumberAnimation {
+                    duration: D.General.animDur
+                }
+            }
 
             anchors {
-                fill: parent
+                top: parent.top
+                right: parent.right
+                bottom: parent.bottom //fill: parent
                 topMargin: D.General.barHeight + 2
                 bottomMargin: 2
             }
             Column {
                 id: col
+                //visible: parent.width === menu.width
+                opacity: parent.width === menu.width ? 1 : 0.5
+                Behavior on opacity {
+                    NumberAnimation {
+                        duration: D.General.animDur * 2
+                    }
+                }
                 spacing: 5
                 anchors {
                     fill: parent
@@ -88,7 +110,12 @@ Scope {
                             width: size
                             height: size
                             readonly property real size: 24
-                            scale: 5 //size / viewBox
+                            scale: returnAnim.running ? 0 : 5
+                            Behavior on scale {
+                                NumberAnimation {
+                                    duration: 60
+                                }
+                            }//size / viewBox
                             Behavior on rotation {
                                 NumberAnimation {
                                     duration: 120
@@ -114,10 +141,7 @@ Scope {
                             }
                             hoverEnabled: true
                             onClicked: {
-                                command: {
-                                    if (delegateRt.modelData.name === "setting")
-                                        return ["qs", "ipc", "call", "settings", "toggle"];
-                                }
+                                command: modelData.action;
                             }
                         }
                         anchors {
