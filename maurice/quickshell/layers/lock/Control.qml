@@ -4,6 +4,8 @@ import "../../data" as D
 import "../bar/universal" as Wi
 
 Rectangle {
+
+    // Keys.onSpacePressed: D.General.player.isPlaying = !D.General.player.isPlaying
     //Text{
     //track title
     //text: root.player.trackTitle
@@ -89,6 +91,7 @@ Rectangle {
 
         Row {
             id: row
+            focus: true
             spacing: 5
             anchors {
                 fill: parent

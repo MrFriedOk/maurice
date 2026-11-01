@@ -14,13 +14,16 @@ Rectangle {
             command: ['systemctl', 'suspend']
         },
         {
-            text: "L"
+            text: "L",
+            command: ['pkill', '-u', '$USER']
         },
         {
-            text: "O"
+            text: "O",
+            command: ['poweroff']
         },
         {
-            text: "R"
+            text: "R",
+            command: ['reboot']
         },
     ]
 
@@ -41,9 +44,10 @@ Rectangle {
         }
 
         Column {
+            id: column
             clip: true
             spacing: 5
-            width: 50
+            //width: root.width
             anchors {
                 fill: parent
                 margins: 5
@@ -61,6 +65,11 @@ Rectangle {
                     Layout.fillWidth: true
                     implicitHeight: width ? width : 1
                     color: hovered ? D.Colors.surface : D.Colors.widget
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: D.General.animDur
+                        }
+                    }
                     property bool hovered: false
                     required property var modelData
 
@@ -69,7 +78,7 @@ Rectangle {
                         onHoveredChanged: btnCont.hovered = !btnCont.hovered
                         onClicked: Quickshell.execDetached(btnCont.modelData.command)
                         anchors {
-                            margins: 5
+                            //margins: 5
                             fill: parent
                         }
                     }
@@ -116,6 +125,7 @@ Rectangle {
     Behavior on implicitHeight {
         NumberAnimation {
             duration: D.General.animDur + 80
+            easing: Easing.InOutQuad
         }
     }
 }
