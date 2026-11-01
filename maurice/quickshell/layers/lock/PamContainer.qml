@@ -12,8 +12,6 @@ Rectangle {
 
     function colPalette(col) {
         let len = col.length;
-        console.log(len, col);
-
         return col[Math.floor(Math.random() * len)];
     }
 
@@ -85,7 +83,7 @@ Rectangle {
                         }
                         ShapePath {
                             property list<color> cols: [D.Colors.fg, D.Colors.accent, D.Colors.light]
-                            fillColor: root.colPalette(D.Colors.pan)//D.Colors.ase[Math.floor(Math.random() * D.Colors.ase.length)]//D.Colors.femboy[Math.floor(Math.random() * D.Colors.femboy.length)]//D.Colors.trans[Math.floor(Math.random() * D.Colors.trans.length)]//D.Colors.lesbian[Math.floor(Math.random() * D.Colors.lesbian.length)] //cols[Math.floor(Math.random() * cols.length)]
+                            fillColor: root.colPalette(D.Colors.aro)//D.Colors.ase[Math.floor(Math.random() * D.Colors.ase.length)]//D.Colors.femboy[Math.floor(Math.random() * D.Colors.femboy.length)]//D.Colors.trans[Math.floor(Math.random() * D.Colors.trans.length)]//D.Colors.lesbian[Math.floor(Math.random() * D.Colors.lesbian.length)] //cols[Math.floor(Math.random() * cols.length)]
                             strokeWidth: -1
 
                             PathSvg {
