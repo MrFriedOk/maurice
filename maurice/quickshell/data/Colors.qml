@@ -19,6 +19,8 @@ Singleton {
     property list<color> lesbian: ['#d62900', '#ff9b55', '#ffffff', '#d462a6', '#a50062']
     property list<color> trans: ['#5bcefa', '#f5a9b8', "#ffffff"]
     property list<color> femboy: ['#d460a7', '#e4adcd', '#ffffff', '#57cef8']
+    property list<color> ase: ['#000000', '#a3a3a3', '#ffffff', '#800080']
+    property list<color> pan: ['#ff218c', '#ffd800', '#21b1ff']
 
     //super efficient
     Behavior on bg {

@@ -56,19 +56,7 @@ Scope {
 
         //running: (root.art && !running)
         command: {
-            console.log("hui", matugen.url);
             ["sh", Quickshell.shellPath('data/art.sh'), matugen.url, matugen.scheme, matugen.configDir];
         }
-        onExited: (code, status) => {
-            return console.log("art.sh exited", code);
-        }
-
-        stderr: SplitParser {
-            onRead: (data) => {
-                return console.log("art.sh:", data);
-            }
-        }
-
     }
-
 }

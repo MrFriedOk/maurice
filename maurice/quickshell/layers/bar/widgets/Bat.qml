@@ -19,11 +19,6 @@ Item {
     property string batStr: bat.toFixed(2)
     property bool hovered: false
 
-    function gay() {
-        console.log("hi ", status);
-        console.log("j ", chgRt);
-    }
-
     visible: hasBat
     implicitWidth: wid.implicitWidth
     Layout.fillHeight: true
@@ -59,13 +54,10 @@ Item {
         hoverEnabled: true
         onHoveredChanged: {
             root.hovered = !root.hovered;
-            gay();
         }
 
         anchors {
             fill: parent
         }
-
     }
-
 }
