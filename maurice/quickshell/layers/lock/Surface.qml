@@ -1,6 +1,6 @@
 import "../../data" as D
 import "../bar/universal/" as Wi
-import "./" as Self
+import "./"
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
@@ -92,26 +92,15 @@ WlSessionLockSurface {
         //escape box
         //	width: 25
 
-        Self.Session {}
+        Session {}
         //MouseArea{
 
         anchors {
             fill: parent
         }
 
-        //	enabled: true
-        //anchors{
-        //	top: parent.top
-        //	left: parent.left
-        //}
-        //Rectangle{
-        //	anchors{
-        //		fill: parent
-        //	}
-        //}
-        //onHoveredChanged: parent.color: "green"
-        //onClicked: root.locked = false
-        //}
+        Select {}
+
         Rectangle {
             //BackgroundEffect.blurRegion: Region{item: bg.contentItem}
 
@@ -119,9 +108,9 @@ WlSessionLockSurface {
 
             color: "transparent"
 
-            Self.Playback {}
+            Playback {}
 
-            Self.PamContainer {}
+            PamContainer {}
             //id: bg
 
             anchors {

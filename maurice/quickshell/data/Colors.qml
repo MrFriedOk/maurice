@@ -30,6 +30,9 @@ Singleton {
     property list<color> queer: ['#99d9ea', '#00a2e8', '#b5e61d', '#ffffff', '#ffc90e', '#fd6666', '#ffaec9', '#000000']
     property list<color> progress: ['#e22016', '#66338b', '#fdd817', '#f4aec8', '#ffffff', '#7bcce5', '#945516', '#000000', '#f28917', '#efe524', '#78b82a', '#2c58a4', '#6d2380']
     property list<color> aro: ['#000000', '#ffffff', '#3da542', '#a7d379', '#a9a9a9']
+    property list<color> adaptCol: [fg, accent, light]
+    property var colorLists: [lesbian, trans, femboy, ase, pan, lesbian7, gay7, bi, enby, transMasc, aroAce, queer, progress, aro, adaptCol]
+    property list<color> activeCol: aro
 
     //super efficient
     Behavior on bg {
