@@ -4,26 +4,18 @@ import "../../data" as D
 import "../bar/universal" as Wi
 
 Rectangle {
-    focus: true
-    Keys.onSpacePressed: console.log("hi")//D.General.player.isPlaying = !D.General.player.isPlaying
-    //Text{
-    //track title
-    //text: root.player.trackTitle
-    //color: D.Colors.fg
-    //font{
-    //	family: D.General.family
-
-    //	pointSize: 18
-    //}
-    //width: contentWidth//parent.width/2
-    //anchors{
-    //	verticalCenterOffset: -65
-    //horizontalCenter: parent.horizontalCenter
-    //centerIn: parent
-    //}
-    //
-    //}
-    //
+    Shortcut {
+        sequence: "Ctrl + Space"
+        onActivated: D.General.player.isPlaying = !D.General.player.isPlaying
+    }
+    Shortcut {
+        sequence: "Ctrl + H"
+        onActivated: D.General.player.previous()
+    }
+    Shortcut {
+        sequence: "Ctrl + L"
+        onActivated: D.General.player.next()
+    }
     Wi.Scroll {
         cAlign: true
         pointSize: 16
@@ -35,15 +27,6 @@ Rectangle {
             centerIn: parent
         }
     }
-
-    //Wi.Scroll{
-    //	maxWidth: 400
-    //		text: "%1 : %2".arg(root.player.trackArtist,root.player.trackAlbum)
-    //	anchors{
-    //		top: parent.top
-    //		centerIn: parent
-    //	}
-    //}
     Item {
         id: trackOtherCon
         implicitWidth: 400
