@@ -7,6 +7,7 @@ import QtQuick.Shapes
 
 Scope {
     id: root
+    readonly property bool debug: true
     Timer {
         id: returnAnim
         interval: D.General.animDur
@@ -22,9 +23,7 @@ Scope {
     property list<var> items: [
         {
             name: "setting",
-            action: () => {
-                Quickshell.execDetached('qs', 'ipc', 'call', 'settings', 'toggle');
-            }
+            command: root.debug ? ['qs', '-c', '~/Projects/maurice/maurice/quickshell', 'ipc', 'call', 'settings', 'toggle'] : ['qs', 'ipc', 'call', 'settings', 'toggle']
         },
     ]
 
@@ -62,7 +61,7 @@ Scope {
         Rectangle {
             id: cont
             //visible: prompt.hovered
-            color: D.Colors.widget
+            color: D.Colors.bg
             width: menu.out ? parent.width : 1
             Behavior on width {
                 NumberAnimation {
@@ -74,8 +73,8 @@ Scope {
                 top: parent.top
                 right: parent.right
                 bottom: parent.bottom //fill: parent
-                topMargin: D.General.barHeight + 2
-                bottomMargin: 2
+                topMargin: D.General.barHeight //+ 2
+                //bottomMargin: 2
             }
             Column {
                 id: col
@@ -140,9 +139,7 @@ Scope {
                                 fill: parent
                             }
                             hoverEnabled: true
-                            onClicked: {
-                                command: modelData.action;
-                            }
+                            onClicked: delegateRt.modelData.command
                         }
                         anchors {
                             horizontalCenter: parent.horizontalCenter

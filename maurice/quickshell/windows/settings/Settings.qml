@@ -11,109 +11,105 @@ Scope {
         target: "settings"
 
         function toggle(): void {
-            settings.active = !settings.active;
+            //settings.active = !settings.active;
             root.visible = !root.visible;
         }
     }
-    LazyLoader {
-        id: settings
-        active: false
 
-        //loading: D.General.settings
+    //loading: D.General.settings
 
-        FloatingWindow {
-            //signal closeRequest()
-            //property bool open: D.General.settings
+    FloatingWindow {
+        //signal closeRequest()
+        //property bool open: D.General.settings
 
-            id: root
+        id: root
 
-            title: "settings"
-            //WlrLayershell.Layer: WlrLayer.Top
-            visible: false
-            //implicitHeight: 100
-            height: 500
-            width: 700
-            color: "transparent" //D.Colors.bg
+        title: "settings"
+        //WlrLayershell.Layer: WlrLayer.Top
+        visible: false
+        //implicitHeight: 100
+        height: 500
+        width: 700
+        color: "transparent" //D.Colors.bg
 
-            Rectangle {
-                id: win
+        Rectangle {
+            id: win
 
-                radius: D.General.radius
-                color: D.Colors.bg
+            radius: D.General.radius
+            color: D.Colors.bg
+
+            anchors {
+                fill: parent
+            }
+
+            Row {
+                spacing: 10
 
                 anchors {
+                    margins: 5
                     fill: parent
                 }
 
-                Row {
-                    spacing: 10
+                Rectangle {
+                    //tabs
+                    id: tabs
+
+                    width: 150
+                    color: D.Colors.surface
+                    radius: win.radius
 
                     anchors {
-                        margins: 5
-                        fill: parent
-                    }
+                        //left: parent.bottom
 
-                    Rectangle {
-                        //tabs
-                        id: tabs
-
-                        width: 150
-                        color: D.Colors.surface
-                        radius: win.radius
-
-                        anchors {
-                            //left: parent.bottom
-
-                            //margins: 5
-                            top: parent.top
-                            bottom: parent.bottom
-                        }
-                    }
-
-                    Rectangle {
-                        width: (win.width - tabs.width)
-                        radius: win.radius
-                        color: D.Colors.surface
-
-                        //field
-                        anchors {
-                            //left: parent.right
-
-                            top: parent.top
-                            bottom: parent.bottom
-                            rightMargin: 5
-                            topMargin: 20 + btn.anchors.margins
-                        }
+                        //margins: 5
+                        top: parent.top
+                        bottom: parent.bottom
                     }
                 }
 
                 Rectangle {
-                    id: btn
-
+                    width: (win.width - tabs.width)
                     radius: win.radius
-                    //button close
-                    color: area.containsMouse ? D.Colors.widget : D.Colors.surface
-                    width: 20
-                    height: 20
+                    color: D.Colors.surface
 
+                    //field
                     anchors {
-                        margins: 5
-                        right: parent.right
+                        //left: parent.right
+
                         top: parent.top
+                        bottom: parent.bottom
+                        rightMargin: 5
+                        topMargin: 20 + btn.anchors.margins
                     }
+                }
+            }
 
-                    MouseArea {
-                        //root.visible = false;
-                        //root.closeRequest;
+            Rectangle {
+                id: btn
 
-                        id: area
+                radius: win.radius
+                //button close
+                color: area.containsMouse ? D.Colors.widget : D.Colors.surface
+                width: 20
+                height: 20
 
-                        anchors.fill: parent
-                        enabled: true
-                        hoverEnabled: true
-                        onClicked: {
-                            ipc.toggle();
-                        }
+                anchors {
+                    margins: 5
+                    right: parent.right
+                    top: parent.top
+                }
+
+                MouseArea {
+                    //root.visible = false;
+                    //root.closeRequest;
+
+                    id: area
+
+                    anchors.fill: parent
+                    enabled: true
+                    hoverEnabled: true
+                    onClicked: {
+                        ipc.toggle();
                     }
                 }
             }
