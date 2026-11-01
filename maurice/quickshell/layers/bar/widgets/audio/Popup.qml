@@ -126,7 +126,7 @@ PopupWindow {
 
                             //progress bar
                             color: D.Colors.fg
-                            width: root.remain*parent.width
+                            width: root.remain * parent.width
 
                             radius: parent.radius
 
@@ -193,10 +193,11 @@ PopupWindow {
                         Row {
                             id: row
 
-                            spacing: 2
+                            spacing: 1
 
                             anchors {
                                 fill: parent
+                                margins: spacing
                             }
 
                             Repeater {
@@ -212,7 +213,7 @@ PopupWindow {
                                     property bool hovered: false
 
                                     color: hovered ? D.Colors.surface : D.Colors.widget
-                                    width: (playback.width - (row.spacing * playback.content.length)) / playback.content.length
+                                    width: (playback.width / playback.content.length) - row.spacing * 1.5//(playback.width - (row.spacing * playback.content.length)) / playback.content.length
 
                                     Text {
                                         //property var cols: [D.Colors.fg, D.Colors.bg]

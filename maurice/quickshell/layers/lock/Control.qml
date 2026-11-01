@@ -4,8 +4,8 @@ import "../../data" as D
 import "../bar/universal" as Wi
 
 Rectangle {
-
-    // Keys.onSpacePressed: D.General.player.isPlaying = !D.General.player.isPlaying
+    focus: true
+    Keys.onSpacePressed: console.log("hi")//D.General.player.isPlaying = !D.General.player.isPlaying
     //Text{
     //track title
     //text: root.player.trackTitle
@@ -91,7 +91,6 @@ Rectangle {
 
         Row {
             id: row
-            focus: true
             spacing: 5
             anchors {
                 fill: parent
@@ -154,7 +153,7 @@ Rectangle {
                         top: parent.top
                         bottom: parent.bottom
                     }
-                    width: (playbackCtl.width / playbackCtl.playback.length) - (row.spacing + 1)
+                    width: (playbackCtl.width / playbackCtl.playback.length) - (row.spacing * 1.25)
                 }
             }
         }
