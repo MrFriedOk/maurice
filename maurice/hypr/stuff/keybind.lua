@@ -25,18 +25,18 @@ hl.bind(
 hl.bind("SUPER + A", hl.dsp.exec_cmd(launcher))
 
 --emoticond by cloveian!! >w<
-hl.bind("SUPER + SHIFT + E", hl.dsp.exec_cmd("emoticond menu --launcher rofi"))
+--hl.bind("SUPER + SHIFT + E", hl.dsp.exec_cmd("emoticond menu --launcher rofi"))
 
 --screnshot, sry windows users
 hl.bind("SUPER + P", hl.dsp.exec_cmd("hyprshot -m region -f $(date '+%Y-%m-%d_%H.%M.%S.png') -o ~/Screenshots"))
 
 --ocr
-hl.bind(
-	"SUPER + SHIFT + X",
-	hl.dsp.exec_cmd(
-		" || pidof slurp || grim -g \"$(slurp $SLURP_ARGS)\" \"/tmp/ocr_image.png\" && tesseract \"/tmp/ocr_image.png\" stdout -l $(tesseract --list-langs | awk 'NR>1{print $1}' | tr '\\\\n' '+' | sed 's/\\\\+$/\\\\n/') | wl-copy && rm \"/tmp/ocr_image.png\""
-	)
-)
+--hl.bind(
+--	"SUPER + SHIFT + X",
+--	hl.dsp.exec_cmd(
+--		" || pidof slurp || grim -g \"$(slurp $SLURP_ARGS)\" \"/tmp/ocr_image.png\" && tesseract \"/tmp/ocr_image.png\" stdout -l $(tesseract --list-langs | awk 'NR>1{print $1}' | tr '\\\\n' '+' | sed 's/\\\\+$/\\\\n/') | wl-copy && rm \"/tmp/ocr_image.png\""
+--	)
+--)
 --color picker, i hardly know'er
 hl.bind("SUPER + SHIFT + P", hl.dsp.exec_cmd("hyprpicker -a"))
 
@@ -130,7 +130,7 @@ hl.bind("SUPER + L", hl.dsp.exec_cmd("qs ipc call lock lock"))
 
 --apps
 hl.bind("SUPER + T", hl.dsp.exec_cmd(terminal))
-hl.bind("XF86PerformanceMode", hl.dsp.exec_cmd("~/osu.sh"))
+--hl.bind("XF86PerformanceMode", hl.dsp.exec_cmd("~/osu.sh"))
 hl.bind("SUPER + E", hl.dsp.exec_cmd(fileExp))
 hl.bind("SUPER + B", hl.dsp.exec_cmd(browser))
 hl.bind("SUPER + C", hl.dsp.exec_cmd(editor))
