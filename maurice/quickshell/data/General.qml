@@ -3,6 +3,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Services.Mpris
 import Quickshell.Io
+import "../windows/settings/" as S
 
 //general stuff, prolly should sort out later
 Singleton {
@@ -15,6 +16,10 @@ Singleton {
 
     id: gen
 
+    function toggle() {
+        settings = !settings;
+    }
+    property bool settings: false
     readonly property list<string> splashes: JSON.parse(splashesJson.text())//JSON.parse(Quickshell.shellPath('data/splashes.json'))
     //property int loopState: player.loopState
     property alias family: adapter.family

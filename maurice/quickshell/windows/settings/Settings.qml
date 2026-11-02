@@ -6,15 +6,9 @@ import Quickshell.Io
 import Quickshell.Wayland
 
 Scope {
-    IpcHandler {
-        id: ipc
-        target: "settings"
-
-        function toggle(): void {
-            //settings.active = !settings.active;
-            root.visible = !root.visible;
-        }
-    }
+    // property alias ipc: ipc
+    // property alias visible: root.visible
+    //property var func: ipc.toggle()
 
     //loading: D.General.settings
 
@@ -23,10 +17,19 @@ Scope {
         //property bool open: D.General.settings
 
         id: root
+        //IpcHandler {
+        //    id: ipc
+        //    target: "settings"
+
+        //    function toggle(): void {
+        //        //settings.active = !settings.active;
+        //        root.visible = !root.visible;
+        //    }
+        //}
 
         title: "settings"
         //WlrLayershell.Layer: WlrLayer.Top
-        visible: false
+        visible: D.General.settings//false
         //implicitHeight: 100
         height: 500
         width: 700

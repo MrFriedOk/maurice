@@ -1,4 +1,5 @@
 import "../data" as D
+import "./settings" as S
 import QtQuick
 import Quickshell
 import Quickshell.Wayland
@@ -20,11 +21,15 @@ Scope {
         else
             return 96;
     }
-    property list<var> items: [
+    property var items: [
         {
             name: "setting",
-            command: () => root.debug ? Quickshell.execDetached(['qs', '-c', '~/Projects/maurice/maurice/quickshell', 'ipc', 'call', 'settings', 'toggle']) : ['qs', 'ipc', 'call', 'settings', 'toggle']
+            run: () => D.General.toggle()
         },
+        {
+            name: 'hi',
+            run: () => console.log('hi')
+        }
     ]
 
     IpcHandler {
@@ -139,7 +144,7 @@ Scope {
                                 fill: parent
                             }
                             hoverEnabled: true
-                            onClicked: delegateRt.modelData.command()//console.log(delegateRt.modelData.command)//Quickshell.execDetached(['qs', '-c', '~/Projects/maurice/maurice/quickshell', 'ipc', 'call', 'settings', 'toggle']) //delegateRt.modelData.command);//Quickshell.execDetached(delegateRt.modelData.command);
+                            onClicked: delegateRt.modelData.run()
                         }
                         anchors {
                             horizontalCenter: parent.horizontalCenter
