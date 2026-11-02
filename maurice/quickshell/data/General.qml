@@ -15,30 +15,57 @@ Singleton {
 
     id: gen
 
-    property string family: font.name
     readonly property list<string> splashes: JSON.parse(splashesJson.text())//JSON.parse(Quickshell.shellPath('data/splashes.json'))
-    property string scheme: "fruit-salad"
-    property bool adaptPS: true
-    //property var fonts: [font.name] //["SpaceMono Nerd Font", "Maple Mono NF", "Red Hat Text", "Readex Pro", "OpenDyslexic Nerd Font", "Atkinson Hyperlegible"]
-    property int size: adaptPS ? barHeight / 2 : 10
-    property int txtSpacing: 5
-    property bool bold: false
-    property int spacing: 2
-    property int radius: 0
-    property int animDur: 80
-    property int barHeight: 20
-    property bool widRect: sketchBar ? false : true
-    property bool outline: sketchBar ? false : false
-    property bool sketchBar: false
-    property bool iHateMyCPU: true //&& vizEnabled
-    property bool vizEnabled: false
-    property bool adaptiveWall: true
     //property int loopState: player.loopState
+    property alias family: adapter.family
+    property alias adaptPS: adapter.adaptPS
+    property alias size: adapter.size
+    property alias bold: adapter.bold
+    property alias spacing: adapter.spacing
+    property alias radius: adapter.radius
+    property alias animDur: adapter.animDur
+    property alias barHeight: adapter.barHeight
+    property alias widRect: adapter.widRect
+    property alias outline: adapter.outline
+    property alias sketchBar: adapter.sketchBar
+    property alias iHateMyCPU: adapter.iHateMyCPU
+    property alias vizEnabled: adapter.vizEnabled
+    property alias adaptiveWall: adapter.adaptiveWall
     readonly property var player: {
         const list = Mpris.players.values;
         return list.find(p => {
             return p.playbackState === MprisPlaybackState.Playing;
         }) ?? list[0] ?? null;
+    }
+
+    FileView {
+        id: file
+        path: Quickshell.shellPath('data/general.json')
+        watchChanges: true
+        onFileChanged: reload()
+        onAdapterChanged: writeAdapter()
+
+        adapter: JsonAdapter {
+            id: adapter
+            property string scheme: "fruit-salad"
+
+            property string family: font.name
+            property bool adaptPS: true
+            //property var fonts: [font.name] //["SpaceMono Nerd Font", "Maple Mono NF", "Red Hat Text", "Readex Pro", "OpenDyslexic Nerd Font", "Atkinson Hyperlegible"]
+            property int size: adaptPS ? barHeight / 2 : 10
+            property int txtSpacing: 5
+            property bool bold: false
+            property int spacing: 2
+            property int radius: 0
+            property int animDur: 80
+            property int barHeight: 20
+            property bool widRect: sketchBar ? false : true
+            property bool outline: sketchBar ? false : false
+            property bool sketchBar: false
+            property bool iHateMyCPU: true //&& vizEnabled
+            property bool vizEnabled: false
+            property bool adaptiveWall: true
+        }
     }
 
     FontLoader {
