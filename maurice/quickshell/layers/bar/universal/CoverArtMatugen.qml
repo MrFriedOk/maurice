@@ -23,8 +23,6 @@ Scope {
 
     readonly property var player: D.General.player
     readonly property string art: player.trackArtUrl
-    readonly property real length: player.length
-    readonly property real pos: player.position
 
     onArtChanged: {
         if (root.art && !matugen.running) {
@@ -55,8 +53,6 @@ Scope {
         property string configDir: Quickshell.shellPath('data')
 
         //running: (root.art && !running)
-        command: {
-            ["sh", Quickshell.shellPath('data/art.sh'), matugen.url, matugen.scheme, matugen.configDir];
-        }
+        command: ["sh", Quickshell.shellPath('data/art.sh'), matugen.url, matugen.scheme, matugen.configDir]
     }
 }
