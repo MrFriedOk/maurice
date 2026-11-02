@@ -26,9 +26,10 @@ The code in this repo depends on packages/applications besides Quickshell.
   - `fish`, shell used with kitty
   - `starship`, shell customization
   - `nvim`, the best text editor!
+  - `rofi`, the launcher used (for now)
 #### Arch
 ```
-sudo pacman -S --needed hyprland brightnessctl upower cava pipewire quickshell curl matugen fish starship
+sudo pacman -S --needed hyprland brightnessctl upower cava pipewire quickshell curl matugen fish starship rofi
 ```
 ### Guided
 For a standard install, step-by-step
