@@ -70,7 +70,25 @@ Rectangle {
         }
         height: 50
 
-        property list<string> playback: ["LAST", root.loop, root.pause, "NEXT"]
+        property list<string> playback: [
+            {
+                name: "LAST",
+                command: root.player.previous()
+            },
+            {
+                name: root.loop,
+                //not sure why i didn't use the stupid 'root' here
+                command: D.General.player.loopState = (D.General.player.loopState + 1) % 3
+            },
+            {
+                name: root.pause,
+                command: root.player.isPlaying = !root.player.isPLaying
+            },
+            {
+                name: "NEXT",
+                command: root.player.next()
+            }
+        ]
 
         Row {
             id: row
