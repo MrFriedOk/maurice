@@ -94,10 +94,10 @@ Singleton {
             list: aro
         }
     ]
-    property list<color> activeCol: file.activeCol
+    property list<color> activeCol: file.adapter.activeCol
 
     function newCol(col) {
-        file.activeCol = col;
+        file.adapter.activeCol = col;
     }  //adaptCol
 
     FileView {
@@ -107,6 +107,7 @@ Singleton {
         onFileChanged: reload()
         onAdapterUpdated: writeAdapter()
         blockLoading: true
+
         adapter: JsonAdapter {
             property list<color> activeCol: []
         }
