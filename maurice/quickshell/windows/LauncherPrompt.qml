@@ -7,7 +7,7 @@ import QtQuick.Shapes
 
 Scope {
     id: root
-    readonly property bool debug: true
+    readonly property bool debug: false
     Timer {
         id: returnAnim
         interval: D.General.animDur
@@ -23,7 +23,7 @@ Scope {
     property list<var> items: [
         {
             name: "setting",
-            command: root.debug ? ['qs', '-c', '~/Projects/maurice/maurice/quickshell', 'ipc', 'call', 'settings', 'toggle'] : ['qs', 'ipc', 'call', 'settings', 'toggle']
+            command: () => root.debug ? Quickshell.execDetached(['qs', '-c', '~/Projects/maurice/maurice/quickshell', 'ipc', 'call', 'settings', 'toggle']) : ['qs', 'ipc', 'call', 'settings', 'toggle']
         },
     ]
 
@@ -139,7 +139,7 @@ Scope {
                                 fill: parent
                             }
                             hoverEnabled: true
-                            onClicked: console.log(delegateRt.modelData.command)//Quickshell.execDetached(['qs', '-c', '~/Projects/maurice/maurice/quickshell', 'ipc', 'call', 'settings', 'toggle']) //delegateRt.modelData.command);//Quickshell.execDetached(delegateRt.modelData.command);
+                            onClicked: delegateRt.modelData.command()//console.log(delegateRt.modelData.command)//Quickshell.execDetached(['qs', '-c', '~/Projects/maurice/maurice/quickshell', 'ipc', 'call', 'settings', 'toggle']) //delegateRt.modelData.command);//Quickshell.execDetached(delegateRt.modelData.command);
                         }
                         anchors {
                             horizontalCenter: parent.horizontalCenter

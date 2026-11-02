@@ -51,7 +51,7 @@ Rectangle {
                 family: D.General.family
                 pointSize: 16
             }
-            text: "%1 : %2".arg(root.player.trackArtist, root.player.trackAlbum)
+            text: "%1 : %2".arg(D.General.player.trackArtist, D.General.player.trackAlbum)
         }
     }
     radius: parent.radius
@@ -70,23 +70,22 @@ Rectangle {
         }
         height: 50
 
-        property list<string> playback: [
+        property var playback: [
             {
                 name: "LAST",
-                command: root.player.previous()
+                click: () => D.General.player.previous()
             },
             {
                 name: root.loop,
-                //not sure why i didn't use the stupid 'root' here
-                command: D.General.player.loopState = (D.General.player.loopState + 1) % 3
+                click: () => D.General.player.loopState = (D.General.player.loopState + 1) % 3
             },
             {
                 name: root.pause,
-                command: root.player.isPlaying = !root.player.isPLaying
+                click: () => D.General.player.isPlaying = !root.player.isPlaying
             },
             {
                 name: "NEXT",
-                command: root.player.next()
+                click: () => D.General.player.next()
             }
         ]
 
@@ -117,18 +116,7 @@ Rectangle {
                         }
                         hoverEnabled: true
                         onHoveredChanged: ctl.hovered = !ctl.hovered
-                        onClicked: {
-                            if (modelData === "NEXT")
-                                return root.player.next();
-                            if (modelData === "LAST")
-                                return root.player.previous();
-                            if (modelData === "LOOP" || "LOOP 1" || "OFF")
-                                return D.General.player.loopState = (D.General.player.loopState + 1) % 3;//return D.General.loopMode = (D.General.loopMode+1) % D.General.loopModes.length;
-                            if (modelData === "PAUSE")
-                                return root.player.pause();
-                            if (modelData === "PLAY")
-                                return root.player.play();
-                        }
+                        onClicked: ctl.modelData.click()
                     }
                     radius: root.radius
                     Text {
@@ -145,7 +133,7 @@ Rectangle {
                             bottom: parent.bottom
                             centerIn: parent
                         }
-                        text: modelData
+                        text: modelData.name
                     }
                     required property var modelData
                     required property int index

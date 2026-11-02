@@ -185,7 +185,24 @@ PopupWindow {
 
                         id: playback
 
-                        property var content: ["LAST", root.loop, root.pause, "NEXT"]
+                        property var content: [
+                            {
+                                name: "LAST",
+                                click: () => D.General.player.previous()
+                            },
+                            {
+                                name: root.loop,
+                                click: () => D.General.player.loopState = (D.General.player.loopState + 1) % 3
+                            },
+                            {
+                                name: root.pause,
+                                click: () => D.General.player.isPlaying = !D.General.player.isPlaying
+                            },
+                            {
+                                name: "NEXT",
+                                click: () => D.General.player.next()
+                            }
+                        ]
 
                         height: 25
                         color: D.Colors.surface
@@ -221,7 +238,7 @@ PopupWindow {
 
                                         id: playbackTxt
 
-                                        text: playbackRoot.modelData
+                                        text: playbackRoot.modelData.name
                                         color: D.Colors.fg //cols[0]
 
                                         anchors {
@@ -234,22 +251,7 @@ PopupWindow {
                                         enabled: true
                                         hoverEnabled: true
                                         onHoveredChanged: playbackRoot.hovered = !playbackRoot.hovered
-                                        onClicked: {
-                                            if (modelData === "NEXT")
-                                                return root.player.next();
-
-                                            if (modelData === "LAST")
-                                                return root.player.previous();
-
-                                            if (modelData === "LOOP 1" || "LOOP" || "OFF")
-                                                return D.General.player.loopState = (D.General.player.loopState + 1) % 3;
-
-                                            if (modelData === "PAUSE")
-                                                return root.player.pause();
-
-                                            if (modelData === "PLAY")
-                                                return root.player.play();
-                                        }
+                                        onClicked: playbackRoot.modelData.click()
 
                                         anchors {
                                             fill: parent
