@@ -36,7 +36,7 @@ These are listed in the code (Hyprland's `stuff/keybind.lua`) but are not necess
   - `dolphin`
 #### Arch
 ```
-sudo pacman -S --needed hyprland brightnessctl upower cava pipewire quickshell curl matugen fish starship rofi
+sudo pacman -S --needed hyprland brightnessctl upower cava pipewire quickshell curl matugen fish starship rofi hyprpicker hyprshot
 ```
 ### Guided
 For a standard install, step-by-step
