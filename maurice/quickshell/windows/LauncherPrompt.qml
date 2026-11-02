@@ -7,7 +7,7 @@ import QtQuick.Shapes
 
 Scope {
     id: root
-    readonly property bool debug: true
+    readonly property bool debug: false
     Timer {
         id: returnAnim
         interval: D.General.animDur

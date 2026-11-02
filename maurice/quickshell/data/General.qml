@@ -39,14 +39,16 @@ Singleton {
     }
 
     FileView {
-        id: file
+        //id: file
         path: Quickshell.shellPath('data/general.json')
         watchChanges: true
-        onFileChanged: reload()
+        blockLoading: true
+        //onFileChanged: reload()
         onAdapterChanged: writeAdapter()
 
         adapter: JsonAdapter {
             id: adapter
+
             property string scheme: "fruit-salad"
 
             property string family: font.name
