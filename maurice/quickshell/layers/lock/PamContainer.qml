@@ -113,6 +113,10 @@ Rectangle {
             color: D.Colors.fg
             focus: true
             cursorVisible: false
+            Window.onActiveChanged: {
+                if (Window.active)
+                    forceActiveFocus();
+            }
             Component.onCompleted: forceActiveFocus()
             onAccepted: {
                 ctx.submit(text);

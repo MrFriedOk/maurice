@@ -58,7 +58,7 @@ Rectangle {
                 anchors {
                     fill: parent
                 }
-                onClicked: D.Colors.activeCol = modelData.list
+                onClicked: D.Colors.newCol(modelData)//D.Colors.activeCol = modelData.list
             }
         }
     }

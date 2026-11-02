@@ -1,6 +1,7 @@
 pragma Singleton
 import QtQuick
 import Quickshell
+import Quickshell.Io
 
 //the colors (temp)
 Singleton {
@@ -93,7 +94,23 @@ Singleton {
             list: aro
         }
     ]
-    property list<color> activeCol: aro
+    property list<color> activeCol: file.activeCol
+
+    function newCol(col) {
+        file.activeCol = col;
+    }  //adaptCol
+
+    FileView {
+        id: file
+        path: Quickshell.shellPath('data/activeCol.json')
+        watchChanges: true
+        onFileChanged: reload()
+        onAdapterUpdated: writeAdapter()
+        blockLoading: true
+        adapter: JsonAdapter {
+            property list<color> activeCol: []
+        }
+    }
 
     //super efficient
     Behavior on bg {
