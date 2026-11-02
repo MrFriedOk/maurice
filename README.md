@@ -29,11 +29,14 @@ The code in this repo depends on packages/applications besides Quickshell.
   - `rofi`, the launcher used (for now)
   - `hyprpicker`, on-screen color picker
   - `hyprshot`, screen shot utility
+  - Bibata cursor theme, available on the AUR
+  - `eza`, fish aliases `ls` and others to eza, so it is needed
 #### Other
 These are listed in the code (Hyprland's `stuff/keybind.lua`) but are not necessarily required and can be adjusted as needed (and will probably be available for customizing via Quickshell?). The shell will run without them, Hyprland will probably ignore it, the keybinds to them just wont do anything.
   - `firefox`
   - `libreoffice`
   - `dolphin`
+  - `gitui`, listed in fish config but not needed
 #### Arch
 ```
 sudo pacman -S --needed hyprland brightnessctl upower cava pipewire quickshell curl matugen fish starship rofi hyprpicker hyprshot
