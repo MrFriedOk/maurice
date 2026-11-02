@@ -7,7 +7,7 @@ import QtQuick.Shapes
 
 Scope {
     id: root
-    readonly property bool debug: false
+    readonly property bool debug: true
     Timer {
         id: returnAnim
         interval: D.General.animDur
@@ -139,7 +139,7 @@ Scope {
                                 fill: parent
                             }
                             hoverEnabled: true
-                            onClicked: delegateRt.modelData.command
+                            onClicked: console.log(delegateRt.modelData.command)//Quickshell.execDetached(['qs', '-c', '~/Projects/maurice/maurice/quickshell', 'ipc', 'call', 'settings', 'toggle']) //delegateRt.modelData.command);//Quickshell.execDetached(delegateRt.modelData.command);
                         }
                         anchors {
                             horizontalCenter: parent.horizontalCenter
@@ -156,4 +156,8 @@ Scope {
             }
         }
     }
+    //Process {
+    //    running: true
+    //    command: 'no'
+    //}
 }
