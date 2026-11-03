@@ -54,7 +54,7 @@ ListView {
         }
         MouseArea {
             id: area
-            onClicked: 'hi'
+            //onClicked: 'hi'
             anchors {
                 fill: parent
             }
