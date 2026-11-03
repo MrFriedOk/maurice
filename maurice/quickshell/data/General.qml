@@ -64,7 +64,7 @@ Singleton {
             property int txtSpacing: 5
             property bool bold: false
             property int spacing: 2
-            property int radius: 0
+            property int radius: 4
             property int animDur: 80
             property int barHeight: 20
             property bool widRect: sketchBar ? false : true

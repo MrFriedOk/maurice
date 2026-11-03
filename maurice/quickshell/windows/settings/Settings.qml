@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
+import "."
 
 Scope {
     // property alias ipc: ipc
@@ -46,6 +47,7 @@ Scope {
             }
 
             Row {
+                id: row
                 spacing: 10
 
                 anchors {
@@ -61,6 +63,8 @@ Scope {
                     color: D.Colors.surface
                     radius: win.radius
 
+                    TabsList {}
+
                     anchors {
                         //left: parent.bottom
 
@@ -71,9 +75,14 @@ Scope {
                 }
 
                 Rectangle {
-                    width: (win.width - tabs.width)
+                    //content container
+                    width: (win.width - tabs.width) - 20
                     radius: win.radius
                     color: D.Colors.surface
+
+                    ContentWindow {
+                        activeWin: 'hi'
+                    }
 
                     //field
                     anchors {
@@ -81,7 +90,9 @@ Scope {
 
                         top: parent.top
                         bottom: parent.bottom
-                        rightMargin: 5
+                        right: parent.right
+                        rightMargin: 1
+                        //leftMargin: tabs.width + 5
                         topMargin: 20 + btn.anchors.margins
                     }
                 }
@@ -111,9 +122,7 @@ Scope {
                     anchors.fill: parent
                     enabled: true
                     hoverEnabled: true
-                    onClicked: {
-                        ipc.toggle();
-                    }
+                    onClicked: D.General.toggle()
                 }
             }
         }
