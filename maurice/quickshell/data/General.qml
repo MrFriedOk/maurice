@@ -50,7 +50,7 @@ Singleton {
         watchChanges: true
         blockLoading: true
         onFileChanged: reload()
-        onAdapterChanged: writeAdapter()
+        onAdapterUpdated: writeAdapter()
 
         adapter: JsonAdapter {
             id: adapter

@@ -1,0 +1,18 @@
+{
+    "adaptPS": true,
+    "adaptiveWall": true,
+    "animDur": 80,
+    "barHeight": 20,
+    "bold": false,
+    "family": "Maple Mono NF",
+    "iHateMyCPU": true,
+    "outline": false,
+    "radius": 4,
+    "scheme": "fruit-salad",
+    "size": 10,
+    "sketchBar": true,
+    "spacing": 2,
+    "txtSpacing": 5,
+    "vizEnabled": false,
+    "widRect": false
+}
