@@ -18,7 +18,8 @@ Flickable {
         }
         height: 200
         Switch {
-            assigned: D.General.iHateMyCPU
+            assigned: D.General.sketchBar
+            onToggled: assigned => D.General.sketchBar = assigned
         }
     }
 }

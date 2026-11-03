@@ -7,6 +7,8 @@ Rectangle {
     id: root
     property bool assigned: false
 
+    signal toggled(bool assigned)
+
     radius: height / 2
     height: 30
     width: height * 2
@@ -48,7 +50,7 @@ Rectangle {
             anchors {
                 fill: parent
             }
-            onClicked: root.assigned = !root.assigned
+            onClicked: root.toggled(!root.assigned)//root.assigned = !root.assigned
         }
     }
 }
