@@ -28,7 +28,7 @@ Scope {
         },
         {
             name: 'dash',
-            run: () => D.General.toggle(D.General.dash)
+            run: () => D.General.toggle("dash")
         //console.log('hi')
         }
     ]
