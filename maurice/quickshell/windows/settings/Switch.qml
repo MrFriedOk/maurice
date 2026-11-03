@@ -24,6 +24,7 @@ Rectangle {
             Behavior on x {
                 NumberAnimation {
                     duration: 120
+                    easing: Easing.InOutQuad
                 }
             }
             //surely there's a better way to do this

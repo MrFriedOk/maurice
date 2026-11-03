@@ -49,7 +49,7 @@ Singleton {
         path: Quickshell.shellPath('data/general.json')
         watchChanges: true
         blockLoading: true
-        //onFileChanged: reload()
+        onFileChanged: reload()
         onAdapterChanged: writeAdapter()
 
         adapter: JsonAdapter {

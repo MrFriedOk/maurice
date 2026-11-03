@@ -10,14 +10,15 @@ Flickable {
     }
     contentHeight: 2000
     clip: true
-    Rectangle {
-        radius: D.General.radius
+    Row {
+        //radius: D.General.radius
         anchors {
             left: parent.left
             right: parent.right
         }
         height: 200
         Switch {
+            //sketch bar?
             assigned: D.General.sketchBar
             onToggled: assigned => D.General.sketchBar = assigned
         }
