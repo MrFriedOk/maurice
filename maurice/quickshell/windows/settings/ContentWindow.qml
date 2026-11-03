@@ -17,6 +17,8 @@ Flickable {
             right: parent.right
         }
         height: 200
-        Switch {}
+        Switch {
+            assigned: D.General.iHateMyCPU
+        }
     }
 }
