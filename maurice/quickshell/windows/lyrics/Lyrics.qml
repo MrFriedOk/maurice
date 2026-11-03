@@ -5,8 +5,9 @@ import "."
 import "../../data" as D
 
 PanelWindow {
+    id: root
     color: "transparent"
-    property string lrc: fetch.fetch(D.General.player)
+    property string lrc: "hi"//fetch.fetch(D.General.player)
     exclusionMode: ExclusionMode.Ignore
     visible: false//D.General.lyrics
     anchors {
@@ -19,8 +20,19 @@ PanelWindow {
             fill: parent
         }
         color: D.Colors.bg
+        Text {
+            anchors {
+                fill: parent
+            }
+            font {
+                family: D.General.family
+                pointSize: 8
+            }
+            color: D.Colors.fg
+            text: root.lrc
+        }
     }
-    Fetch {
-        id: fetch
-    }
+    //Fetch {
+    //    id: fetch
+    //}
 }

@@ -16,7 +16,7 @@ Scope {
                 try {
                     const res = JSON.parse(text);
                     const hit = Array.isArray(res) ? res[0] : res;
-                    fetchProc.lrc = hit?.syncedLyrics ?? "";
+                    fetchProc.lrc = hit?.syncedLyrics ?? "no lyrics?";
 
                     console.log(fetchProc.lrc);
                 } catch (e) {
@@ -29,5 +29,7 @@ Scope {
         const q = [p.trackArtist, p.trackTitle].map(encodeURIComponent).join("%20");
         fetchProc.url = "https://lrclib.net/api/search?q=" + q;
         fetchProc.running = true;
+
+        return fetchProc.lrc;
     }
 }
