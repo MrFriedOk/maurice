@@ -4,16 +4,19 @@ import "."
 import "../../data" as D
 
 Flickable {
-    property var activeWin: ''
+    id: root
+    //lol property bool activeWin: []
+    property bool general: false
+    property bool visualizer: false
     anchors {
         fill: parent
     }
     contentHeight: 2000
     clip: true
     General {
-        visible: false
+        visible: root.general
     }
     Visualizer {
-        visible: true
+        visible: root.general
     }
 }

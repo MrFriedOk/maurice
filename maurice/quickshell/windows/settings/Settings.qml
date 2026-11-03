@@ -33,6 +33,9 @@ Scope {
         visible: D.General.settings//false
         //implicitHeight: 100
         height: 500
+        property bool general: tabs.general//false
+        property bool visualizer: tabs.visualizer//false
+        property alias tabs: tabsList
         width: 700
         color: "transparent" //D.Colors.bg
 
@@ -63,7 +66,9 @@ Scope {
                     color: D.Colors.surface
                     radius: win.radius
 
-                    TabsList {}
+                    TabsList {
+                        id: tabsList
+                    }
 
                     anchors {
                         //left: parent.bottom
@@ -81,7 +86,8 @@ Scope {
                     color: D.Colors.surface
 
                     ContentWindow {
-                        activeWin: 'hi'
+                        general: root.general
+                        visualizer: root.visualizer
                     }
 
                     //field

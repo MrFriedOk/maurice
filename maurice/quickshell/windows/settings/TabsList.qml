@@ -3,9 +3,13 @@ import QtQuick
 import "../../data" as D
 
 ListView {
+    id: root
+    property bool general: true
+    property bool visualizer: false
     property var tabs: [
         {
-            name: "General"
+            name: "General",
+            toggle: "general"
         },
         {
             name: "Font"
@@ -14,7 +18,8 @@ ListView {
             name: "Bar"
         },
         {
-            name: "Visualizer"
+            name: "Visualizer",
+            toggle: "visualizer"
         }
     ]
     anchors {
@@ -59,6 +64,7 @@ ListView {
                 fill: parent
             }
             hoverEnabled: true
+            onClicked: root[delegateRtmodelData.toggle] = root[!delegateRt.modelData.toggle]
         }
     }
 }
