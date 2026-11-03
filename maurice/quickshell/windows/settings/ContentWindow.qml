@@ -11,7 +11,7 @@ Flickable {
     contentHeight: 2000
     clip: true
     General {
-        visible: false//true
+        visible: false
     }
     Visualizer {
         visible: true

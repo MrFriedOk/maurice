@@ -1,17 +1,38 @@
 import Quickshell
 import QtQuick
 import "../../data" as D
+import "."
 
-Row {
-    //radius: D.General.radius
+Column {
+    id: root
     anchors {
-        left: parent.left
-        right: parent.right
+        fill: parent
     }
-    height: 200
-    Switch {
-        //sketch bar?
-        assigned: D.General.sketchBar
-        onToggled: assigned => D.General.sketchBar = assigned
+    property var switches: [
+        {
+            toggle: "adaptiveWall",
+            name: "Use 'adaptive wallpaper'"
+        },
+        {
+            toggle: "sketchBar",
+            name: "Enable bar 'sketching'"
+        },
+    ]
+    Repeater {
+        model: root.switches
+
+        delegate: Row {
+            id: row
+            required property var modelData
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+            Switch {
+                assigned: D.General[row.modelData.toggle]//D.General.iHateMyCPU//row.modelData.toggle
+                onToggled: assigned => D.General[row.modelData.toggle] = assigned
+                //row.modelData.toggle = assigned
+            }
+        }
     }
 }
