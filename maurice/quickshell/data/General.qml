@@ -16,10 +16,13 @@ Singleton {
 
     id: gen
 
-    function toggle() {
-        settings = !settings;
+    function toggle(property) {
+        //settings = !settings;
+        //property = !property;
+        gen[property] = !gen[property];
     }
     property bool settings: false
+    property bool dash: false
     readonly property list<string> splashes: JSON.parse(splashesJson.text())//JSON.parse(Quickshell.shellPath('data/splashes.json'))
     //property int loopState: player.loopState
     property alias family: adapter.family

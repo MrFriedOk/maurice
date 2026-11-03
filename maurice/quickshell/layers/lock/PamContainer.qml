@@ -134,6 +134,22 @@ Rectangle {
             }
         }
     }
+    Timer {
+        id: focusTime
+        interval: 1500
+        repeat: false
+        //running: //Qt.application.state === Qt.ApplicationActive
+        onTriggered: pam.forceActiveFocus()
+    }
+
+    Connections {
+        target: Qt.application
+        function onStateChanged() {
+            if (Qt.application.state === Qt.ApplicationActive) {
+                focusTime.start();
+            }
+        }
+    }
 
     anchors {
         bottomMargin: 50

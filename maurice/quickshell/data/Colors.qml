@@ -101,6 +101,22 @@ Singleton {
     }  //adaptCol
 
     FileView {
+        id: colWatch
+        path: Quickshell.shellPath('data/colors.json')
+        watchChanges: true
+        onFileChanged: file.reload()//buffer.start()//file.writeAdapter()//file.writeAdapter()
+    }
+
+    Timer {
+        id: buffer
+        interval: 100
+        onTriggered: {
+            file.writeAdapter;
+            file.reload;
+        }
+    }
+
+    FileView {
         id: file
         path: Quickshell.shellPath('data/activeCol.json')
         watchChanges: true

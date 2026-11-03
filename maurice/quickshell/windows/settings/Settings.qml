@@ -33,8 +33,8 @@ Scope {
         visible: D.General.settings//false
         //implicitHeight: 100
         height: 500
-        property bool general: tabs.general//false
-        property bool visualizer: tabs.visualizer//false
+        //property bool general: tabs.general//false
+        //property bool visualizer: tabs.visualizer//false
         property alias tabs: tabsList
         width: 700
         color: "transparent" //D.Colors.bg
@@ -86,8 +86,10 @@ Scope {
                     color: D.Colors.surface
 
                     ContentWindow {
-                        general: root.general
-                        visualizer: root.visualizer
+                        //general: root.general
+                        general: root.tabs.general
+                        visualizer: root.tabs.visualizer
+                        //visualizer: root.visualizer
                     }
 
                     //field
@@ -133,7 +135,7 @@ Scope {
                     anchors.fill: parent
                     enabled: true
                     hoverEnabled: true
-                    onClicked: D.General.toggle()
+                    onClicked: D.General.toggle("settings")
                 }
             }
         }

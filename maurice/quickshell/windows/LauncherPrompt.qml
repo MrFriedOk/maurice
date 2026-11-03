@@ -24,11 +24,12 @@ Scope {
     property var items: [
         {
             name: "setting",
-            run: () => D.General.toggle()
+            run: () => D.General.toggle("settings")
         },
         {
-            name: 'hi',
-            run: () => console.log('hi')
+            name: 'dash',
+            run: () => D.General.toggle(D.General.dash)
+        //console.log('hi')
         }
     ]
 
@@ -67,6 +68,7 @@ Scope {
             id: cont
             //visible: prompt.hovered
             color: D.Colors.bg
+            radius: D.General.radius
             width: menu.out ? parent.width : 1
             Behavior on width {
                 NumberAnimation {
@@ -100,6 +102,7 @@ Scope {
 
                     delegate: Rectangle {
                         id: delegateRt
+                        radius: D.General.radius
 
                         color: area.containsMouse ? D.Colors.surface : D.Colors.widget
                         Behavior on color {
