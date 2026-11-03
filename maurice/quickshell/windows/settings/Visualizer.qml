@@ -18,12 +18,12 @@ Column {
             //onToggled: assigned => D.General.iHateMyCPU = assigned,
             //toggle: assigned,
             name: "Do you hate your CPU?",
-            tooltip: "Check if you want your lock screen to be crazy and stuff and destroy your compute!"
+            tooltip: "Check if you want your lock \nscreen to be crazy and stuff and \ndestroy your compute!"
         },
         {
             toggle: "vizEnabled",
             name: "Visualizer",
-            tooltip: "Do YOU want the playback widget to visualize?"
+            tooltip: "Do YOU want the playback \nwidget to visualize?"
         },
     ]
     Repeater {

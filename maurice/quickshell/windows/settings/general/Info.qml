@@ -4,6 +4,12 @@ import Quickshell
 
 Rectangle {
     id: root
+    function run() {
+        if (!tooltipOpen && area.containsMouse)
+            on.running = true;
+        else
+            off.running = true;
+    }
     property bool tooltipOpen: false
     property string tooltip: ""
     property string hint: ""
@@ -26,24 +32,36 @@ Rectangle {
         color: D.Colors.fg
     }
     Timer {
-        running: area.containsMouse
+        id: on
+        running: area.containsMouse && !root.tooltipOpen //false //root.run() //area.containsMouse
         interval: 750
         onTriggered: root.tooltipOpen = true
     }
+    Timer {
+        id: off
+        running: !area.containsMouse && root.tooltipOpen//false //root.run() //area.hoveredChanged && root.tooltipOpen === true
+        interval: 250
+        onTriggered: root.tooltipOpen = false
+    }
     MouseArea {
         id: area
+        //onHoveredChanged: root.run()
         anchors {
             fill: parent
         }
         hoverEnabled: true
     }
     Rectangle {
+        color: D.Colors.widget
+        x: 200
+
+        radius: D.General.radius
         //visible: root.tooltipOpen
         opacity: root.tooltipOpen ? .7 : 0
         Behavior on opacity {
             NumberAnimation {
                 duration: 120
-                easing: Easing.InCirc
+                easing: Easing.InOutQuad
             }
         }
         height: ttpContent.implicitHeight
@@ -55,7 +73,7 @@ Rectangle {
                 family: D.General.family
                 pointSize: 8
             }
-            color: D.Colors.widget
+            color: D.Colors.accent
         }
     }
 }
