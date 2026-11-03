@@ -10,10 +10,11 @@ Column {
     }
     property var switches: [
         {
-            assigned: D.General.iHateMyCPU,
+            toggle: "iHateMyCPU" //D.General.iHateMyCPU,
+            ,
             //onToggled: assigned => D.General.iHateMyCPU = assigned,
             //toggle: assigned,
-            name: "cpu"
+            name: "Do you hate your CPU?"
         },
     ]
     Repeater {
@@ -27,8 +28,8 @@ Column {
                 right: parent.right
             }
             Switch {
-                assigned: row.modelData.assigned
-                onToggled: assigned => assigned = assigned
+                assigned: D.General[row.modelData.toggle]//D.General.iHateMyCPU//row.modelData.toggle
+                onToggled: assigned => D.General[row.modelData.toggle] = assigned
                 //row.modelData.toggle = assigned
             }
         }

@@ -5,7 +5,7 @@
     "barHeight": 20,
     "bold": false,
     "family": "Maple Mono NF",
-    "iHateMyCPU": true,
+    "iHateMyCPU": false,
     "outline": false,
     "radius": 4,
     "scheme": "fruit-salad",
