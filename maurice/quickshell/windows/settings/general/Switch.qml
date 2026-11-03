@@ -1,6 +1,6 @@
 import Quickshell
 import QtQuick
-import "../../data" as D
+import "../../../data" as D
 
 Rectangle {
     //switch container

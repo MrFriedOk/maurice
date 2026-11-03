@@ -2,6 +2,7 @@ import Quickshell
 import QtQuick
 import "../../data" as D
 import "."
+import "./general" as G
 
 Column {
     id: root
@@ -28,10 +29,13 @@ Column {
                 left: parent.left
                 right: parent.right
             }
-            Switch {
+            G.Switch {
                 assigned: D.General[row.modelData.toggle]//D.General.iHateMyCPU//row.modelData.toggle
                 onToggled: assigned => D.General[row.modelData.toggle] = assigned
                 //row.modelData.toggle = assigned
+            }
+            G.Info {
+                hint: row.modelData.name
             }
         }
     }
