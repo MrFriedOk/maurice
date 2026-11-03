@@ -104,6 +104,11 @@ Scope {
                 radius: win.radius
                 //button close
                 color: area.containsMouse ? D.Colors.widget : D.Colors.surface
+                Behavior on color {
+                    ColorAnimation {
+                        duration: D.General.animDur
+                    }
+                }
                 width: 20
                 height: 20
 
