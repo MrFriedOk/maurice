@@ -9,14 +9,25 @@ Item {
     id: root
 
     function confirm() {
-        wid.text.text = root.wifiOn ? "OFF?" : "ON?";
+        if (state === states[0])
+            state = statesToggle[1];
+        if (state === states[1])
+            state = statesToggle[0];
 
-        if (wid.text.text === "OFF?" || wid.text.text === "ON?")
+        if (state === statesToggle)
             Networking.wifiEnabled = !Networking.wifiEnabled;
-        else
-            ctl.visible = true;
 
-        root.wifiOn = Networking.wifiEnabled;
+        if (wifiOn)
+            state = states[0];
+        else
+            state = states[1];
+
+        //wid.text.text = root.wifiOn ? "OFF?" : "ON?";
+
+        //if (wid.text.text === "OFF?" || wid.text.text === "ON?")
+        //    Networking.wifiEnabled = !Networking.wifiEnabled;
+
+        //root.wifiOn = Networking.wifiEnabled;
     }
 
     property bool eth: false
@@ -27,6 +38,15 @@ Item {
     implicitWidth: wid.implicitWidth
     Layout.fillHeight: true
 
+    property list<string> states: ["ON", "OFF"]
+    property list<string> statesToggle: ["ON?", "OFF?"]
+    property string state: {
+        if (root.wifiOn)
+            return states[0];
+        else
+            return states[1];
+    }
+
     PopupWindow {
         id: ctl
     }
@@ -35,7 +55,7 @@ Item {
         id: wid
 
         //opacity: root.hovered ? 0.8 : 1
-        text.text: root.wifiOn ? "ON" : "OFF"
+        text.text: root.state //root.wifiOn ? //root.states[0] : root.states[1] //"ON" : "OFF"
         icon.text: "WIFI"
         text.color: root.hovered ? D.Colors.surface : D.Colors.fg
         icon.color: D.Colors.surface

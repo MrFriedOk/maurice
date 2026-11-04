@@ -30,6 +30,10 @@ Scope {
             name: 'dash',
             run: () => D.General.toggle("dash")
         //console.log('hi')
+        },
+        {
+            name: "lyrics",
+            run: () => D.General.toggle("lyrics")
         }
     ]
 
