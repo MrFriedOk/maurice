@@ -6,42 +6,41 @@ import Quickshell.Wayland
 import "../../../data" as D
 import "../universal" as Wi
 
-Item{
+Item {
     id: win
 
     readonly property string wkspc: activeWindow?.activated ? activeWindow?.appId : "desktop"
-		readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
+    readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
 
-		implicitHeight: wid.height
-		implicitWidth: wid.implicitWidth
-		Behavior on implicitWidth {
-			NumberAnimation{
-				duration: D.General.animDur
-					easing.type: Easing.InoutQuad
-			}
-		}
-	//	Layout.fillWidth: true
-	Wi.Scramble{
-		id: wid
-		font{
-			pointSize: D.General.size
-		}
-		target: win.wkspc
-		color: D.Colors.fg
-//		Wi.FadeBehavior on target {}
-	}
+    implicitHeight: wid.height
+    implicitWidth: wid.implicitWidth
+    Behavior on implicitWidth {
+        NumberAnimation {
+            duration: D.General.animDur
+        }
+    }
+    //	Layout.fillWidth: true
+    Wi.Scramble {
+        id: wid
+        font {
+            pointSize: D.General.size
+        }
+        target: win.wkspc
+        color: D.Colors.fg
+        //		Wi.FadeBehavior on target {}
+    }
 
-//		Text{
-//			text: win.wkspc
-//			anchors{
-//				verticalCenter: parent.verticalCenter	
-//			}
-//			color: D.Colors.fg
-//			font{
-//				family: D.General.family
-//				bold: D.General.bold
-//				pointSize: D.General.size
-//			}
-//		}
+    //		Text{
+    //			text: win.wkspc
+    //			anchors{
+    //				verticalCenter: parent.verticalCenter
+    //			}
+    //			color: D.Colors.fg
+    //			font{
+    //				family: D.General.family
+    //				bold: D.General.bold
+    //				pointSize: D.General.size
+    //			}
+    //		}
 
 }
