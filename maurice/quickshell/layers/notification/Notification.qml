@@ -20,6 +20,12 @@ Scope {
         id: server
 
         keepOnReload: true
+        actionsSupported: true
+        bodyMarkupSupported: true
+        imageSupported: true
+
+        //track a notif
+        onNotification: n => n.tracked = true
         //readonly property list<string> hi: [trackedNotifications.Notification.image]
         //property var notif: trackedNotifications[0]
         //onNotification: notif => {
@@ -84,7 +90,7 @@ Scope {
 
                     delegate: Text {
                         required property var modelData
-                        text: "hi"//modelData.id//root.notifInfo//Notification.actions.identifier//root.notifAppName//root.notifInfo
+                        text: modelData.body//modelData.id//root.notifInfo//Notification.actions.identifier//root.notifAppName//root.notifInfo
                         anchors.fill: parent
                         anchors.margins: 8
                         color: D.Colors.surface
@@ -104,12 +110,17 @@ Scope {
                 Layout.fillHeight: true
                 radius: parent.radius
 
-                Image {
-                    cache: false
-                    anchors.fill: parent
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
-                    source: root.notifIcon//root.notifImage
+                Repeater {
+                    model: server.trackedNotifications
+
+                    delegate: Image {
+                        required property var modelData
+                        cache: false
+                        anchors.fill: parent
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
+                        source: modelData.image //root.notifIcon//root.notifImage
+                    }
                 }
 
                 anchors {
