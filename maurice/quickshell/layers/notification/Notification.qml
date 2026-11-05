@@ -9,16 +9,22 @@ Scope {
 
     property var notifications: server.trackedNotifications
     property bool hasSum: false
-    property string notifImage: notifications.image
-    property string notifInfo: "this is a notification"
+    //property string notifImage: notifications.image
+    property string notifInfo: server.notif.body
+
+    property string notifImage: server.notif.appIcon //Notification.image
+    property string notifIcon: Notification.appIcon
+    property string notifAppName: Notification.appName
 
     NotificationServer {
         id: server
 
         keepOnReload: true
-        onNotification: (notif) => {
-            notif.tracked = true;
-        }
+        property var notif: trackedNotifications
+        //onNotification: notif => {
+        //	notif.tracked = true;
+
+        //}
     }
 
     Timer {
@@ -32,7 +38,7 @@ Scope {
     PanelWindow {
         id: win
 
-        visible: false //root.notifications
+        visible: root.notifications
         exclusionMode: ExclusionMode.Ignore
         implicitWidth: 400
         height: 100 //notifs.contentHeight
@@ -73,18 +79,17 @@ Scope {
                 }
 
                 Text {
-                    text: root.notifInfo
+                    text: root.notifInfo//Notification.actions.identifier//root.notifAppName//root.notifInfo
                     anchors.fill: parent
                     anchors.margins: 8
                     color: D.Colors.surface
                 }
-
             }
 
             Rectangle {
                 id: sum
 
-                color: "red"
+                color: "transparent"
                 width: (win.width / 4) - 3 //square cuz idk
                 Layout.fillHeight: true
                 radius: parent.radius
@@ -94,7 +99,7 @@ Scope {
                     anchors.fill: parent
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-                    source: root.notifImage
+                    source: root.notifIcon//root.notifImage
                 }
 
                 anchors {
@@ -103,11 +108,7 @@ Scope {
                     bottom: parent.bottom
                     margins: 5
                 }
-
             }
-
         }
-
     }
-
 }

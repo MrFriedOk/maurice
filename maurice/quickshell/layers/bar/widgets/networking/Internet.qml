@@ -14,13 +14,8 @@ Item {
         if (state === states[1])
             state = statesToggle[0];
 
-        if (state === statesToggle)
+        if (state === statesToggle[0] || state === statesToggle[1])
             Networking.wifiEnabled = !Networking.wifiEnabled;
-
-        if (wifiOn)
-            state = states[0];
-        else
-            state = states[1];
 
         //wid.text.text = root.wifiOn ? "OFF?" : "ON?";
 
