@@ -7,10 +7,10 @@ import Quickshell.Services.Notifications
 Scope {
     id: root
 
-    property var notifications: server.trackedNotifications
+    //property var notifications: server.trackedNotifications
     property bool hasSum: false
     //property string notifImage: notifications.image
-    property string notifInfo: server.notif.body
+    property string notifInfo: server.hi[0]//server.notif.body
 
     property string notifImage: server.notif.appIcon //Notification.image
     property string notifIcon: Notification.appIcon
@@ -20,7 +20,8 @@ Scope {
         id: server
 
         keepOnReload: true
-        property var notif: trackedNotifications
+        //readonly property list<string> hi: [trackedNotifications.Notification.image]
+        //property var notif: trackedNotifications[0]
         //onNotification: notif => {
         //	notif.tracked = true;
 
@@ -29,7 +30,7 @@ Scope {
 
     Timer {
         interval: 1500
-        running: true
+        running: false//true
         onTriggered: {
             root.notifications.expire();
         }
@@ -38,7 +39,7 @@ Scope {
     PanelWindow {
         id: win
 
-        visible: root.notifications
+        visible: true//root.notifications
         exclusionMode: ExclusionMode.Ignore
         implicitWidth: 400
         height: 100 //notifs.contentHeight
@@ -47,7 +48,7 @@ Scope {
         MouseArea {
             anchors.fill: parent
             enabled: true
-            onClicked: root.notifications.dismiss()
+            //onClicked: root.notifications.dismiss()
         }
 
         anchors {
@@ -60,7 +61,7 @@ Scope {
 
         Rectangle {
             anchors.fill: parent
-            radius: 15
+            radius: D.General.radius
             color: D.Colors.surface
 
             Rectangle {
@@ -78,11 +79,20 @@ Scope {
                     margins: 5
                 }
 
-                Text {
-                    text: root.notifInfo//Notification.actions.identifier//root.notifAppName//root.notifInfo
-                    anchors.fill: parent
-                    anchors.margins: 8
-                    color: D.Colors.surface
+                Repeater {
+                    model: server.trackedNotifications
+
+                    delegate: Text {
+                        required property var modelData
+                        text: "hi"//modelData.id//root.notifInfo//Notification.actions.identifier//root.notifAppName//root.notifInfo
+                        anchors.fill: parent
+                        anchors.margins: 8
+                        color: D.Colors.surface
+                        font {
+                            family: D.General.family
+                            pointSize: 9
+                        }
+                    }
                 }
             }
 
