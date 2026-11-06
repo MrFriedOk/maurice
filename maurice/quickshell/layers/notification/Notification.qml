@@ -21,6 +21,56 @@ Scope {
         color: "transparent"
         visible: D.General.notificationsLauncher
         Rectangle {
+            Rectangle {
+                //dismiss button container
+                color: D.Colors.surface
+                height: 50
+                width: 200
+                radius: D.General.radius
+                anchors {
+                    margins: 5
+                    top: parent.top
+                    left: parent.left
+                    right: parent.right
+                }
+                Rectangle {
+                    anchors {
+                        fill: parent
+                        margins: 3
+                    }
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: D.General.animDur
+                        }
+                    }
+                    MouseArea {
+                        id: btnArea
+                        anchors {
+                            fill: parent
+                        }
+                        function massDismiss() {
+                            //len = ns.length;
+                            for (const n of [server.trackedNotifications.values])
+                                n.dismiss();
+                        }
+                        onClicked: massDismiss()
+                    }
+                    color: btnArea.containsMouse ? D.Colors.surface : D.Colors.widget
+                    Text {
+                        color: D.Colors.fg
+                        anchors {
+                            fill: parent
+                        }
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        text: "Clear all"
+                        font {
+                            family: D.General.family
+                            pointSize: 12
+                        }
+                    }
+                }
+            }
             radius: D.General.radius
             anchors {
                 fill: parent
@@ -29,9 +79,8 @@ Scope {
             ListView {
                 height: 200
                 spacing: 10
-                clip: false
                 anchors {
-                    topMargin: 500
+                    topMargin: 200
                     fill: parent
                     margins: 10
                 }
