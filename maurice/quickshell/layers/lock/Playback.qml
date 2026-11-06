@@ -55,17 +55,6 @@ Rectangle {
             anchors {
                 fill: parent
             }
-            ShaderEffect {
-                fragmentShader: Quickshell.shellPath('data/halftone.frag')
-                anchors.fill: parent
-                property var source: ShaderEffectSource {
-                    sourceItem: fart
-                    hideSource: false
-                }
-                property size size: Qt.size(width, height)
-                property real cell: 2
-                property real angle: 0.785
-            }
         }
 
         anchors {
