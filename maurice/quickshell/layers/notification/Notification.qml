@@ -4,93 +4,82 @@ import Quickshell.Services.Notifications
 import "."
 import "../../data" as D
 
-Scope {
-    id: scope
-    property var notif: null
-    property var notifs: server.trackedNotifications
+PanelWindow {
+    id: root
+    property var notif: null //notifs.tracked
+    property var notifs: server.trackedNotifications //NotificationService.notifications
+    property bool stay: true
+    property bool hasImage: (notif.appIcon || notif.image)
+    visible: notif.tracked
 
     Timer {
         id: clock
-        interval: 750
-        onTriggered: server.trackedNotifications.expire() //notifCont.visible = false
+        interval: 2000
+        onTriggered: root.notif.tracked = false
     }
 
     NotificationServer {
         id: server
-
         actionsSupported: true
-        bodyMarkupSupported: true
         imageSupported: true
 
-        //track a notif
-        onNotification: {
-                n => n.tracked = true;
-            clock.start();
-            scope.notif = n;
+        onNotification: n => {
+            n.tracked = true;
+            root.notif = n;
+            console.log(n.summary);
+            clock.restart();
         }
     }
-    PanelWindow {
-        id: root
-        property var notif: scope.notif
-        property var notifs: scope.notifs
-        property bool stay: true
-        property bool hasImage: (notif.appIcon || notif.image)
-        visible: notif.tracked && stay
 
+    anchors {
+        top: true
+        right: true
+    }
+    width: hasImage ? height * 3 : height * 2
+    color: "transparent"//D.Colors.widget
+    exclusionMode: ExclusionMode.Ignore
+    margins {
+        top: D.General.barHeight * 2
+        right: D.General.barHeight
+    }
+    Rectangle {
         anchors {
-            top: true
-            right: true
+            fill: parent
         }
-        width: hasImage ? height * 3 : height * 2
-        color: "transparent"//D.Colors.widget
-        exclusionMode: ExclusionMode.Ignore
-        margins {
-            top: D.General.barHeight * 2
-            right: D.General.barHeight
+        radius: D.General.radius
+        color: D.Colors.widget
+        Rectangle {
+            id: imageCont
+            anchors {
+                left: parent.left
+                top: parent.top
+                bottom: parent.bottom
+                margins: 5
+            }
+            width: root.hasImage ? parent.width * 1 / 3 : 0
         }
         Rectangle {
+            id: infoCont
+            radius: parent.radius
+            color: D.Colors.bg
             anchors {
-                fill: parent
+                right: parent.right
+                top: parent.top
+                bottom: parent.bottom
+                margins: 5
             }
-            radius: D.General.radius
-            color: D.Colors.widget
-            Rectangle {
-                id: imageCont
+            //width: root.hasImage ? parent.width * 2 / 3 : parent.width
+            width: root.hasImage ? imageCont.width * 2 : parent.width - anchors.margins * 2
+            Text {
+                id: txt
+                text: root.notif.summary
                 anchors {
-                    left: parent.left
-                    top: parent.top
-                    bottom: parent.bottom
-                    margins: 5
+                    fill: parent
                 }
-                width: root.hasImage ? parent.width * 1 / 3 : 0
-            }
-            Rectangle {
-                id: infoCont
-                radius: parent.radius
-                color: D.Colors.bg
-                anchors {
-                    right: parent.right
-                    top: parent.top
-                    bottom: parent.bottom
-                    margins: 5
-                }
-                //width: root.hasImage ? parent.width * 2 / 3 : parent.width
-                width: root.hasImage ? imageCont.width * 2 : parent.width - anchors.margins * 2
-                Repeater {
-                    model: root.notifs
-                    delegate: Text {
-                        id: txt
-                        required property var modelData
-                        text: "hi"
-                        anchors {
-                            fill: parent
-                        }
-                        color: D.Colors.fg
-                        font {
-                            family: D.General.family
-                            pointSize: 10
-                        }
-                    }
+                color: D.Colors.fg
+                font {
+                    family: D.General.family
+                    pointSize: 10
                 }
             }
         }
