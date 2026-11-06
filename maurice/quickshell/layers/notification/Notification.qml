@@ -6,16 +6,21 @@ import "../../data" as D
 
 PanelWindow {
     id: root
+    MouseArea {
+        anchors {
+            fill: parent
+        }
+        onClicked: root.notif = null
+    }
     property var notif: null //notifs.tracked
     property var notifs: server.trackedNotifications //NotificationService.notifications
-    property bool stay: true
     property bool hasImage: (notif.appIcon || notif.image)
-    visible: notif.tracked
+    //visible: notif
 
     Timer {
         id: clock
         interval: 2000
-        onTriggered: root.notif.tracked = false
+        onTriggered: root.notif = null
     }
 
     NotificationServer {
@@ -37,6 +42,7 @@ PanelWindow {
     }
     width: hasImage ? height * 3 : height * 2
     color: "transparent"//D.Colors.widget
+    height: 125
     exclusionMode: ExclusionMode.Ignore
     margins {
         top: D.General.barHeight * 2
@@ -48,8 +54,9 @@ PanelWindow {
         }
         radius: D.General.radius
         color: D.Colors.widget
-        Rectangle {
+        Image {
             id: imageCont
+            source: root.notif.image
             anchors {
                 left: parent.left
                 top: parent.top
@@ -69,17 +76,34 @@ PanelWindow {
                 margins: 5
             }
             //width: root.hasImage ? parent.width * 2 / 3 : parent.width
-            width: root.hasImage ? imageCont.width * 2 : parent.width - anchors.margins * 2
-            Text {
-                id: txt
-                text: root.notif.summary
+            width: root.hasImage ? imageCont.width * 2 - anchors.margins * 3 : parent.width - anchors.margins * 2
+            Row {
                 anchors {
                     fill: parent
                 }
-                color: D.Colors.fg
-                font {
-                    family: D.General.family
-                    pointSize: 10
+                spacing: 10
+
+                Text {
+                    id: sender
+                    width: parent.width
+                    text: root.notif.appName
+                    horizontalAlignment: Text.AlignHCenter
+                    anchors {
+                        fill: parent
+                        margins: 5
+                    }
+
+                    color: D.Colors.fg
+                    font {
+                        family: D.General.family
+                        pointSize: 10
+                    }
+                }
+                Text {
+                    font {
+                        family: D.General.family
+                        pointSize: 9
+                    }
                 }
             }
         }
