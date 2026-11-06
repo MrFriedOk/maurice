@@ -2,52 +2,38 @@ import QtQuick
 import Quickshell
 import Quickshell.Services.Notifications
 import "."
+import "../../data" as D
 
-Scope {
+PanelWindow {
     id: root
+    property var notif: D.General.notif
+    property bool stay: true
+    visible: notif.tracked && stay
 
-    Timer {
-        id: clock
-        interval: 750
-        onTriggered: server.trackedNotifications.expire() //notifCont.visible = false
+    anchors {
+        top: true
+        right: true
     }
-
-    NotificationServer {
-        id: server
-
-        keepOnReload: true
-        actionsSupported: true
-        bodyMarkupSupported: true
-        imageSupported: true
-
-        //track a notif
-        onNotification: {
-                n => n.tracked = true;
-            clock.start();
-        }
+    width: (notif.appIcon || notif.image || notif.hasActionIcons) ? height * 3 : height * 2
+    color: "transparent"//D.Colors.widget
+    exclusionMode: ExclusionMode.Ignore
+    margins {
+        top: D.General.barHeight * 2
+        right: D.General.barHeight
     }
-
-    PanelWindow {
-        id: notifCont
-        color: "transparent"
+    Rectangle {
         anchors {
-            top: true
-            right: true
+            fill: parent
         }
-        margins {
-            top: 10
-            right: 10
-        }
-        width: 300
-        height: 100
-        exclusionMode: ExclusionMode.Ignore
-        ListView {
+        radius: D.General.radius
+        color: D.Colors.widget
+        Rectangle {
             anchors {
-                fill: parent
+                left: parent.left
+                top: parent.top
+                bottom: parent.bottom
+                margins: 5
             }
-            model: server.trackedNotifications
-            spacing: 4
-            delegate: NotificationContainer {}
         }
     }
 }
