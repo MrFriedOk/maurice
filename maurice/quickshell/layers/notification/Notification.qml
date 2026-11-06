@@ -32,6 +32,7 @@ Scope {
     PanelWindow {
         id: root
         property var notif: scope.notif
+        property var notifs: scope.notifs
         property bool stay: true
         property bool hasImage: (notif.appIcon || notif.image)
         visible: notif.tracked && stay
@@ -75,17 +76,21 @@ Scope {
                 }
                 //width: root.hasImage ? parent.width * 2 / 3 : parent.width
                 width: root.hasImage ? imageCont.width * 2 : parent.width - anchors.margins * 2
-                Text {
-                    anchors {
-                        fill: parent
+                Repeater {
+                    model: root.notifs
+                    delegate: Text {
+                        id: txt
+                        required property var modelData
+                        text: "hi"
+                        anchors {
+                            fill: parent
+                        }
+                        color: D.Colors.fg
+                        font {
+                            family: D.General.family
+                            pointSize: 10
+                        }
                     }
-                    color: D.Colors.fg
-                    font {
-                        family: D.General.family
-                        pointSize: 10
-                    }
-
-                    text: root.notifs
                 }
             }
         }
