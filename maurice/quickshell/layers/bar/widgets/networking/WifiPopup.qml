@@ -159,7 +159,25 @@ PopupWindow {
 
                     property list<string> networkContent: [state, connectState, modelData.name, knownState]
                     radius: D.General.radius
-                    color: D.Colors.bg
+                    color: networkArea.containsMouse ? D.Colors.widget : D.Colors.bg
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: D.General.animDur
+                        }
+                    }
+                    MouseArea {
+                        id: networkArea
+                        anchors {
+                            fill: parent
+                        }
+                        hoverEnabled: true
+                        onClicked: {
+                            if (delegateNetwork.modelData.connected)
+                                delegateNetwork.modelData.disconnect();
+                            else
+                                delegateNetwork.modelData.connect();
+                        }
+                    }
                     height: 50
                     anchors {
                         left: parent.left
