@@ -10,20 +10,14 @@ Item {
 
     Timer {
         id: timeout
-        //running: root.confirm
         interval: 1250
         onTriggered: {
             root.confirmB = false;
-            //if (root.state === root.states[1])
-            //    root.state = root.states[1];
-            //else
-            //    root.state = root.states[0];
         }
     }
 
     function confirm() {
         if (root.confirmB) {
-            ctl.visible = true;
             if (root.wifiOn)
                 Networking.wifiEnabled = false;
             else
@@ -33,6 +27,9 @@ Item {
         //always flip confirm on call
         root.confirmB = !root.confirmB;
         timeout.restart();
+        if (root.confirmB) {
+            ctl.visible = true;
+        }
     }
 
     property bool eth: false
@@ -96,7 +93,7 @@ Item {
             onHoveredChanged: hovered = !hovered
             onClicked: {
                 root.confirm();
-                ctl.visible = !ctl.visible;
+                //ctl.visible = !ctl.visible;
             }//Networking.wifiEnabled = !Networking.wifiEnabled
 
             anchors {
