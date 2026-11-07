@@ -10,9 +10,15 @@ Item {
 
     Timer {
         id: timeout
-        running: root.confirm
-        interval: 750
-        onTriggered: root.confirm = false
+        //running: root.confirm
+        interval: 1250
+        onTriggered: {
+            root.confirmB = false;
+            //if (root.state === root.states[1])
+            //    root.state = root.states[1];
+            //else
+            //    root.state = root.states[0];
+        }
     }
 
     function confirm() {
@@ -26,6 +32,7 @@ Item {
 
         //always flip confirm on call
         root.confirmB = !root.confirmB;
+        timeout.restart();
     }
 
     property bool eth: false
@@ -53,7 +60,7 @@ Item {
         }
     }
 
-    PopupWindow {
+    WifiPopup {
         id: ctl
     }
 
