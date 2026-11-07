@@ -7,47 +7,6 @@ import Quickshell.Io
 import Quickshell.Services.Mpris
 
 Rectangle {
-    //}
-    //}
-    //function posChanged() {
-    //    text.text = root.pos;
-    //}
-    //Image {
-    //    source: root.art
-    //  anchors {
-    //       centerIn: parent
-    //   }
-    //}
-    //learning stuff and waste of space
-    //Row {
-    //  anchors {
-    //    centerIn: parent
-    //}
-    //Repeater {
-    //  model: root.stuff
-    //delegate: Text {
-    //  id: text
-    //required property var modelData
-    //text: modelData
-    //Timer {
-    //    interval: 1000
-    //    running: true
-    //    repeat: true
-    //   onTriggered: root.player.posChanged
-    //}
-    //property ObjectModel players: Mpris.players
-    //}
-    //    Text {
-    //      //height: D.General.barHeight / 2
-    //       //text: txt.arg(root.pos,root.len)
-    //      //text: root.remain
-    //        id: text
-    //        property string txt: "%1 : %2"
-    //      anchors {
-    //          verticalCenter: parent.verticalCenter
-    //     }
-    //}
-
     id: root
 
     //omg my naming is actually so good
@@ -61,8 +20,7 @@ Rectangle {
     color: trans ? "transparent" : D.Colors.widget
     height: D.General.barHeight
 
-    anchors {
-    }
+    anchors {}
 
     Rectangle {
         height: 20
@@ -73,7 +31,6 @@ Rectangle {
             left: parent.left
             right: parent.right
         }
-
     }
 
     MouseArea {
@@ -84,7 +41,6 @@ Rectangle {
         anchors {
             fill: parent
         }
-
     }
 
     Item {
@@ -111,9 +67,7 @@ Rectangle {
                 family: D.General.family
                 pointSize: parent.width / 20 //D.General.size
             }
-
         }
-
     }
 
     Viz {
@@ -122,7 +76,6 @@ Rectangle {
             left: parent.left
             verticalCenter: parent.verticalCenter
         }
-
     }
 
     Popup {
@@ -133,7 +86,5 @@ Rectangle {
         anchor {
             item: root
         }
-
     }
-
 }

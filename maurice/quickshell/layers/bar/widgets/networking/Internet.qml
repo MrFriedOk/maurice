@@ -23,12 +23,12 @@ Item {
 
     function confirm() {
         if (root.confirmB) {
+            ctl.visible = true;
             if (root.wifiOn)
                 Networking.wifiEnabled = false;
             else
                 Networking.wifiEnabled = true;
-        } else
-            ctl.visible = true;
+        }
 
         //always flip confirm on call
         root.confirmB = !root.confirmB;
@@ -36,10 +36,12 @@ Item {
     }
 
     property bool eth: false
-    property string netName: NetworkDevice.name
+    //property string netName: NetworkDevice.name
     property bool wifiOn: Networking.wifiEnabled
     property bool hovered: false
     property bool confirmB: false
+    readonly property var device: Networking.devices.values.find(d => d.connected) ?? null
+    //property NetworkDevice device: NetworkDevice
 
     implicitWidth: wid.implicitWidth
     Layout.fillHeight: true
@@ -62,6 +64,11 @@ Item {
 
     WifiPopup {
         id: ctl
+        device: root.device
+
+        anchor {
+            item: root
+        }
     }
 
     Wi.Widget {
@@ -69,7 +76,15 @@ Item {
 
         //opacity: root.hovered ? 0.8 : 1
         text.text: root.state //root.wifiOn ? //root.states[0] : root.states[1] //"ON" : "OFF"
-        icon.text: "WIFI"
+        icon.text: {
+            if (root.device.type === DeviceType.Wifi)
+                return "WIFI";
+            if (root.device.type === DeviceType.Wired)
+                return "WIRE";
+            else {
+                return "NONE";
+            }
+        }
         text.color: root.hovered ? D.Colors.surface : D.Colors.fg
         icon.color: D.Colors.surface
 
