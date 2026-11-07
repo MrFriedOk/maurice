@@ -34,6 +34,10 @@ Scope {
         {
             name: "lyrics",
             run: () => D.General.toggle("lyrics")
+        },
+        {
+            name: "notifications center",
+            run: () => D.General.toggle("notificationsLauncher")
         }
     ]
 

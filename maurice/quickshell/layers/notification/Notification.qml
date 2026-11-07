@@ -13,7 +13,9 @@ Scope {
     Timer {
         id: clock
         interval: 4000
-        onTriggered: root.notif = null
+        onTriggered: {
+            root.notif = null;
+        }
     }
 
     NotificationServer {
@@ -124,6 +126,7 @@ Scope {
         }
     }
     LazyLoader {
+        id: notifLoader
         active: root.open
         PanelWindow {
             id: win
