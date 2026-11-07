@@ -53,18 +53,10 @@ Scope {
     PanelWindow {
         id: menu
         property bool out: false
-        MouseArea {
-            id: hold
-            anchors {
-                fill: parent
-            }
-            hoverEnabled: true
-            // onHoveredChanged: root.out = false
-        }
         exclusionMode: ExclusionMode.Ignore
         color: "transparent"
         width: 150
-        visible: out || hold.containsMouse
+        visible: out
 
         anchors {
             right: true
