@@ -8,38 +8,49 @@ import Quickshell.Networking
 Item {
     id: root
 
+    Timer {
+        id: timeout
+        running: root.confirm
+        interval: 750
+        onTriggered: root.confirm = false
+    }
+
     function confirm() {
-        if (state === states[0])
-            state = statesToggle[1];
-        if (state === states[1])
-            state = statesToggle[0];
+        if (root.confirmB) {
+            if (root.wifiOn)
+                Networking.wifiEnabled = false;
+            else
+                Networking.wifiEnabled = true;
+        } else
+            ctl.visible = true;
 
-        if (state === statesToggle[0] || state === statesToggle[1])
-            Networking.wifiEnabled = !Networking.wifiEnabled;
-
-        //wid.text.text = root.wifiOn ? "OFF?" : "ON?";
-
-        //if (wid.text.text === "OFF?" || wid.text.text === "ON?")
-        //    Networking.wifiEnabled = !Networking.wifiEnabled;
-
-        //root.wifiOn = Networking.wifiEnabled;
+        //always flip confirm on call
+        root.confirmB = !root.confirmB;
     }
 
     property bool eth: false
     property string netName: NetworkDevice.name
     property bool wifiOn: Networking.wifiEnabled
     property bool hovered: false
+    property bool confirmB: false
 
     implicitWidth: wid.implicitWidth
     Layout.fillHeight: true
 
     property list<string> states: ["ON", "OFF"]
-    property list<string> statesToggle: ["ON?", "OFF?"]
+    //property list<string> statesToggle: ["ON?", "OFF?"]
     property string state: {
-        if (root.wifiOn)
-            return states[0];
-        else
-            return states[1];
+        if (root.wifiOn) {
+            if (root.confirmB)
+                return states[1] + "?";
+            else
+                return states[0];
+        } else {
+            if (root.confirmB)
+                return states[0] + "?";
+            else
+                return states[1];
+        }
     }
 
     PopupWindow {
