@@ -52,11 +52,25 @@ PopupWindow {
                     color: D.Colors.fg
                 }
                 Rectangle {
+                    //close button
                     anchors {
                         top: parent.top
                         bottom: parent.bottom
                         right: parent.right
                         margins: 5
+                    }
+                    Text {
+
+                        font {
+                            family: D.General.family
+                        }
+                        color: D.Colors.fg
+                        anchors {
+                            fill: parent
+                        }
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        text: "x"
                     }
                     width: height
                     radius: parent.radius
@@ -73,6 +87,44 @@ PopupWindow {
                             fill: parent
                         }
                         onClicked: root.visible = false
+                    }
+                }
+                Rectangle {
+                    //rescan networks button
+                    color: scanArea.containsMouse ? D.Colors.widget : D.Colors.surface
+                    anchors {
+                        top: parent.top
+                        left: parent.left
+                        bottom: parent.bottom
+                        margins: 5
+                    }
+                    width: txt.implicitWidth + height//height
+                    radius: D.General.radius
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: D.General.animDur
+                        }
+                    }
+                    Text {
+                        id: txt
+                        font {
+                            family: D.General.family
+                        }
+                        color: D.Colors.fg
+                        anchors {
+                            fill: parent
+                        }
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        text: "Rescan"
+                    }
+                    MouseArea {
+                        id: scanArea
+                        anchors {
+                            fill: parent
+                        }
+                        hoverEnabled: true
+                        onClicked: Networking.checkConnectivity()
                     }
                 }
             }
