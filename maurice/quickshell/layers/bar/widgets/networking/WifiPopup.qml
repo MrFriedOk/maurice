@@ -60,8 +60,11 @@ PopupWindow {
                     else
                         return "na";
                 }
+                property string state: {
+                    ConnectionState.toString(modelData.state);
+                }
 
-                property list<string> networkContent: [modelData.state.toString(), connectState, modelData.name, knownState]
+                property list<string> networkContent: [state, connectState, modelData.name, knownState]
                 radius: D.General.radius
                 color: D.Colors.bg
                 height: 50
