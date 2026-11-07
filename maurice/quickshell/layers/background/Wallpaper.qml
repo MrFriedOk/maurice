@@ -49,12 +49,6 @@ PanelWindow {
                 //top margin for image, let PanelWindow define bg color for bar
                 topMargin: D.General.barHeight + 1//D.General.barVisible ? D.General.barHeight + 1 : 1
                 margins: 1
-
-                Behavior on topMargin {
-                    NumberAnimation {
-                        duration: D.General.animDur
-                    }
-                }
             }
 
             Rectangle {

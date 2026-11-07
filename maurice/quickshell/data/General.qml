@@ -25,7 +25,7 @@ Singleton {
     readonly property string version: "0.4.0"
     property bool lyrics: true
     property bool dash: false
-    property bool notificationsLauncher: true
+    property bool notificationsLauncher: false
     readonly property list<string> splashes: JSON.parse(splashesJson.text())//JSON.parse(Quickshell.shellPath('data/splashes.json'))
     //property int loopState: player.loopState
     property alias family: adapter.family
