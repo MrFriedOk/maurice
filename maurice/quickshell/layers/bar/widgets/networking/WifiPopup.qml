@@ -45,6 +45,10 @@ PopupWindow {
                 topMargin: 40
             }
             delegate: Rectangle {
+                id: delegateNetwork
+                required property var modelData
+
+                property list<string> networkContent: [modelData.state.toString(), modelData.connected, modelData.name, modelData.known]
                 radius: D.General.radius
                 color: D.Colors.bg
                 height: 50
@@ -87,9 +91,13 @@ PopupWindow {
                         spacing: 73
 
                         Repeater {
-                            model: root.networkContent
+                            model: delegateNetwork.networkContent
 
                             delegate: Text {
+                                required property var modelData
+                                font {
+                                    family: D.General.family
+                                }
                                 color: D.Colors.fg
                                 text: modelData
                             }
