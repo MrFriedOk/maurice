@@ -48,7 +48,20 @@ PopupWindow {
                 id: delegateNetwork
                 required property var modelData
 
-                property list<string> networkContent: [modelData.state.toString(), modelData.connected, modelData.name, modelData.known]
+                property string connectState: {
+                    if (modelData.connected)
+                        return "ya";
+                    else
+                        return "na";
+                }
+                property string knownState: {
+                    if (modelData.known)
+                        return "ya";
+                    else
+                        return "na";
+                }
+
+                property list<string> networkContent: [modelData.state.toString(), connectState, modelData.name, knownState]
                 radius: D.General.radius
                 color: D.Colors.bg
                 height: 50
@@ -64,7 +77,6 @@ PopupWindow {
                     }
                     //field
                     Row {
-                        spacing: 73
                         anchors {
                             left: parent.left
                             right: parent.right
@@ -73,6 +85,7 @@ PopupWindow {
                         Repeater {
                             model: root.fields
                             delegate: Text {
+                                width: 115
                                 required property var modelData
                                 color: D.Colors.fg
                                 text: modelData
@@ -88,12 +101,12 @@ PopupWindow {
                             left: parent.left
                             right: parent.right
                         }
-                        spacing: 73
 
                         Repeater {
                             model: delegateNetwork.networkContent
 
                             delegate: Text {
+                                width: 115
                                 required property var modelData
                                 font {
                                     family: D.General.family
