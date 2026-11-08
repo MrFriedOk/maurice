@@ -22,6 +22,8 @@ import Quickshell
 //import Quickshell.Wayland
 import "layers/notification" as Not
 import "data" as D
+import Quickshell.Hyprland
+import Quickshell.Wayland
 
 ShellRoot {
     // call top layer (the bar and other stuff maybe)
@@ -32,11 +34,9 @@ ShellRoot {
     //property int wall: 0
     //property bool over: hoverH
 
-    id: root
-
-    property bool menu: false
-
     Mat.CoverArtMatugen {}
+
+    Windows.Menu {}
 
     // call background
     L.Lock {}
@@ -46,20 +46,4 @@ ShellRoot {
     E.Background {}
 
     E.Top {}
-
-    Shortcut {
-        sequence: "Ctrl+E"
-        onActivated: root.menu = !root.menu
-    }
-
-    PanelWindow {
-        visible: root.menu
-        exclusionMode: ExlcusionMode.Ignore
-        anchors {
-            top: true
-            bottom: true
-            left: true
-            right: true
-        }
-    }
 }

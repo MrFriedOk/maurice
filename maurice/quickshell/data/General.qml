@@ -28,8 +28,8 @@ Singleton {
     property bool notificationsLauncher: false
     readonly property list<string> splashes: JSON.parse(splashesJson.text())//JSON.parse(Quickshell.shellPath('data/splashes.json'))
     //property int loopState: player.loopState
-    //property alias family: adapter.family
-    property string family: "NMS Futura Pro Book"
+    property alias family: adapter.family
+    //property string family: "NMS Futura Pro Book"
     property alias scheme: adapter.scheme
     property alias adaptPS: adapter.adaptPS
     property alias size: adapter.size
