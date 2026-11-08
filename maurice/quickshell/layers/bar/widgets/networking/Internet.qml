@@ -32,7 +32,7 @@ Item {
         }
     }
 
-    property bool eth: false
+    property bool hi: false
     //property string netName: NetworkDevice.name
     property bool wifiOn: Networking.wifiEnabled
     property bool hovered: false
@@ -59,7 +59,7 @@ Item {
         }
     }
 
-    WifiPopup {
+    InternetPopup {
         id: ctl
         device: root.device
 

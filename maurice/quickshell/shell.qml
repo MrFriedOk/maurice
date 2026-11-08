@@ -34,6 +34,8 @@ ShellRoot {
 
     id: root
 
+    property bool menu: false
+
     Mat.CoverArtMatugen {}
 
     // call background
@@ -44,4 +46,20 @@ ShellRoot {
     E.Background {}
 
     E.Top {}
+
+    Shortcut {
+        sequence: "Ctrl+E"
+        onActivated: root.menu = !root.menu
+    }
+
+    PanelWindow {
+        visible: root.menu
+        exclusionMode: ExlcusionMode.Ignore
+        anchors {
+            top: true
+            bottom: true
+            left: true
+            right: true
+        }
+    }
 }

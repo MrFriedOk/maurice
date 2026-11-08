@@ -7,6 +7,7 @@ import Quickshell.Io
 import Quickshell.Services.Pipewire
 
 Item {
+    id: root
     property PwNode defNode: Pipewire.defaultAudioSink
     property bool mute: defNode.audio.muted
     property real vol: defNode.audio.volume.toFixed(2)
@@ -16,6 +17,12 @@ Item {
 
     implicitWidth: wid.implicitWidth
     Layout.fillHeight: true
+    WheelHandler {
+        property: "rotation"
+        //acceptedDevices: PointerDevice.Mouse
+        onWheel: e => console.log(e.angleDelta.y, e.angleDelta.x)
+        //event => root.vol = Math.max(0, Math.min(1, root.vol + event.angleDelta.y / 1200))
+    }
 
     PwObjectTracker {
         objects: [defNode]
@@ -47,7 +54,6 @@ Item {
 
             if (mute === false)
                 return D.Colors.surface;
-
         }
         text.text: {
             //check if vol === to ref, return 0.00 string
@@ -59,5 +65,4 @@ Item {
         }
         text.color: D.Colors.fg
     }
-
 }

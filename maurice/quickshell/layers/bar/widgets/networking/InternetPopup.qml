@@ -9,7 +9,7 @@ PopupWindow {
     //visible: true
     color: "transparent"
     property var device: null
-    property list<string> fields: ["State", "Connected", "Name", "Known"]
+    property list<string> fields: ["State", "Device", "Name", "Known"]
     height: 200
     width: 400
 
@@ -141,12 +141,12 @@ PopupWindow {
                     id: delegateNetwork
                     required property var modelData
 
-                    property string connectState: {
-                        if (modelData.connected)
-                            return "ya";
-                        else
-                            return "na";
-                    }
+                    //property string connectState: {
+                    //    if (modelData.connected)
+                    //        return "ya";
+                    //    else
+                    //        return "na";
+                    //}
                     property string knownState: {
                         if (modelData.known)
                             return "ya";
@@ -156,8 +156,9 @@ PopupWindow {
                     property string state: {
                         ConnectionState.toString(modelData.state);
                     }
+                    property string device: modelData.device.name
 
-                    property list<string> networkContent: [state, connectState, modelData.name, knownState]
+                    property list<string> networkContent: [state, device, modelData.name, knownState]
                     radius: D.General.radius
                     color: networkArea.containsMouse ? D.Colors.widget : D.Colors.bg
                     Behavior on color {

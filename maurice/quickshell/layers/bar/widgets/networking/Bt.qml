@@ -19,7 +19,7 @@ Item {
     }
 
     property BluetoothAdapter bt: Bluetooth.defaultAdapter
-    property bool on: bt.enabled
+		property bool on: bt.enabled
     property string id: bt.adapterId
     property string name: bt.name
     property string path: bt.dbusPath
@@ -55,7 +55,10 @@ Item {
 
         //always flip confirm on call
         root.confirmB = !root.confirmB;
-        timeout.restart();
+				timeout.restart();
+				if (root.confirmB){
+					ctl.visible = true
+				}
 			}
 
 			BtPopup{
