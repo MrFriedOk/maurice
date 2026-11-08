@@ -87,8 +87,8 @@ Scope {
 
                     ContentWindow {
                         //general: root.general
-                        general: root.tabs.general
-                        visualizer: root.tabs.visualizer
+                        //general: root.tabs.general
+                        //visualizer: root.tabs.visualizer
                         //visualizer: root.visualizer
                     }
 

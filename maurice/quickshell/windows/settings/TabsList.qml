@@ -5,8 +5,8 @@ import "../../data" as D
 
 ListView {
     id: root
-    property bool general: true
-    property bool visualizer: false
+    //property bool general: true
+    //property bool visualizer: false
     property var tabs: [
         {
             name: "General",
