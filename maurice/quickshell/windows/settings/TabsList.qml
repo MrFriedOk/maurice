@@ -5,12 +5,12 @@ import "../../data" as D
 
 ListView {
     id: root
+    property string content: "General.qml"
     //property bool general: true
     //property bool visualizer: false
     property var tabs: [
         {
-            name: "General",
-            toggle: "general"
+            name: "General"
         },
         {
             name: "Font"
@@ -19,8 +19,7 @@ ListView {
             name: "Bar"
         },
         {
-            name: "Visualizer",
-            toggle: "visualizer"
+            name: "Visualizer"
         }
     ]
     anchors {
@@ -65,7 +64,7 @@ ListView {
                 fill: parent
             }
             hoverEnabled: true
-            onClicked: root[delegateRtmodelData.toggle] = root[!delegateRt.modelData.toggle]
+            onClicked: root.content = ("%1", delegateRt.modelData.name) + ".qml"//root[delegateRtmodelData.toggle] = root[!delegateRt.modelData.toggle]
         }
     }
 }

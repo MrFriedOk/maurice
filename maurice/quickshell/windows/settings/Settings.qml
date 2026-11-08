@@ -12,6 +12,7 @@ Scope {
     //property var func: ipc.toggle()
 
     //loading: D.General.settings
+    //    property alias content: tabsList.content
 
     FloatingWindow {
         //signal closeRequest()
@@ -86,6 +87,7 @@ Scope {
                     color: D.Colors.surface
 
                     ContentWindow {
+                        content: tabsList.content
                         //general: root.general
                         //general: root.tabs.general
                         //visualizer: root.tabs.visualizer
