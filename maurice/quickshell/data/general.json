@@ -10,9 +10,9 @@
     "radius": 4,
     "scheme": "fruit-salad",
     "size": 10,
-    "sketchBar": false,
+    "sketchBar": true,
     "spacing": 2,
     "txtSpacing": 5,
     "vizEnabled": false,
-    "widRect": true
+    "widRect": false
 }

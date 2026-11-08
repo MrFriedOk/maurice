@@ -10,6 +10,13 @@ Scope {
     property var notifs: server.trackedNotifications //NotificationService.notifications
     property bool hasImage: (notif.appIcon || notif.image)
     property bool open: notif//false
+    property real prog: open ? 1 : 0
+    Behavior on prog {
+        NumberAnimation {
+            duration: D.General.animDur
+            easing: Easing.InOutQuad
+        }
+    }
     Timer {
         id: clock
         interval: 4000
@@ -30,9 +37,9 @@ Scope {
         }
     }
     LazyLoader {
-        active: D.General.notificationsLauncher
+        active: root.prog > 0 //|| root.open //D.General.notificationsLauncher
         PanelWindow {
-            width: 400
+            implicitWidth: 400
             anchors {
                 top: true
                 right: true
@@ -127,7 +134,7 @@ Scope {
     }
     LazyLoader {
         id: notifLoader
-        active: root.open
+        active: root.prog > 0 || root.open //root.open
         PanelWindow {
             id: win
             MouseArea {
@@ -143,7 +150,7 @@ Scope {
                 top: true
                 right: true
             }
-            width: hasImage ? height * 3 : height * 2
+            implicitWidth: hasImage ? height * 3 : height * 2
             color: "transparent"//D.Colors.widget
             height: 100
             exclusionMode: ExclusionMode.Ignore
