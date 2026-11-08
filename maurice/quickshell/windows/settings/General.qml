@@ -6,17 +6,16 @@ import "./general" as G
 
 Column {
     id: root
+    spacing: 5
     anchors {
         fill: parent
+        margins: 5
     }
     property var switches: [
         {
             toggle: "adaptiveWall",
-            name: "Use 'adaptive wallpaper'"
-        },
-        {
-            toggle: "sketchBar",
-            name: "Enable bar 'sketching'"
+            name: "Use 'adaptive wallpaper'",
+            tooltip: "Use the gradient wallpaper \nor low res album art?"
         },
     ]
     Repeater {
@@ -36,6 +35,7 @@ Column {
             }
             G.Info {
                 hint: row.modelData.name
+                tooltip: row.modelData.tooltip
             }
         }
     }
