@@ -6,6 +6,7 @@ import "./general" as G
 
 Column {
     id: root
+    G.Field {}
     spacing: 5
     anchors {
         fill: parent

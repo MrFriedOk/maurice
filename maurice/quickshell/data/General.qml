@@ -23,6 +23,7 @@ Singleton {
     }
     property bool settings: false
     readonly property string version: "0.4.0"
+    readonly property list<string> schemes: ["expressive", "content", "fidelity", "fruit-salad", "monochrome", "neutral", "rainbow", "tonal-spot", "vibrant"]
     property bool lyrics: true
     property bool dash: false
     property bool notificationsLauncher: false
