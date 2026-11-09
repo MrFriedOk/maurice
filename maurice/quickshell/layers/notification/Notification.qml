@@ -6,6 +6,12 @@ import "../../data" as D
 
 Scope {
     id: root
+    function massDismiss() {
+        //len = ns.length;
+        const list = server.trackedNotifications.values;
+        for (let i = list.length - 1; i >= 0; i--)
+            list[i].dismiss();
+    }
     property var notif: null //notifs.tracked
     property var notifs: server.trackedNotifications //NotificationService.notifications
     property bool hasImage: (notif.appIcon || notif.image)
@@ -61,6 +67,7 @@ Scope {
             color: "transparent"
             //visible: D.General.notificationsLauncher
             Rectangle {
+                implicitWidth: parent.width * root.centerProg
                 Rectangle {
                     anchors {
                         fill: parent
@@ -70,22 +77,45 @@ Scope {
                     radius: parent.radius
                 }
                 Rectangle {
+                    //close launcher buttom
                     Rectangle {
+                        width: parent.height
                         anchors {
                             top: parent.top
-														left: parent.left
-														bottom: parent.bottom
+                            left: parent.left
+                            bottom: parent.bottom
+                            margins: 5
                         }
-                        color: D.Colors.surface
-                        width: 50
-                        height: width
+                        radius: parent.radius
+                        color: closeArea.containsMouse ? D.Colors.widget : D.Colors.surface
+                        Text {
+                            anchors {
+                                fill: parent
+                            }
+                            color: D.Colors.fg
+                            font {
+                                family: D.General.family
+                                pointSize: 16
+                            }
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                            text: "x"
+                        }
+                        MouseArea {
+                            id: closeArea
+                            hoverEnabled: true
+                            anchors {
+                                fill: parent
+                            }
+                            onClicked: D.General.notificationsLauncher = false
+                        }
                     }
                     color: D.Colors.bg
                     height: 50
                     width: 200
                     radius: D.General.radius
                     anchors {
-                        margins: 5
+                        margins: 10
                         top: parent.top
                         left: parent.left
                         right: parent.right
@@ -93,9 +123,11 @@ Scope {
                     Rectangle {
 
                         //dismiss button container
+                        radius: parent.radius
                         anchors {
                             fill: parent
                             margins: 5
+                            leftMargin: 60
                         }
                         Behavior on color {
                             ColorAnimation {
@@ -107,14 +139,11 @@ Scope {
                             anchors {
                                 fill: parent
                             }
-                            function massDismiss() {
-                                //len = ns.length;
-                                for (const n of [server.trackedNotifications.values])
-                                    n.dismiss();
-                            }
-                            onClicked: massDismiss()
+
+                            onClicked: root.massDismiss()
+                            hoverEnabled: true
                         }
-                        color: btnArea.containsMouse ? D.Colors.surface : D.Colors.widget
+                        color: btnArea.containsMouse ? D.Colors.widget : D.Colors.surface
                         Text {
                             color: D.Colors.fg
                             anchors {
@@ -158,28 +187,64 @@ Scope {
                         required property var modelData
                         radius: D.General.radius
                         color: area.containsMouse ? D.Colors.widget : D.Colors.bg
+                        Behavior on color {
+                            ColorAnimation {
+                                duration: D.General.animDur
+                            }
+                        }
                         anchors {
                             left: parent.left
                             right: parent.right
                         }
                         Column {
+                            spacing: 6
                             anchors {
+                                topMargin: 10
+
                                 fill: parent
                             }
                             Text {
                                 //app name text
                                 anchors {
-                                    top: parent.top
                                     left: parent.left
                                     right: parent.right
                                     topMargin: 10
+                                    bottomMargin: 10
                                 }
                                 font {
                                     family: D.General.family
-                                    pointSize: 12
+                                    pointSize: 10
                                 }
                                 horizontalAlignment: Text.AlignHCenter
                                 text: notifsDelegate.modelData.appName
+                                color: D.Colors.fg
+                            }
+                            Text {
+                                //body text
+                                anchors {
+                                    left: parent.left
+                                    right: parent.right
+                                }
+                                font {
+                                    family: D.General.family
+                                    pointSize: 9
+                                }
+                                horizontalAlignment: Text.AlignHCenter
+                                text: notifsDelegate.modelData.body
+                                color: D.Colors.fg
+                            }
+                            Text {
+                                //summary text
+                                anchors {
+                                    left: parent.left
+                                    right: parent.right
+                                }
+                                font {
+                                    family: D.General.family
+                                    pointSize: 8
+                                }
+                                horizontalAlignment: Text.AlignHCenter
+                                text: notifsDelegate.modelData.summary
                                 color: D.Colors.fg
                             }
                         }
