@@ -10,10 +10,17 @@ Scope {
     property var notifs: server.trackedNotifications //NotificationService.notifications
     property bool hasImage: (notif.appIcon || notif.image)
     property bool open: notif//false
+    property real centerProg: D.General.notificationsLauncher ? 1 : 0
     property real prog: open ? 1 : 0
     Behavior on prog {
         NumberAnimation {
             duration: D.General.animDur
+            easing: Easing.InOutQuad
+        }
+    }
+    Behavior on centerProg {
+        NumberAnimation {
+            duration: D.General.animDur - 40
             easing: Easing.InOutQuad
         }
     }
@@ -37,9 +44,9 @@ Scope {
         }
     }
     LazyLoader {
-        active: root.prog > 0 //|| root.open //D.General.notificationsLauncher
+        active: root.centerProg > 0 //D.General.notificationsLauncher
         PanelWindow {
-            implicitWidth: 400
+            implicitWidth: 400// * root.centerProg
             anchors {
                 top: true
                 right: true

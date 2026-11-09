@@ -100,11 +100,5 @@ Item {
                 fill: parent
             }
         }
-
-        Behavior on text.color {
-            ColorAnimation {
-                duration: D.General.animDur
-            }
-        }
     }
 }

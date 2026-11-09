@@ -94,12 +94,6 @@ Item {
 
         }
 
-        Behavior on text.color {
-            ColorAnimation {
-                duration: D.General.animDur
-            }
-
-        }
 
         Wi.FadeBehavior on text.text {
         }
