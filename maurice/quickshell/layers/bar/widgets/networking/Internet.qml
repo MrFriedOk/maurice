@@ -84,6 +84,7 @@ Item {
         }
         text.color: root.hovered ? D.Colors.surface : D.Colors.fg
         icon.color: D.Colors.surface
+        Wi.FadeBehavior on text.text {}
 
         MouseArea {
             id: mArea

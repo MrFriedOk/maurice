@@ -62,8 +62,25 @@ Scope {
             //visible: D.General.notificationsLauncher
             Rectangle {
                 Rectangle {
-                    //dismiss button container
+                    anchors {
+                        fill: parent
+                        margins: 5
+                    }
                     color: D.Colors.surface
+                    radius: parent.radius
+                }
+                Rectangle {
+                    Rectangle {
+                        anchors {
+                            top: parent.top
+														left: parent.left
+														bottom: parent.bottom
+                        }
+                        color: D.Colors.surface
+                        width: 50
+                        height: width
+                    }
+                    color: D.Colors.bg
                     height: 50
                     width: 200
                     radius: D.General.radius
@@ -74,9 +91,11 @@ Scope {
                         right: parent.right
                     }
                     Rectangle {
+
+                        //dismiss button container
                         anchors {
                             fill: parent
-                            margins: 3
+                            margins: 5
                         }
                         Behavior on color {
                             ColorAnimation {
@@ -115,7 +134,7 @@ Scope {
                 anchors {
                     fill: parent
                 }
-                color: D.Colors.bg
+                color: D.Colors.widget
                 ListView {
                     height: 200
                     spacing: 10
@@ -127,11 +146,42 @@ Scope {
                     model: root.notifs
 
                     delegate: Rectangle {
+                        id: notifsDelegate
+                        MouseArea {
+                            id: area
+                            anchors {
+                                fill: parent
+                            }
+                            hoverEnabled: true
+                            onClicked: notifsDelegate.modelData.dismiss()
+                        }
+                        required property var modelData
                         radius: D.General.radius
-                        color: D.Colors.surface
+                        color: area.containsMouse ? D.Colors.widget : D.Colors.bg
                         anchors {
                             left: parent.left
                             right: parent.right
+                        }
+                        Column {
+                            anchors {
+                                fill: parent
+                            }
+                            Text {
+                                //app name text
+                                anchors {
+                                    top: parent.top
+                                    left: parent.left
+                                    right: parent.right
+                                    topMargin: 10
+                                }
+                                font {
+                                    family: D.General.family
+                                    pointSize: 12
+                                }
+                                horizontalAlignment: Text.AlignHCenter
+                                text: notifsDelegate.modelData.appName
+                                color: D.Colors.fg
+                            }
                         }
                         height: 100
                     }
