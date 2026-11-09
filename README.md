@@ -31,6 +31,7 @@ The code in this repo depends on packages/applications besides Quickshell.
   - `hyprshot`, screen shot utility
   - Bibata cursor theme, available on the AUR
   - `eza`, fish aliases `ls` and others to eza, so it is needed
+  - `networkmanager`, not super clear on this but I believe the Quickshell docs state that `Quickshell.Networking`'s only backend is NetworkManager
 #### Other
 These are listed in the code (Hyprland's `stuff/keybind.lua`) but are not necessarily required and can be adjusted as needed (and will probably be available for customizing via Quickshell?). The shell will run without them, Hyprland will probably ignore it, the keybinds to them just wont do anything.
   - `firefox`
@@ -39,7 +40,7 @@ These are listed in the code (Hyprland's `stuff/keybind.lua`) but are not necess
   - `gitui`, listed in fish config but not needed
 #### Arch
 ```
-sudo pacman -S --needed hyprland brightnessctl upower cava pipewire quickshell curl matugen fish starship rofi hyprpicker hyprshot
+sudo pacman -S --needed hyprland brightnessctl upower cava pipewire quickshell curl matugen fish starship rofi hyprpicker hyprshot networkmanager
 ```
 ### Guided
 For a standard install, step-by-step
