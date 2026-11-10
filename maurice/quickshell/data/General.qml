@@ -3,6 +3,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Services.Mpris
 import Quickshell.Io
+import "../windows/settings/" as S
 
 //general stuff, prolly should sort out later
 Singleton {
@@ -15,9 +16,21 @@ Singleton {
 
     id: gen
 
+    function toggle(property) {
+        //settings = !settings;
+        //property = !property;
+        gen[property] = !gen[property];
+    }
+    property bool settings: false
+    readonly property string version: "0.4.0"
+    readonly property list<string> schemes: ["expressive", "content", "fidelity", "fruit-salad", "monochrome", "neutral", "rainbow", "tonal-spot", "vibrant"]
+    property bool lyrics: true
+    property bool dash: false
+    property bool notificationsLauncher: false
     readonly property list<string> splashes: JSON.parse(splashesJson.text())//JSON.parse(Quickshell.shellPath('data/splashes.json'))
     //property int loopState: player.loopState
     property alias family: adapter.family
+    //property string family: "NMS Futura Pro Book"
     property alias scheme: adapter.scheme
     property alias adaptPS: adapter.adaptPS
     property alias size: adapter.size
@@ -44,8 +57,8 @@ Singleton {
         path: Quickshell.shellPath('data/general.json')
         watchChanges: true
         blockLoading: true
-        //onFileChanged: reload()
-        onAdapterChanged: writeAdapter()
+        onFileChanged: reload()
+        onAdapterUpdated: writeAdapter()
 
         adapter: JsonAdapter {
             id: adapter
@@ -59,7 +72,7 @@ Singleton {
             property int txtSpacing: 5
             property bool bold: false
             property int spacing: 2
-            property int radius: 0
+            property int radius: 4
             property int animDur: 80
             property int barHeight: 20
             property bool widRect: sketchBar ? false : true

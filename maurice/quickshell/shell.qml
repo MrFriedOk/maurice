@@ -3,7 +3,7 @@
 //else:
 //	stop handling Settings
 //	reset over bool
-//	
+//
 //Settings.qml
 //if (button.clicked)
 //	visible = false
@@ -21,6 +21,9 @@ import Quickshell
 //import Quickshell.Io
 //import Quickshell.Wayland
 import "layers/notification" as Not
+import "data" as D
+import Quickshell.Hyprland
+import Quickshell.Wayland
 
 ShellRoot {
     // call top layer (the bar and other stuff maybe)
@@ -31,22 +34,16 @@ ShellRoot {
     //property int wall: 0
     //property bool over: hoverH
 
-    id: root
+    Mat.CoverArtMatugen {}
 
-    Mat.CoverArtMatugen {
-    }
+    Windows.Menu {}
 
     // call background
-    L.Lock {
-    }
+    L.Lock {}
 
-    Not.Notification {
-    }
+    Not.Notification {}
 
-    E.Background {
-    }
+    E.Background {}
 
-    E.Top {
-    }
-
+    E.Top {}
 }

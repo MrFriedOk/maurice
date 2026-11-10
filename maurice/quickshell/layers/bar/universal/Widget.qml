@@ -60,7 +60,12 @@ Rectangle {
                 family: D.General.family
                 pointSize: D.General.size
             }
-
+            color: D.Colors.fg
+            Behavior on color {
+                ColorAnimation {
+                    duration: D.General.animDur
+                }
+            }
         }
 
         Text {
@@ -74,16 +79,19 @@ Rectangle {
                 bold: D.General.bold
                 pointSize: D.General.size
             }
-
+            color: D.Colors.fg
+            Behavior on color {
+                ColorAnimation {
+                    duration: D.General.animDur
+                }
+            }
         }
-
     }
 
     Behavior on implicitWidth {
         NumberAnimation {
             duration: D.General.animDur - 60
         }
-
     }
     //Layout.fillHeight: true
 

@@ -4,31 +4,39 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
+import "."
 
 Scope {
-    IpcHandler {
-        id: ipc
-        target: "settings"
-
-        function toggle(): void {
-            //settings.active = !settings.active;
-            root.visible = !root.visible;
-        }
-    }
+    // property alias ipc: ipc
+    // property alias visible: root.visible
+    //property var func: ipc.toggle()
 
     //loading: D.General.settings
+    //    property alias content: tabsList.content
 
     FloatingWindow {
         //signal closeRequest()
         //property bool open: D.General.settings
 
         id: root
+        //IpcHandler {
+        //    id: ipc
+        //    target: "settings"
+
+        //    function toggle(): void {
+        //        //settings.active = !settings.active;
+        //        root.visible = !root.visible;
+        //    }
+        //}
 
         title: "settings"
         //WlrLayershell.Layer: WlrLayer.Top
-        visible: false
+        visible: D.General.settings//false
         //implicitHeight: 100
         height: 500
+        //property bool general: tabs.general//false
+        //property bool visualizer: tabs.visualizer//false
+        property alias tabs: tabsList
         width: 700
         color: "transparent" //D.Colors.bg
 
@@ -43,6 +51,7 @@ Scope {
             }
 
             Row {
+                id: row
                 spacing: 10
 
                 anchors {
@@ -58,6 +67,10 @@ Scope {
                     color: D.Colors.surface
                     radius: win.radius
 
+                    TabsList {
+                        id: tabsList
+                    }
+
                     anchors {
                         //left: parent.bottom
 
@@ -68,9 +81,18 @@ Scope {
                 }
 
                 Rectangle {
-                    width: (win.width - tabs.width)
+                    //content container
+                    width: (win.width - tabs.width) - 20
                     radius: win.radius
                     color: D.Colors.surface
+
+                    ContentWindow {
+                        content: tabsList.content
+                        //general: root.general
+                        //general: root.tabs.general
+                        //visualizer: root.tabs.visualizer
+                        //visualizer: root.visualizer
+                    }
 
                     //field
                     anchors {
@@ -78,7 +100,9 @@ Scope {
 
                         top: parent.top
                         bottom: parent.bottom
-                        rightMargin: 5
+                        right: parent.right
+                        rightMargin: 1
+                        //leftMargin: tabs.width + 5
                         topMargin: 20 + btn.anchors.margins
                     }
                 }
@@ -90,6 +114,11 @@ Scope {
                 radius: win.radius
                 //button close
                 color: area.containsMouse ? D.Colors.widget : D.Colors.surface
+                Behavior on color {
+                    ColorAnimation {
+                        duration: D.General.animDur
+                    }
+                }
                 width: 20
                 height: 20
 
@@ -108,9 +137,7 @@ Scope {
                     anchors.fill: parent
                     enabled: true
                     hoverEnabled: true
-                    onClicked: {
-                        ipc.toggle();
-                    }
+                    onClicked: D.General.toggle("settings")
                 }
             }
         }

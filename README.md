@@ -14,6 +14,8 @@
 
 ## Installing
 ### Dependencies 
+#### Prereqs
+This rice does not handle system (or much user) services, please ensure necessary services (like the ones required by Hyprland) are enabled.
 The code in this repo depends on packages/applications besides Quickshell.
   - `brightnessctl`, used for backlight display/manipulation (currently not working anyway lol)
   - [`hyprland`](https://hypr.land/), this is a Hyprland rice. Lua version preferable
@@ -31,6 +33,7 @@ The code in this repo depends on packages/applications besides Quickshell.
   - `hyprshot`, screen shot utility
   - Bibata cursor theme, available on the AUR
   - `eza`, fish aliases `ls` and others to eza, so it is needed
+  - `networkmanager`, not super clear on this but I believe the Quickshell docs state that `Quickshell.Networking`'s only backend is NetworkManager
 #### Other
 These are listed in the code (Hyprland's `stuff/keybind.lua`) but are not necessarily required and can be adjusted as needed (and will probably be available for customizing via Quickshell?). The shell will run without them, Hyprland will probably ignore it, the keybinds to them just wont do anything.
   - `firefox`
@@ -39,7 +42,7 @@ These are listed in the code (Hyprland's `stuff/keybind.lua`) but are not necess
   - `gitui`, listed in fish config but not needed
 #### Arch
 ```
-sudo pacman -S --needed hyprland brightnessctl upower cava pipewire quickshell curl matugen fish starship rofi hyprpicker hyprshot
+sudo pacman -S --needed hyprland brightnessctl upower cava pipewire quickshell curl matugen fish starship rofi hyprpicker hyprshot networkmanager
 ```
 ### Guided
 For a standard install, step-by-step
@@ -57,6 +60,8 @@ For a standard install, step-by-step
 `hl.exec_cmd('qs')`
 - For the Hyprlang version,
 `exec-once = qs`
+### Post-Install
+Quickshell *will* conflict with any other notification daemons (`dunst`, for example), ensure those are disabled and do not start anywhere, or they'll just occupy the notifications instead.
 ## MkDocs
 MkDocs is used to display this repo's docs, simply install MkDocs and serve from this directory!
 > [!NOTE]

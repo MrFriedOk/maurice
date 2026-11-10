@@ -38,7 +38,6 @@ Item {
 
             if (status === "LOCK")
                 return ["qs", "ipc", "call", "lock", "lock"];
-
         }
     }
 
@@ -57,23 +56,6 @@ Item {
             color: D.General.widRect ? hover ? D.Colors.surface : D.Colors.widget : "transparent"
             icon.text: wid.hasIcon ? "SES" : ""
             icon.color: D.Colors.surface
-
-            Behavior on text.color {
-                ColorAnimation {
-                    duration: 120
-                }
-
-            }
-
-            Behavior on color {
-                ColorAnimation {
-                    duration: 120
-                }
-
-            }
-
         }
-
     }
-
 }

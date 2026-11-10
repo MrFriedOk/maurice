@@ -21,7 +21,6 @@ Rectangle {
 
         if (loopState === 2)
             return "LOOP";
-
     }
     property string art: player.trackArtUrl
     property string pause: player.isPlaying ? "PAUSE" : "PLAY"
@@ -37,8 +36,7 @@ Rectangle {
         verticalCenterOffset: 100
     }
 
-    Self.Control {
-    }
+    Self.Control {}
 
     Rectangle {
         id: artContainer
@@ -49,6 +47,7 @@ Rectangle {
         radius: parent.radius
 
         Image {
+            id: fart
             cache: false
             clip: true
             source: root.art
@@ -56,7 +55,6 @@ Rectangle {
             anchors {
                 fill: parent
             }
-
         }
 
         anchors {
@@ -65,7 +63,5 @@ Rectangle {
             top: parent.top
             bottom: parent.bottom
         }
-
     }
-
 }
