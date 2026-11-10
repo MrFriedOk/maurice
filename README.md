@@ -14,6 +14,8 @@
 
 ## Installing
 ### Dependencies 
+#### Prereqs
+This rice does not handle system (or much user) services, please ensure necessary services (like the ones required by Hyprland) are enabled.
 The code in this repo depends on packages/applications besides Quickshell.
   - `brightnessctl`, used for backlight display/manipulation (currently not working anyway lol)
   - [`hyprland`](https://hypr.land/), this is a Hyprland rice. Lua version preferable
@@ -58,6 +60,8 @@ For a standard install, step-by-step
 `hl.exec_cmd('qs')`
 - For the Hyprlang version,
 `exec-once = qs`
+### Post-Install
+Quickshell *will* conflict with any other notification daemons (`dunst`, for example), ensure those are disabled and do not start anywhere, or they'll just occupy the notifications instead.
 ## MkDocs
 MkDocs is used to display this repo's docs, simply install MkDocs and serve from this directory!
 > [!NOTE]
